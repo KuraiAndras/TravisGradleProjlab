@@ -1,31 +1,16 @@
-package projlab;
+package projlabTest;
 
+import projlab.*;
 import java.io.*;
 import java.util.*;
 
-//TODO: Add Javadoc//TODO: Delete logging
-//TODO: Implement Map creation, and lock Management
-public class WareHouse {
-    protected ArrayList<ArrayList<Field>> map;
-
-    public WareHouse() {
-        map = new ArrayList<>();
+public class FakeWarehouse extends WareHouse {
+    FakeWarehouse() {
+        super();
     }
 
-    //TODO: Delete logging
-    //Here for debugging reasons
-    private void logMap() {
-        for (ArrayList<Field> item1 :
-                map) {
-            for (Field item2 :
-                    item1) {
-                System.out.print(item2.toString() + '\t');
-            }
-            System.out.println();
-        }
-    }
-
-    public WareHouse generateMap(String mapLocation) {
+    public Player generateTestMapPlayer(String mapLocation) {
+        Player rePlayer = null;
         try {
             ArrayList<ArrayList<String>> charMap = new ArrayList<>();
             Scanner file = new Scanner(new File(mapLocation));
@@ -66,20 +51,21 @@ public class WareHouse {
                             Field field = new Field();
                             Box box = new Box(field);
                             field.setGameElement(box);
-                            Game.getInstance().registerBox();
+                            //Game.getInstance().registerBox();
                             line.add(field);
                         }
                         break;
                         case "P": {
                             //creating unique ID
                             UUID uuid = UUID.randomUUID();
-                            while (!Game.getInstance().registerPlayer(uuid)) {
+                            /*while (!Game.getInstance().registerPlayer(uuid)) {
                                 uuid = UUID.randomUUID();
-                            }
+                            }*/
                             Field field = new Field();
                             Player player = new Player(uuid, field);
                             field.setGameElement(player);
                             line.add(field);
+                            rePlayer = player;
                         }
                         break;
                         case "W": {
@@ -163,8 +149,6 @@ public class WareHouse {
                     }
                 }
             }
-            //TODO: Delete logging
-            logMap();
         } catch (FileNotFoundException e) {
             System.err.println("The file could not be found!");
             return null;
@@ -172,89 +156,6 @@ public class WareHouse {
             System.err.println(e.getMessage());
             return null;
         }
-        return this;
-    }
-
-    //Iterates trough all the fields in the map object to lock a box if needed
-    //Should be called after every step that caused collision ( ?? maybe after every step ?? )
-    public void lockManagement() {
-        //We need to go trough all the fields for the number of movable boxes
-        //to handle every possible lock that needs to occur after a lock
-        for (int boxesLeft = Game.getInstance().getMovableBox(); boxesLeft > 0; boxesLeft--) {
-
-            for (int row = 0; row < map.size(); row++) {
-                for (int column = 0; column < map.get(row).size(); column++) {
-                    //Current field
-                    Field current = map.get(row).get(column);
-                    //If there is no element we just skip it
-                    if (!current.hasElement()) {
-                    }
-                    //If the gameElement is already locked we skip it
-                    else if (!current.canElementMove()) {
-                    }
-                    //If there is an unlocked gameElement we check if we need to lock it
-                    else {
-                        //Storing neighbours of current Field
-                        HashMap neighbours = current.getNeighbours();
-                        /*
-                        Checking for a possible block to trigger a lockRequest
-                        Possible blocks:
-                        up + left, up + right
-                        down + left, down + right
-                        */
-                        //Checking cases involving the upper neighbour
-                        if (neighbours.get(Direction.UP) != null) {
-                            Field up = (Field) neighbours.get(Direction.UP);
-                            Field left = (Field) neighbours.get(Direction.LEFT);
-                            Field right = (Field) neighbours.get(Direction.RIGHT);
-                            if (up.hasElement()) {
-                                //UP + LEFT
-                                if (left.hasElement()) {
-                                    if (!up.canElementMove() && !left.canElementMove()) {
-                                        //TODO: Delete logging
-                                        System.out.print("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
-                                        current.lockElement();
-                                    }
-                                }
-                                //UP + RIGHT
-                                if (right.hasElement()) {
-                                    if (!up.canElementMove() && !right.canElementMove()) {
-                                        //TODO: Delete logging
-                                        System.out.print("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
-                                        current.lockElement();
-                                    }
-                                }
-                            }
-                        }
-                        //Checking cases involving the bottom neighbour
-                        if (neighbours.get(Direction.DOWN) != null) {
-                            Field down = (Field) neighbours.get(Direction.DOWN);
-                            Field left = (Field) neighbours.get(Direction.LEFT);
-                            Field right = (Field) neighbours.get(Direction.RIGHT);
-                            if (down.hasElement()) {
-                                //DOWN + LEFT
-                                if (left.hasElement()) {
-                                    if (!down.canElementMove() && !left.canElementMove()) {
-                                        //TODO: Delete logging
-                                        System.out.print("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
-                                        current.lockElement();
-                                    }
-                                }
-                                //DOWN + RIGHT
-                                if (right.hasElement()) {
-                                    if (!down.canElementMove() && !right.canElementMove()) {
-                                        //TODO: Delete logging
-                                        System.out.print("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
-                                        current.lockElement();
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                //TODO: Delete logging
-                //System.out.println();
-            }
-        }
+        return rePlayer;
     }
 }
