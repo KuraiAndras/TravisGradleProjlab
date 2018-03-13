@@ -58,3 +58,4 @@ fabric.properties
 # Custom Intellij
 \build/
 \out/
+\.gradle/
