@@ -6,9 +6,9 @@ import java.util.*;
 //TODO: Add Javadoc//TODO: Delete logging
 //TODO: Implement Map creation, and lock Management
 public class WareHouse {
-    private ArrayList<ArrayList<Field>> map;
+    protected ArrayList<ArrayList<Field>> map;
 
-    WareHouse() {
+    public WareHouse() {
         map = new ArrayList<>();
     }
 
@@ -25,7 +25,7 @@ public class WareHouse {
         }
     }
 
-    public void generateMap(String mapLocation) {
+    public WareHouse generateMap(String mapLocation) {
         try {
             ArrayList<ArrayList<String>> charMap = new ArrayList<>();
             Scanner file = new Scanner(new File(mapLocation));
@@ -40,6 +40,14 @@ public class WareHouse {
                 charMap.add(line);
                 Arrays.fill(items, null);
             }
+
+            for (ArrayList<String> item :
+                    charMap) {
+                if (item.size() != charMap.get(0).size()) {
+                    throw new MapException("Map file has varying lines");
+                }
+            }
+
             //Helpers for setting switches and holes correctly
             ArrayList<WareHouseHelper> switchHelper = new ArrayList<>();
             ArrayList<WareHouseHelper> holeHelper = new ArrayList<>();
@@ -94,8 +102,7 @@ public class WareHouse {
                                 tempHole.setJ(line.size());
                                 holeHelper.add(tempHole);
                                 line.add(hole);
-                            }
-                            if (anACharMap.matches("[S][0-9]") || anACharMap.matches("[S][0-9][0-9]") || anACharMap.matches("[S][0-9][0-9][0-9]")) {
+                            } else if (anACharMap.matches("[S][0-9]") || anACharMap.matches("[S][0-9][0-9]") || anACharMap.matches("[S][0-9][0-9][0-9]")) {
                                 Switch aSwitch = new Switch();
                                 WareHouseHelper tempSwitch = new WareHouseHelper();
                                 tempSwitch.setId(Integer.parseInt(anACharMap.substring(1)));
@@ -103,6 +110,8 @@ public class WareHouse {
                                 tempSwitch.setJ(line.size());
                                 switchHelper.add(tempSwitch);
                                 line.add(aSwitch);
+                            } else {
+                                throw new MapException("Invalid character in map: " + anACharMap);
                             }
                         }
                         break;
@@ -110,6 +119,11 @@ public class WareHouse {
                 }
                 map.add(line);
             }
+
+            if (switchHelper.size() != holeHelper.size()) {
+                throw new MapException("Different number of connected switches and holes");
+            }
+
             //Setting switch-hole pairs, based on WarehouseHelper lists
             for (WareHouseHelper switches :
                     switchHelper) {
@@ -153,8 +167,14 @@ public class WareHouse {
             logMap();
         } catch (FileNotFoundException e) {
             System.err.println("The file could not be found!");
+            return null;
+        } catch (MapException e) {
+            System.err.println(e.getMessage());
+            return null;
         }
+        return this;
     }
+
     //Iterates trough all the fields in the map object to lock a box if needed
     //Should be called after every step that caused collision ( ?? maybe after every step ?? )
     public void lockManagement() {

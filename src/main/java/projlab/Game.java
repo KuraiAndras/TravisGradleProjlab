@@ -74,7 +74,11 @@ public class Game {
     //TODO: Delete logging
     private void startGame(String file) {
         map = new WareHouse();
-        map.generateMap(file);
+        map = map.generateMap(file);
+        if(map == null){
+            System.err.println("Map Generation Failed");
+            return;
+        }
         stepsLeft = 5;
         System.out.println("Map is Generated");
         System.out.println("Number of players: " + playerScore.size());
@@ -93,7 +97,7 @@ public class Game {
     public static void main(String[] args) {
         //Test map for the lockManagement method
         Game game = Game.getInstance();
-        game.startGame("maps/map_lock_management_test.txt");
+        game.startGame("maps/map0.txt");
         game.doLockManagement();
     }
 }
