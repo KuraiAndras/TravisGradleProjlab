@@ -54,3 +54,7 @@ fabric.properties
 
 # Gradle
 \.gradle/buildOutputCleanup/
+
+# Custom Intellij
+\build/
+\out/
