@@ -5,3 +5,6 @@ before_install:
 
 jdk:
   - oraclejdk8
+
+notifications:
+  slack: bmeprojlab:cCYVje5gAU5HcIEd5JJ0ZzIJ
