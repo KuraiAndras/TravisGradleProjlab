@@ -1,3 +1,5 @@
+package projlab;
+
 //TODO: Add Javadoc
 public class Box extends GameElement implements IPlayable {
     private boolean canMove;

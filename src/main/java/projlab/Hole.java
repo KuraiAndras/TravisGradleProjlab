@@ -1,3 +1,5 @@
+package projlab;
+
 //TODO: Add Javadoc
 public class Hole extends Field {
     private boolean isOpen;

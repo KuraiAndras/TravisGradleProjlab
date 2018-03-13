@@ -1,5 +1,11 @@
+package projlabTest;
+
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+
 import java.util.UUID;
-import static org.junit.Assert.assertFalse;
+import projlab.*;
 
 public class WallTest {
 
@@ -14,7 +20,7 @@ public class WallTest {
     private Box box;
     private Player player;
 
-    @org.junit.Before
+    @Before
     public void setUp() throws Exception {
         field00 = new Field();
         field01 = new Field();
@@ -62,23 +68,23 @@ public class WallTest {
         field12.setNeighbour(field11, Direction.LEFT);
     }
 
-    @org.junit.Test
+    @Test
     public void collidePlayer() {
         assertFalse(player.move(Direction.DOWN));
     }
 
-    @org.junit.Test
+    @Test
     public void collideBox() {
         assertFalse(player.move(Direction.RIGHT));
     }
 
-    @org.junit.Test
+    @Test
     public void getCanMove() {
         assertFalse(wallBox.getCanMove());
         assertFalse(wallPlayer.getCanMove());
     }
 
-    @org.junit.Test
+    @Test
     public void lockRequest() {
         wallBox.lockRequest();
         wallBox.getCanMove();

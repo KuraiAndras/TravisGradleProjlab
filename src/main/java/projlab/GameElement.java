@@ -1,3 +1,5 @@
+package projlab;
+
 //TODO: Add Javadoc
 public abstract class GameElement implements ICollide {
     protected Field owner;

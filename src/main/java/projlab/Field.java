@@ -1,3 +1,5 @@
+package projlab;
+
 import java.util.HashMap;
 
 //TODO: Add Javadoc

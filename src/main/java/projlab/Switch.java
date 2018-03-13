@@ -1,3 +1,5 @@
+package projlab;
+
 //TODO: Add Javadoc
 public class Switch extends Field {
     private Hole pair;

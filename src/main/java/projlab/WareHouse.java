@@ -1,3 +1,5 @@
+package projlab;
+
 import java.io.*;
 import java.util.*;
 

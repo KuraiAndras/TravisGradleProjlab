@@ -1,3 +1,5 @@
+package projlab;
+
 public class WareHouseHelper {
     private int i;
     private int j;

@@ -1,3 +1,5 @@
+package projlab;
+
 //TODO: Add Javadoc
 public interface IStep {
     boolean onStepped(Player player, Direction direction);
