@@ -1,8 +1,20 @@
-
-\.idea/
-
 *.bin
 
 \.gradle/buildOutputCleanup/
 
 *.lock
+
+\build/
+
+\.idea/libraries/
+\.idea/modules
+\.idea/.xml
+\.idea/\.name
+\.idea/compiler\.xml
+\.idea/gradle\.xml
+\.idea/misc\.xml
+\.idea/modules\.xml
+\.idea/vcs\.xml
+\.idea/workspace\.xml
+
+\out/
