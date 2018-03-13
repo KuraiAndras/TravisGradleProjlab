@@ -15,9 +15,9 @@
       </option>
       <option name="vmOptions" value="" />
     </ExternalSystemSettings>
-    <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="jacoco" />
+    <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
     <method>
-      <option name="Gradle.BeforeRunTask" enabled="true" tasks="check compileTestJava" externalProjectPath="$PROJECT_DIR$" vmOptions="" scriptParameters="" />
+      <option name="Gradle.BeforeRunTask" enabled="true" tasks="jacocoTestReport" externalProjectPath="$PROJECT_DIR$" vmOptions="" scriptParameters="" />
     </method>
   </configuration>
 </component>

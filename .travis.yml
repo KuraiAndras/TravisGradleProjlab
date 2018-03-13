@@ -8,3 +8,5 @@ jdk:
 
 notifications:
   slack: bmeprojlab:cCYVje5gAU5HcIEd5JJ0ZzIJ
+  email: false
+
