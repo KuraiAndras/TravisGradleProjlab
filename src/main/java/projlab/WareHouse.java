@@ -25,6 +25,7 @@ public class WareHouse {
         }
     }
 
+    //Todo: Throw exception when map is not surrounded with walls
     public WareHouse generateMap(String mapLocation) {
         try {
             ArrayList<ArrayList<String>> charMap = new ArrayList<>();
