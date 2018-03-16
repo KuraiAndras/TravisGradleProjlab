@@ -71,14 +71,10 @@ public class WareHouse {
                         }
                         break;
                         case "P": {
-                            //creating unique ID
-                            UUID uuid = UUID.randomUUID();
-                            while (!Game.getInstance().registerPlayer(uuid)) {
-                                uuid = UUID.randomUUID();
-                            }
                             Field field = new Field();
-                            Player player = new Player(uuid, field);
+                            Player player = new Player(field);
                             field.setGameElement(player);
+                            Game.getInstance().registerPlayer(player);
                             line.add(field);
                         }
                         break;

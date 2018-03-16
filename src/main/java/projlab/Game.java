@@ -2,12 +2,11 @@ package projlab;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 //TODO: Add Javadoc
 public class Game {
-    private HashMap<UUID, Integer> playerScore;
-    private UUID currentTurn;
+    private HashMap<Player, Integer> playerScore;
+    private Player currentTurn;
     private int stepsLeft;
     private int movableBox;
     private WareHouse map;
@@ -29,8 +28,8 @@ public class Game {
         //TODO: Implement this
     }
 
-    public void onPlayerDead(UUID ID) {
-        playerScore.remove(ID);
+    public void onPlayerDead(Player player) {
+        playerScore.remove(player);
         if (playerScore.size() == 1) {
             onGameEnd();
         }
@@ -40,21 +39,17 @@ public class Game {
         playerScore.put(currentTurn, playerScore.get(currentTurn) + 1);
     }
 
-    public int getMovableBox(){
+    public int getMovableBox() {
         return movableBox;
     }
 
-    public boolean registerPlayer(UUID ID) {
-        if (playerScore.containsKey(ID)) {
-            return false;
-        } else {
-            if (currentTurn == null) {
-                currentTurn = ID;
-            }
-            playerScore.put(ID, 0);
-            return true;
+    public void registerPlayer(Player player) {
+        if (currentTurn == null) {
+            currentTurn = player;
         }
+        playerScore.put(player, 0);
     }
+
 
     public void registerBox() {
         movableBox++;
@@ -67,15 +62,31 @@ public class Game {
         }
     }
 
-    public void doLockManagement(){
+    //this method is only used during development?
+    private void doLockManagement() {
         map.lockManagement();
     }
 
+    public boolean movePlayer(Direction direction){
+        boolean lastMove;
+        lastMove = currentTurn.move(direction);
+        stepsLeft--;
+        if(stepsLeft == 0){
+            //TODO: Iterate through players
+        }
+        doLockManagement();
+        return lastMove;
+    }
+
     //TODO: Delete logging
-    private void startGame(String file) {
+    //Should we make it private? Only tests need public visibility
+    public void startGame(String file) {
+        playerScore = new HashMap<>();
+        currentTurn = null;
+        movableBox = 0;
         map = new WareHouse();
         map = map.generateMap(file);
-        if(map == null){
+        if (map == null) {
             System.err.println("Map Generation Failed");
             return;
         }
@@ -84,9 +95,9 @@ public class Game {
         System.out.println("Number of players: " + playerScore.size());
         System.out.println("Movable boxes: " + movableBox);
         System.out.println("Current players:");
-        for (Map.Entry<UUID, Integer> item :
+        for (Map.Entry<Player, Integer> item :
                 playerScore.entrySet()) {
-            UUID key = item.getKey();
+            Player key = item.getKey();
             Integer value = item.getValue();
             System.out.println(key + " " + value);
         }
@@ -97,7 +108,7 @@ public class Game {
     public static void main(String[] args) {
         //Test map for the lockManagement method
         Game game = Game.getInstance();
-        game.startGame("maps/map0.txt");
+        game.startGame("maps/map_lock_management_test.txt");
         game.doLockManagement();
     }
 }
