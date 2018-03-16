@@ -23,6 +23,10 @@ public class Target extends Field {
     //TODO: Delete this
     @Override
     public String toString() {
-        return "Target";
+        if(gameElement == null){
+            return "Target";
+        } else {
+            return gameElement.toString();
+        }
     }
 }
