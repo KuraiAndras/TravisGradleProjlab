@@ -29,6 +29,10 @@ public class Switch extends Field {
     //TODO: Delete this
     @Override
     public String toString() {
-        return "Switch";
+        if(gameElement == null){
+            return "Switch";
+        } else {
+            return gameElement.toString();
+        }
     }
 }

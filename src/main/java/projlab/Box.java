@@ -47,4 +47,9 @@ public class Box extends GameElement implements IPlayable {
     public boolean collide(Box box, Direction direction) {
         return canMove && move(direction);
     }
+
+    @Override
+    public String toString() {
+        return "Box ";
+    }
 }

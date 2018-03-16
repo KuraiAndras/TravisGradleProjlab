@@ -47,4 +47,9 @@ public class Player extends GameElement implements IPlayable {
     @Override
     public void lockRequest() {
     }
+
+    @Override
+    public String toString() {
+        return "Player";
+    }
 }
