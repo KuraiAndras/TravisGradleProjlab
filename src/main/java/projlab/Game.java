@@ -63,7 +63,7 @@ public class Game {
     }
 
     //this method is only used during development?
-    private void doLockManagement() {
+    public void doLockManagement() {
         map.lockManagement();
     }
 
@@ -74,7 +74,6 @@ public class Game {
         if(stepsLeft == 0){
             //TODO: Iterate through players
         }
-        doLockManagement();
         return lastMove;
     }
 
