@@ -10,7 +10,9 @@ public class Hole extends Field {
     }
 
     public void switchHole() {
-        isOpen = !(isOpen = true);
+        isOpen = !isOpen;
+        if(isOpen==true && gameElement!=null)
+            gameElement=null;
     }
 
     @Override
@@ -26,14 +28,16 @@ public class Hole extends Field {
 
     @Override
     public boolean onStepped(Box box, Direction direction) {
-        if (!isOpen) {
-            return super.onStepped(box, direction);
-        } else {
-            Game.getInstance().decreaseMovableBox();
+        if (!super.onStepped(box, direction))
+            return false;
+        else {
+            if (!isOpen) {
+                gameElement = null;
+                Game.getInstance().decreaseMovableBox();
+            }
             return true;
         }
     }
-
     //TODO: Delete this
     @Override
     public String toString()
