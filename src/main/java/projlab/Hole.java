@@ -11,18 +11,19 @@ public class Hole extends Field {
 
     public void switchHole() {
         isOpen = !isOpen;
-        if(isOpen==true && gameElement!=null)
+        if(isOpen==true && gameElement!=null)       //Azok amik függetlenek a tolástól
             gameElement=null;
     }
 
     @Override
     public boolean onStepped(Player player, Direction direction) {
-        if (!isOpen) {
-            return super.onStepped(player, direction);
-        } else {
-            player.die();
-            //This may kill the whole program?
+        if (!super.onStepped(player, direction))
             return false;
+        else {
+            if (isOpen) {
+                player.die();
+            }
+            return true;
         }
     }
 
