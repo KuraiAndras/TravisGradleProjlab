@@ -14,7 +14,7 @@ public class WareHouse {
 
     //TODO: Delete logging
     //Here for debugging reasons
-    private void logMap() {
+    public void logMap() {
         for (ArrayList<Field> item1 :
                 map) {
             for (Field item2 :
@@ -160,8 +160,6 @@ public class WareHouse {
                     }
                 }
             }
-            //TODO: Delete logging
-            logMap();
         } catch (FileNotFoundException e) {
             System.err.println("The file could not be found!");
             return null;
