@@ -1,6 +1,7 @@
 package projlab;
 
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
 
 //TODO: Add Javadoc
@@ -10,7 +11,8 @@ public class Game {
     private int stepsLeft;
     private int movableBox;
     private WareHouse map;
-
+    private LinkedHashSet<Player> playerList;
+    private CyclicIterator<Player, LinkedHashSet<Player>> cyclicIterator;
 
     private static Game ourInstance = new Game();
 
@@ -22,6 +24,8 @@ public class Game {
         //TODO: Implement this
         map = new WareHouse();
         playerScore = new HashMap<>();
+        playerList = new LinkedHashSet<>();
+        cyclicIterator = new CyclicIterator<>(playerList);
     }
 
     private void onGameEnd() {
@@ -44,10 +48,12 @@ public class Game {
     }
 
     public void registerPlayer(Player player) {
+        playerList.add(player);
+        playerScore.put(player, 0);
+
         if (currentTurn == null) {
             currentTurn = player;
         }
-        playerScore.put(player, 0);
     }
 
 
@@ -67,12 +73,12 @@ public class Game {
         map.lockManagement();
     }
 
-    public boolean movePlayer(Direction direction){
+    public boolean movePlayer(Direction direction) {
         boolean lastMove;
         lastMove = currentTurn.move(direction);
         stepsLeft--;
-        if(stepsLeft == 0){
-            //TODO: Iterate through players
+        if (stepsLeft == 0) {
+            currentTurn = cyclicIterator.next();
         }
         return lastMove;
     }
@@ -83,6 +89,8 @@ public class Game {
         playerScore = new HashMap<>();
         currentTurn = null;
         movableBox = 0;
+        playerList = new LinkedHashSet<>();
+        cyclicIterator = new CyclicIterator<>(playerList);
         map = new WareHouse();
         map = map.generateMap(file);
         if (map == null) {
