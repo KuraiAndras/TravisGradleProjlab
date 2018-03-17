@@ -8,8 +8,8 @@ import org.junit.Test;
 import projlab.*;
 
 public class WallTest {
-    private Player player;
     private Wall wall;
+    private Game game = Game.getInstance();
 
 
     @Before
@@ -17,19 +17,17 @@ public class WallTest {
         Field field = new Field();
         wall = new Wall(field);
         field.setGameElement(wall);
-
-        FakeWarehouse fakeWarehouse = new FakeWarehouse();
-        player = fakeWarehouse.generateTestMapPlayer("maps/wallTest.txt");
+        game.startGame("maps/wallTest.txt");
     }
 
     @Test
     public void collidePlayer() {
-        assertFalse(player.move(Direction.DOWN));
+        assertFalse(game.movePlayer(Direction.DOWN));
     }
 
     @Test
     public void collideBox() {
-        assertFalse(player.move(Direction.RIGHT));
+        assertFalse(game.movePlayer(Direction.RIGHT));
     }
 
     @Test

@@ -43,10 +43,12 @@ public class Field implements IStep {
     public boolean onStepped(Player player, Direction direction) {
         if (gameElement == null) {
             gameElement = player;
+            Game.getInstance().doLockManagement();
             return true;
         }
         if (gameElement.collide(player, direction)) {
             gameElement = player;
+            Game.getInstance().doLockManagement();
             return true;
         } else {
             return false;
@@ -82,7 +84,11 @@ public class Field implements IStep {
     //TODO: Delete this
     @Override
     public String toString() {
-        return "Field";
+        if(gameElement == null){
+            return "Field";
+        } else {
+            return gameElement.toString();
+        }
     }
 
 }

@@ -36,7 +36,13 @@ public class Hole extends Field {
 
     //TODO: Delete this
     @Override
-    public String toString() {
-        return "Hole";
+    public String toString()
+    {
+        if(gameElement == null){
+            return "Hole";
+        } else {
+            return gameElement.toString();
+        }
     }
+
 }
