@@ -43,7 +43,6 @@ public class Field implements IStep {
     public boolean onStepped(Player player, Direction direction) {
         if (gameElement == null) {
             gameElement = player;
-            Game.getInstance().doLockManagement();
             return true;
         }
         if (gameElement.collide(player, direction)) {
