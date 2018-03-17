@@ -26,5 +26,8 @@ public class Wall extends GameElement {
     public void lockRequest() {
     }
 
-
+    @Override
+    public String toString() {
+        return "Wall";
+    }
 }

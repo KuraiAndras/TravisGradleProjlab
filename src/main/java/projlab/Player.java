@@ -1,24 +1,13 @@
 package projlab;
 
-import java.util.UUID;
-
 //TODO: Add Javadoc
 public class Player extends GameElement implements IPlayable {
-
-    private UUID ID;
-
-    public Player(UUID ID) {
-        super();
-        this.ID = ID;
-    }
-
-    public Player(UUID ID, Field field) {
+    public Player(Field field) {
         super(field);
-        this.ID = ID;
     }
 
     public void die() {
-        Game.getInstance().onPlayerDead(ID);
+        Game.getInstance().onPlayerDead(this);
     }
 
     @Override
@@ -57,5 +46,10 @@ public class Player extends GameElement implements IPlayable {
 
     @Override
     public void lockRequest() {
+    }
+
+    @Override
+    public String toString() {
+        return "Player";
     }
 }
