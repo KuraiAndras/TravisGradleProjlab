@@ -1,7 +1,7 @@
 package projlab;
 
 /**
- * <h1>Box</h1>
+ * <h1>Player</h1>
  * This is a GameElement that represents a Player
  * in the game.
  */
@@ -110,7 +110,6 @@ public class Player extends GameElement implements IPlayable {
      */
     @Override
     public String toString() {
-        System.out.println("\tPlayer toString()");
         return "Player";
     }
 }

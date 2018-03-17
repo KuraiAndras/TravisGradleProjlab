@@ -17,6 +17,7 @@ public abstract class GameElement implements ICollide {
      * and sets its owner to null by default.
      */
     public GameElement() {
+        System.out.println("\tGameElement created");
         owner = null;
 
     }
@@ -27,6 +28,7 @@ public abstract class GameElement implements ICollide {
      * @param field The field object to store the GameElement.
      */
     public GameElement(Field field) {
+        System.out.println("\tGameElement created with given field");
         owner = field;
     }
 

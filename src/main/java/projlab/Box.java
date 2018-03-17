@@ -113,7 +113,6 @@ public class Box extends GameElement implements IPlayable {
      */
     @Override
     public String toString() {
-        System.out.println("\tBox tostring.");
         return "Box ";
     }
 }

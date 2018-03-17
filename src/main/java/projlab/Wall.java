@@ -1,8 +1,8 @@
 package projlab;
 
 /**
- * <h1>Box</h1>
- * This is a GameElement that represents a Box
+ * <h1>Wall</h1>
+ * This is a GameElement that represents a Wall
  * in the game.
  */
 public class Wall extends GameElement {
@@ -68,7 +68,6 @@ public class Wall extends GameElement {
      */
     @Override
     public String toString() {
-        System.out.println("\tWall toString()");
         return "Wall";
     }
 }
