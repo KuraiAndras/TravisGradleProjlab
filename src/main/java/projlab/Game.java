@@ -73,6 +73,22 @@ public class Game {
         map.lockManagement();
     }
 
+    public void logGame(){
+        map.logMap();
+        System.out.println("Map is Generated");
+        System.out.println("Number of players: " + playerScore.size());
+        System.out.println("Movable boxes: " + movableBox);
+        System.out.println("Current players:");
+        for (Map.Entry<Player, Integer> item :
+                playerScore.entrySet()) {
+            Player key = item.getKey();
+            Integer value = item.getValue();
+            System.out.println(key + " " + value);
+        }
+        System.out.println("Current turn: " + currentTurn);
+        System.out.println("Steps left: " + stepsLeft);
+    }
+
     public boolean movePlayer(Direction direction) {
         boolean lastMove;
         lastMove = currentTurn.move(direction);
@@ -98,18 +114,7 @@ public class Game {
             return;
         }
         stepsLeft = 5;
-        System.out.println("Map is Generated");
-        System.out.println("Number of players: " + playerScore.size());
-        System.out.println("Movable boxes: " + movableBox);
-        System.out.println("Current players:");
-        for (Map.Entry<Player, Integer> item :
-                playerScore.entrySet()) {
-            Player key = item.getKey();
-            Integer value = item.getValue();
-            System.out.println(key + " " + value);
-        }
-        System.out.println("Current turn: " + currentTurn);
-        System.out.println("Steps left: " + stepsLeft);
+        logGame();
     }
 
     public static void main(String[] args) {
