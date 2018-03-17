@@ -31,7 +31,7 @@ public class Hole extends Field {
         if (!super.onStepped(box, direction))
             return false;
         else {
-            if (!isOpen) {
+            if (isOpen) {
                 gameElement = null;
                 Game.getInstance().decreaseMovableBox();
             }
