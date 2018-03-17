@@ -8,6 +8,7 @@ import java.util.Map;
 public class Game {
     private HashMap<Player, Integer> playerScore;
     private Player currentTurn;
+    private int totalSteps;
     private int stepsLeft;
     private int movableBox;
     private WareHouse map;
@@ -86,7 +87,9 @@ public class Game {
             System.out.println(key + " " + value);
         }
         System.out.println("Current turn: " + currentTurn);
+        System.out.println("Total steps: " + totalSteps);
         System.out.println("Steps left: " + stepsLeft);
+        System.out.print("\n");
     }
 
     public boolean movePlayer(Direction direction) {
@@ -95,7 +98,9 @@ public class Game {
         stepsLeft--;
         if (stepsLeft == 0) {
             currentTurn = cyclicIterator.next();
+            stepsLeft = totalSteps;
         }
+        logGame();
         return lastMove;
     }
 
@@ -113,7 +118,9 @@ public class Game {
             System.err.println("Map Generation Failed");
             return;
         }
+        cyclicIterator.next();
         stepsLeft = 5;
+        totalSteps = 5;
         logGame();
     }
 
