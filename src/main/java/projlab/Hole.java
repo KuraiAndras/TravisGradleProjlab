@@ -32,7 +32,7 @@ public class Hole extends Field {
      */
     public void switchHole() {
         isOpen = !isOpen;
-        if(isOpen==true && gameElement!=null)
+        if(isOpen==true && gameElement!=null)       //Azok amik függetlenek a tolástól
             gameElement=null;
         System.out.println("\tHole switchHole()");
     }
@@ -49,12 +49,13 @@ public class Hole extends Field {
     @Override
     public boolean onStepped(Player player, Direction direction) {
         System.out.println("\tHole onStepped(player, direction)");
-        if (!isOpen) {
-            return super.onStepped(player, direction);
-        } else {
-            player.die();
-            //This may kill the whole program?
+        if (!super.onStepped(player, direction))
             return false;
+        else {
+            if (isOpen) {
+                player.die();
+            }
+            return true;
         }
     }
 
