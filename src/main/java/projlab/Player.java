@@ -28,6 +28,7 @@ public class Player extends GameElement implements IPlayable {
      */
     public void die() {
         System.out.println("\tPlayer dies");
+        owner.setGameElement(null);     //For more than 2 players,the corpse must be removed so that the game can continue
         Game.getInstance().onPlayerDead(this);
     }
 
@@ -45,8 +46,8 @@ public class Player extends GameElement implements IPlayable {
         Field field1 = owner;
         Field field2 = field1.offStepped(this, direction);
         if (field2.onStepped(this, direction)) {
-            owner = field2;
             System.out.println("\t\tPlayer moved successfully.");
+            owner = field2;
             return true;
         } else {
             field1.setGameElement(this);

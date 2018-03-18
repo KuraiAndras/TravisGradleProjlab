@@ -107,7 +107,10 @@ public class Box extends GameElement implements IPlayable {
     @Override
     public boolean collide(Player player, Direction direction) {
         System.out.println("\tBox collides with player.");
-        return canMove && move(direction);
+        if(canMove && move(direction)){
+            return true;
+        }
+        return Game.getInstance().checkPlayerCompression(player);
     }
 
     /**
