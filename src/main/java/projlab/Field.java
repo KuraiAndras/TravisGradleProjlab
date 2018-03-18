@@ -121,7 +121,7 @@ public class Field implements IStep {
             gameElement = player;
             Game.getInstance().doLockManagement();
             return true;
-        } else {//ez az ág jó
+        } else {
             return false;
         }
     }
