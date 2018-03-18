@@ -45,8 +45,8 @@ public class Player extends GameElement implements IPlayable {
         Field field1 = owner;
         Field field2 = field1.offStepped(this, direction);
         System.out.println("\tPlayer tries to move");
+        owner = field2;
         if (field2.onStepped(this, direction)) {
-            owner = field2;
             System.out.println("\t\tPlayer moved successfully.");
             return true;
         } else {
