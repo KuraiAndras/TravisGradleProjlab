@@ -139,6 +139,16 @@ public class Game {
         System.out.println("7: P B P B W");
         System.out.println("8: P W ");
         System.out.println("9: P B W ");
+        //2x tolunk, ket allapotot fedunk le
+        //->switch.onStepped(box)
+        //->switch.offStepped(box)
+        System.out.println("10: P B S");
+        System.out.println("11: P B H");
+        System.out.println("12: P H");
+        //2x tolunk, ket allapotot fedunk le
+        //->boxot targetra tolunk
+        //->boxot probalunk targetrol mozgatni
+        System.out.println("13: P B T");
         System.out.println("0: EXIT ");
         System.out.println("Please choose a test case:");
     }
@@ -186,6 +196,24 @@ public class Game {
                     break;
                 case 9:
                     game.startGame("maps/skeleton9");
+                    game.movePlayer(Direction.RIGHT);
+                    break;
+                case 10:
+                    game.startGame("maps/skeleton10");
+                    game.movePlayer(Direction.RIGHT);
+                    game.movePlayer(Direction.RIGHT);
+                    break;
+                case 11:
+                    game.startGame("maps/skeleton11");
+                    game.movePlayer(Direction.RIGHT);
+                    break;
+                case 12:
+                    game.startGame("maps/skeleton12");
+                    game.movePlayer(Direction.RIGHT);
+                    break;
+                case 13:
+                    game.startGame("maps/skeleton13");
+                    game.movePlayer(Direction.RIGHT);
                     game.movePlayer(Direction.RIGHT);
                     break;
                 case 0:
