@@ -1,16 +1,19 @@
 package projlab;
 
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
 
 //TODO: Add Javadoc
 public class Game {
     private HashMap<Player, Integer> playerScore;
     private Player currentTurn;
+    private int totalSteps;
     private int stepsLeft;
     private int movableBox;
     private WareHouse map;
-
+    private LinkedHashSet<Player> playerList;
+    private CyclicIterator<Player, LinkedHashSet<Player>> cyclicIterator;
 
     private static Game ourInstance = new Game();
 
@@ -22,6 +25,8 @@ public class Game {
         //TODO: Implement this
         map = new WareHouse();
         playerScore = new HashMap<>();
+        playerList = new LinkedHashSet<>();
+        cyclicIterator = new CyclicIterator<>(playerList);
     }
 
     private void onGameEnd() {
@@ -44,10 +49,12 @@ public class Game {
     }
 
     public void registerPlayer(Player player) {
+        playerList.add(player);
+        playerScore.put(player, 0);
+
         if (currentTurn == null) {
             currentTurn = player;
         }
-        playerScore.put(player, 0);
     }
 
 
@@ -67,29 +74,8 @@ public class Game {
         map.lockManagement();
     }
 
-    public boolean movePlayer(Direction direction){
-        boolean lastMove;
-        lastMove = currentTurn.move(direction);
-        stepsLeft--;
-        if(stepsLeft == 0){
-            //TODO: Iterate through players
-        }
-        return lastMove;
-    }
-
-    //TODO: Delete logging
-    //Should we make it private? Only tests need public visibility
-    public void startGame(String file) {
-        playerScore = new HashMap<>();
-        currentTurn = null;
-        movableBox = 0;
-        map = new WareHouse();
-        map = map.generateMap(file);
-        if (map == null) {
-            System.err.println("Map Generation Failed");
-            return;
-        }
-        stepsLeft = 5;
+    public void logGame(){
+        map.logMap();
         System.out.println("Map is Generated");
         System.out.println("Number of players: " + playerScore.size());
         System.out.println("Movable boxes: " + movableBox);
@@ -101,7 +87,41 @@ public class Game {
             System.out.println(key + " " + value);
         }
         System.out.println("Current turn: " + currentTurn);
+        System.out.println("Total steps: " + totalSteps);
         System.out.println("Steps left: " + stepsLeft);
+        System.out.print("\n");
+    }
+
+    public boolean movePlayer(Direction direction) {
+        boolean lastMove;
+        lastMove = currentTurn.move(direction);
+        stepsLeft--;
+        if (stepsLeft == 0) {
+            currentTurn = cyclicIterator.next();
+            stepsLeft = totalSteps;
+        }
+        logGame();
+        return lastMove;
+    }
+
+    //TODO: Delete logging
+    //Should we make it private? Only tests need public visibility
+    public void startGame(String file) {
+        playerScore = new HashMap<>();
+        currentTurn = null;
+        movableBox = 0;
+        playerList = new LinkedHashSet<>();
+        cyclicIterator = new CyclicIterator<>(playerList);
+        map = new WareHouse();
+        map = map.generateMap(file);
+        if (map == null) {
+            System.err.println("Map Generation Failed");
+            return;
+        }
+        cyclicIterator.next();
+        stepsLeft = 5;
+        totalSteps = 5;
+        logGame();
     }
 
     public static void main(String[] args) {
