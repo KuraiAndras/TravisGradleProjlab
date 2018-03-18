@@ -28,6 +28,7 @@ public class Player extends GameElement implements IPlayable {
      */
     public void die() {
         System.out.println("\tPlayer dies");
+        owner.setGameElement(null);     //For more than 2 players,the corpse must be removed so that the game can continue
         Game.getInstance().onPlayerDead(this);
     }
 

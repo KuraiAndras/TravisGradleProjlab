@@ -105,6 +105,15 @@ public class Game {
         return lastMove;
     }
 
+    public boolean checkPlayerCompression(Player examining){
+        if(currentTurn!=examining){
+            examining.die();
+             return true;
+        }
+        else
+            return false;
+    }
+
     //TODO: Delete logging
     //Should we make it private? Only tests need public visibility
     public void startGame(String file) {
