@@ -65,4 +65,9 @@ public abstract class GameElement implements ICollide {
      * its current position.
      */
     abstract public void lockRequest();
+
+    /**
+     * This method destroy the GameElement
+     */
+    abstract  public void die();
 }

@@ -39,10 +39,21 @@ public class Box extends GameElement implements IPlayable {
     }
 
     /**
-     * This method locks the box to its current position and
+     * This method destroy the box and
      * decreases the movable box count by 1.
      */
     @Override
+    public void die(){
+        owner.setGameElement(null);
+        Game.getInstance().decreaseMovableBox();
+    }
+
+
+    /**
+     * This method locks the box to its current position and
+     * decreases the movable box count by 1.
+     */
+     @Override
     public void lockRequest() {
         canMove = false;
         Game.getInstance().decreaseMovableBox();
