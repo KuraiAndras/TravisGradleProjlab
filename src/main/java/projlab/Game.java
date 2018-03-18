@@ -144,7 +144,7 @@ public class Game {
         //->switch.offStepped(box)
         System.out.println("10: P B S");
         System.out.println("11: P B H");
-        System.out.println("12: P B P H");
+        System.out.println("12: P H");
         //2x tolunk, ket allapotot fedunk le
         //->boxot targetra tolunk
         //->boxot probalunk targetrol mozgatni
