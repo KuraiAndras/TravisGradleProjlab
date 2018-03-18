@@ -30,4 +30,9 @@ public class Wall extends GameElement {
     public String toString() {
         return "Wall";
     }
+
+    @Override
+    public void die(){
+    owner.setGameElement(null);
+    }
 }

@@ -15,6 +15,12 @@ public class Box extends GameElement implements IPlayable {
     }
 
     @Override
+    public void die(){
+        owner.setGameElement(null);
+        Game.getInstance().decreaseMovableBox();
+    }
+
+    @Override
     public void lockRequest() {
         canMove = false;
         Game.getInstance().decreaseMovableBox();

@@ -19,4 +19,6 @@ public abstract class GameElement implements ICollide {
     abstract public boolean getCanMove();
 
     abstract public void lockRequest();
+
+    abstract  public void die();
 }
