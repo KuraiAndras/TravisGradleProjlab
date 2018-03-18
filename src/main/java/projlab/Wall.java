@@ -73,4 +73,14 @@ public class Wall extends GameElement {
     public String toString() {
         return "Wall";
     }
+
+    /**
+     * This method destroy the wall from the field
+     * Potential for a new feature.
+     */
+    @Override
+    public void die(){
+        System.out.println("\tWall die()");
+        owner.setGameElement(null);
+    }
 }
