@@ -44,6 +44,7 @@ public class Box extends GameElement implements IPlayable {
      */
     @Override
     public void die(){
+        System.out.println("\tBox dies");
         owner.setGameElement(null);
         Game.getInstance().decreaseMovableBox();
     }

@@ -80,7 +80,7 @@ public class Wall extends GameElement {
      */
     @Override
     public void die(){
-        //System.out.println("\tWall die()");
+        System.out.println("\tWall die()");
         owner.setGameElement(null);
     }
 }
