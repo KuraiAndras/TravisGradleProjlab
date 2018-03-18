@@ -29,6 +29,8 @@ public class Hole extends Field {
     /**
      * This method closes the open Hole
      * and opens the closed one.
+     * If there is something when it open,
+     * then it destroy it.
      */
     public void switchHole() {
         isOpen = !isOpen;
