@@ -3,6 +3,7 @@ package projlab;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Scanner;
 
 //TODO: Add Javadoc
 public class Game {
@@ -74,7 +75,7 @@ public class Game {
         map.lockManagement();
     }
 
-    public void logGame(){
+    public void logGame() {
         map.logMap();
         System.out.println("Map is Generated");
         System.out.println("Number of players: " + playerScore.size());
@@ -118,16 +119,82 @@ public class Game {
             System.err.println("Map Generation Failed");
             return;
         }
-        cyclicIterator.next();
+        if (!playerList.isEmpty()) {
+            cyclicIterator.next();
+        }
         stepsLeft = 5;
         totalSteps = 5;
         logGame();
     }
 
+    public void displaySkeletonMenu() {
+        System.out.flush();
+        System.out.println("Welcome to We <3 IIT skeleton");
+        System.out.println("1: P F ");
+        System.out.println("2: P B F ");
+        System.out.println("3: P B B F");
+        System.out.println("4: P P ");
+        System.out.println("5: P B P F");
+        System.out.println("6: P B P W");
+        System.out.println("7: P B P B W");
+        System.out.println("8: P W ");
+        System.out.println("9: P B W ");
+        System.out.println("0: EXIT ");
+        System.out.println("Please choose a test case:");
+    }
+
     public static void main(String[] args) {
         //Test map for the lockManagement method
         Game game = Game.getInstance();
-        game.startGame("maps/map_lock_management_test.txt");
-        game.doLockManagement();
+        Scanner scanner = new Scanner(System.in);
+        int command = -1;
+        while (command != 0) {
+            game.displaySkeletonMenu();
+            command = scanner.nextInt();
+            switch (command) {
+                case 1:
+                    game.startGame("maps/skeleton1");
+                    game.movePlayer(Direction.RIGHT);
+                    break;
+                case 2:
+                    game.startGame("maps/skeleton2");
+                    game.movePlayer(Direction.RIGHT);
+                    break;
+                case 3:
+                    game.startGame("maps/skeleton3");
+                    game.movePlayer(Direction.RIGHT);
+                    break;
+                case 4:
+                    game.startGame("maps/skeleton4");
+                    game.movePlayer(Direction.RIGHT);
+                    break;
+                case 5:
+                    game.startGame("maps/skeleton5");
+                    game.movePlayer(Direction.RIGHT);
+                    break;
+                case 6:
+                    game.startGame("maps/skeleton6");
+                    game.movePlayer(Direction.RIGHT);
+                    break;
+                case 7:
+                    game.startGame("maps/skeleton7");
+                    game.movePlayer(Direction.RIGHT);
+                    break;
+                case 8:
+                    game.startGame("maps/skeleton8");
+                    game.movePlayer(Direction.RIGHT);
+                    break;
+                case 9:
+                    game.startGame("maps/skeleton9");
+                    game.movePlayer(Direction.RIGHT);
+                    break;
+                case 0:
+
+                    break;
+                default:
+                    break;
+            }
+        }
+
     }
 }
