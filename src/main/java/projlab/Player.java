@@ -42,9 +42,9 @@ public class Player extends GameElement implements IPlayable {
      */
     @Override
     public boolean move(Direction direction) {
+        System.out.println("\tPlayer tries to move");
         Field field1 = owner;
         Field field2 = field1.offStepped(this, direction);
-        System.out.println("\tPlayer tries to move");
         if (field2.onStepped(this, direction)) {
             System.out.println("\t\tPlayer moved successfully.");
             owner = field2;
