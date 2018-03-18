@@ -117,10 +117,11 @@ public class Field implements IStep {
             return true;
         }
         if (gameElement.collide(player, direction)) {
+            if(Game.getInstance().checkPlayerVitality(player))
             gameElement = player;
             Game.getInstance().doLockManagement();
             return true;
-        } else {
+        } else {//ez az ág jó
             return false;
         }
     }
