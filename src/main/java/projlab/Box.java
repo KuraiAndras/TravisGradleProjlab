@@ -43,6 +43,12 @@ public class Box extends GameElement implements IPlayable {
      * decreases the movable box count by 1.
      */
     @Override
+    public void die(){
+        owner.setGameElement(null);
+        Game.getInstance().decreaseMovableBox();
+    }
+
+    @Override
     public void lockRequest() {
         canMove = false;
         Game.getInstance().decreaseMovableBox();

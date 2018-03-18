@@ -33,7 +33,7 @@ public class Hole extends Field {
     public void switchHole() {
         isOpen = !isOpen;
         if(isOpen==true && gameElement!=null)       //Azok amik függetlenek a tolástól
-            gameElement=null;
+            gameElement.die();
         System.out.println("\tHole switchHole()");
     }
 
@@ -52,9 +52,7 @@ public class Hole extends Field {
         if (!super.onStepped(player, direction))
             return false;
         else {
-            if (isOpen) {
-                player.die();
-            }
+            if (isOpen) player.die();
             return true;
         }
     }
@@ -75,10 +73,7 @@ public class Hole extends Field {
         if (!super.onStepped(box, direction))
             return false;
         else {
-            if (isOpen) {
-                gameElement = null;
-                Game.getInstance().decreaseMovableBox();
-            }
+            if (isOpen) box.die();
             return true;
         }
     }
