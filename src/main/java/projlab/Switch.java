@@ -23,8 +23,10 @@ public class Switch extends Field {
     }
 
     //TODO: Warehouse must set hole's is hole open properly before using it as a parameter
+
     /**
      * This method sets the Hole connected to this Switch.
+     *
      * @param pair The Hole object connected to this Switch.
      */
     public void setPair(Hole pair) {
@@ -36,6 +38,7 @@ public class Switch extends Field {
      * This method opens the connected hole when a box has
      * moved to it. Then calls the Fields onStepped
      * method with the box and direction given.
+     *
      * @see Field#onStepped(Box, Direction)
      */
     @Override
@@ -49,6 +52,7 @@ public class Switch extends Field {
      * This method closes the connected whole when a
      * box moves from it. Then calls the Fields
      * offStepped method with the box and direction.
+     *
      * @see Field#offStepped(Box, Direction)
      */
     @Override
@@ -59,13 +63,14 @@ public class Switch extends Field {
     }
 
     //TODO: Delete this
+
     /**
      * Overrides the toString() method to make it
      * easier to use for logging purposes.
      */
     @Override
     public String toString() {
-        if(gameElement == null){
+        if (gameElement == null) {
             return "Switch";
         } else {
             return gameElement.toString();

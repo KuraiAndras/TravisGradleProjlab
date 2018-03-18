@@ -11,17 +11,19 @@ public class Player extends GameElement implements IPlayable {
      * Constructor. This method calls the GameElement
      * constructor with the given field and sets the
      * canMove attribute to true as default.
+     *
      * @param field The field object to store the player.
      */
     public Player(Field field) {
         super(field);
-        System.out.println("\tPlayer created with field given");
+        //System.out.println("\tPlayer created with field given");
     }
 
     /**
      * This method calls the onPlayerDead method
      * in the Game singleton. It occurs when the player
      * falls in a hole or gets pushed into a wall.
+     *
      * @see Game#onPlayerDead(Player)
      */
     public void die() {
@@ -33,6 +35,7 @@ public class Player extends GameElement implements IPlayable {
      * This method moves the player to the given direction.
      * If the player can't move to the direction, the player
      * stays on its current field.
+     *
      * @param direction The direction we want the player to move.
      * @return canMove This returns true if the player was moved, false if not.
      */
@@ -55,9 +58,10 @@ public class Player extends GameElement implements IPlayable {
     /**
      * This method checks if this player can be pushed by the given
      * Player object to the given direction.
-     * @param player The player object that the player collides with.
+     *
+     * @param player    The player object that the player collides with.
      * @param direction The direction we want the player to move.
-     * @return          This returns false since a player cant push a player.
+     * @return This returns false since a player cant push a player.
      */
     @Override
     public boolean collide(Player player, Direction direction) {
@@ -68,9 +72,10 @@ public class Player extends GameElement implements IPlayable {
     /**
      * This method checks if this player can be pushed by the given
      * Box object to the given direction.
-     * @param box The box object that the player collides with.
+     *
+     * @param box       The box object that the player collides with.
      * @param direction The direction we want the player to move.
-     * @return          This returns true if the player moved, false if not.
+     * @return This returns true if the player moved, false if not.
      */
     @Override
     public boolean collide(Box box, Direction direction) {
@@ -86,6 +91,7 @@ public class Player extends GameElement implements IPlayable {
 
     /**
      * This method checks if the player can move
+     *
      * @return canMove This returns true since the player always can move.
      */
     @Override
