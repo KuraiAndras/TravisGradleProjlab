@@ -39,8 +39,10 @@ public class Game {
         if (playerScore.size() == 1) {
             onGameEnd();
         }
-        currentTurn = cyclicIterator.next();
-        stepsLeft = totalSteps;
+        if(player==currentTurn){
+            currentTurn = cyclicIterator.next();
+            stepsLeft = totalSteps;
+        }
     }
 
     public void incrementScore() {
@@ -117,7 +119,7 @@ public class Game {
     }
 
     public boolean checkPlayerVitality(Player examining){
-        if(currentTurn!=examining)
+        if(currentTurn==examining)
             return true;
         else
             return false;
