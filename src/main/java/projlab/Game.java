@@ -74,7 +74,7 @@ public class Game {
         map.lockManagement();
     }
 
-    public void logGame(){
+    public void logGame() {
         map.logMap();
         System.out.println("Map is Generated");
         System.out.println("Number of players: " + playerScore.size());
@@ -118,7 +118,9 @@ public class Game {
             System.err.println("Map Generation Failed");
             return;
         }
-        cyclicIterator.next();
+        if (!playerList.isEmpty()) {
+            cyclicIterator.next();
+        }
         stepsLeft = 5;
         totalSteps = 5;
         logGame();

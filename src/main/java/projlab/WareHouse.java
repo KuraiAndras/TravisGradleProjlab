@@ -207,7 +207,7 @@ public class WareHouse {
                                 if (left.hasElement()) {
                                     if (!up.canElementMove() && !left.canElementMove()) {
                                         //TODO: Delete logging
-                                        System.out.print("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
+                                        System.out.println("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
                                         current.lockElement();
                                     }
                                 }
@@ -215,7 +215,7 @@ public class WareHouse {
                                 if (right.hasElement()) {
                                     if (!up.canElementMove() && !right.canElementMove()) {
                                         //TODO: Delete logging
-                                        System.out.print("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
+                                        System.out.println("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
                                         current.lockElement();
                                     }
                                 }
@@ -231,7 +231,7 @@ public class WareHouse {
                                 if (left.hasElement()) {
                                     if (!down.canElementMove() && !left.canElementMove()) {
                                         //TODO: Delete logging
-                                        System.out.print("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
+                                        System.out.println("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
                                         current.lockElement();
                                     }
                                 }
@@ -239,7 +239,7 @@ public class WareHouse {
                                 if (right.hasElement()) {
                                     if (!down.canElementMove() && !right.canElementMove()) {
                                         //TODO: Delete logging
-                                        System.out.print("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
+                                        System.out.println("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
                                         current.lockElement();
                                     }
                                 }
