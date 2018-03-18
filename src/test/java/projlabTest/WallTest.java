@@ -41,5 +41,8 @@ public class WallTest {
         assertFalse(wall.getCanMove());
         wall.lockRequest();
         assertFalse(wall.getCanMove());
+
+
+        
     }
 }
