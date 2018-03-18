@@ -7,7 +7,6 @@ import projlab.*;
 import static org.junit.Assert.*;
 
 
-
 public class PlayerTest {
     private Player player;
     private Game game = Game.getInstance();
@@ -15,7 +14,7 @@ public class PlayerTest {
     @Before
     public void setUp() throws Exception {
         Field field = new Field();
-        player = new Player(field) ;
+        player = new Player(field);
         field.setGameElement(player);
 
         game.startGame("maps/wallTest.txt");
@@ -34,12 +33,12 @@ public class PlayerTest {
     }
 
     @Test
-    public void collideplayer() {
+    public void collidePlayer() {
         assertTrue(game.movePlayer(Direction.LEFT));     //player collides with player
     }
 
     @Test
-    public void collidebox() {                        //player collides with box
+    public void collideBox() {                        //player collides with box
         assertTrue(game.movePlayer(Direction.UP));
         assertTrue(game.movePlayer(Direction.RIGHT));
         assertTrue(game.movePlayer(Direction.DOWN));

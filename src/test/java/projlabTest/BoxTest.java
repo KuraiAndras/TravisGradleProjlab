@@ -13,7 +13,7 @@ public class BoxTest {
     @Before
     public void setUp() throws Exception {
         Field field = new Field();
-        box = new Box(field) ;
+        box = new Box(field);
         field.setGameElement(box);
         game.startGame("maps/wallTest.txt");
 
@@ -39,7 +39,7 @@ public class BoxTest {
     }
 
     @Test
-    public void collideplayer() {
+    public void collidePlayer() {
         assertTrue(game.movePlayer(Direction.UP));              //player által mozog, ugyanaz mint a move
         assertTrue(game.movePlayer(Direction.RIGHT));
         assertTrue(game.movePlayer(Direction.DOWN));
@@ -47,7 +47,7 @@ public class BoxTest {
     }
 
     @Test
-    public void collide1box() {
+    public void collideBox() {
         assertTrue(game.movePlayer(Direction.UP));              //mivel eltol egy másik ládát ezért nincs új történés, move-hoz hasonló
         assertTrue(game.movePlayer(Direction.RIGHT));
         assertTrue(game.movePlayer(Direction.DOWN));
