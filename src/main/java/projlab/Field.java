@@ -27,7 +27,7 @@ public class Field implements IStep {
      * stored GameElement to null.
      */
     public Field() {
-        System.out.println("\tField created");
+        //System.out.println("\tField created");
         neighbours = new HashMap<>();
         gameElement = null;
     }
@@ -36,30 +36,33 @@ public class Field implements IStep {
     /**
      * This method sets the GameElement stored
      * on the field.
+     *
      * @param gameElement The GameElement we want to store.
      */
     public void setGameElement(GameElement gameElement) {
-        System.out.println("\tField setGameElement()");
+        //System.out.println("\tField setGameElement()");
         this.gameElement = gameElement;
     }
 
     /**
      * This method checks if the stored GameElement
      * can move.
-     * @return      False if the GameElement can't move, else true.
+     *
+     * @return False if the GameElement can't move, else true.
      */
     public boolean canElementMove() {
-        System.out.println("\tField canElementMove()");
+        //System.out.println("\tField canElementMove()");
         return gameElement.getCanMove();
     }
 
     /**
      * This method checks if the field
      * stores any GameElement.
-     * @return      Returns true if there is a GameElement, else returns false.
+     *
+     * @return Returns true if there is a GameElement, else returns false.
      */
-    public boolean hasElement(){
-        System.out.println("\tField hasElement()");
+    public boolean hasElement() {
+        //System.out.println("\tField hasElement()");
         return gameElement != null;
     }
 
@@ -67,28 +70,30 @@ public class Field implements IStep {
      * This method calls the lockRequest() method
      * on the stored GameElement.
      */
-    public void lockElement(){
-        System.out.println("\tField lockElement()");
+    public void lockElement() {
+        //System.out.println("\tField lockElement()");
         gameElement.lockRequest();
     }
 
     /**
      * This method sets the given field paired with
      * the given direction.
-     * @param field The neighbour field.
+     *
+     * @param field     The neighbour field.
      * @param direction The direction to the field.
      */
     public void setNeighbour(Field field, Direction direction) {
-        System.out.println("\tField setNeighbour()");
+        //System.out.println("\tField setNeighbour()");
         neighbours.put(direction, field);
     }
 
     /**
      * This method returns with the neighbours
+     *
      * @return neighbours The HashMap containing the neighbour fields and directions.
      */
-    public HashMap<Direction, Field> getNeighbours(){
-        System.out.println("\tField getNeighbours()");
+    public HashMap<Direction, Field> getNeighbours() {
+        //System.out.println("\tField getNeighbours()");
         return neighbours;
     }
 
@@ -99,9 +104,10 @@ public class Field implements IStep {
      * stored GameElement, it stores the Player
      * and returns true indicating its move was
      * successful.
-     * @param player The player stepping on the field.
+     *
+     * @param player    The player stepping on the field.
      * @param direction The direction of the player.
-     * @return      Returns true if the move was completed, else false.
+     * @return Returns true if the move was completed, else false.
      */
     @Override
     public boolean onStepped(Player player, Direction direction) {
@@ -126,9 +132,10 @@ public class Field implements IStep {
      * stored GameElement, it stores the Box
      * and returns true indicating its move was
      * successful.
-     * @param box The box stepping on the field.
+     *
+     * @param box       The box stepping on the field.
      * @param direction The direction of the box
-     * @return      Returns true if the move was completed, else false.
+     * @return Returns true if the move was completed, else false.
      */
     @Override
     public boolean onStepped(Box box, Direction direction) {
@@ -151,9 +158,10 @@ public class Field implements IStep {
      * It sets the currently stored GameElement
      * to null and returns a reference to the
      * neighbour field in the given direction.
-     * @param player The currently stored player.
+     *
+     * @param player    The currently stored player.
      * @param direction The direction of the player.
-     * @return      Returns the neighbour field in the given direction.
+     * @return Returns the neighbour field in the given direction.
      */
     @Override
     public Field offStepped(Player player, Direction direction) {
@@ -168,9 +176,10 @@ public class Field implements IStep {
      * It sets the currently stored GameElement
      * to null and returns a reference to the
      * neighbour field in the given direction.
-     * @param box The currently stored box.
+     *
+     * @param box       The currently stored box.
      * @param direction The direction of the box.
-     * @return      Returns the neighbour field in the given direction.
+     * @return Returns the neighbour field in the given direction.
      */
     @Override
     public Field offStepped(Box box, Direction direction) {
@@ -180,13 +189,14 @@ public class Field implements IStep {
     }
 
     //TODO: Delete this
+
     /**
      * Overrides the toString() method to make it
      * easier to use for logging purposes.
      */
     @Override
     public String toString() {
-        if(gameElement == null){
+        if (gameElement == null) {
             return "Field";
         } else {
             return gameElement.toString();

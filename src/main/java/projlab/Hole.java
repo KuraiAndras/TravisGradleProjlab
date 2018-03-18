@@ -17,6 +17,7 @@ public class Hole extends Field {
      * Constructor. Calls the Fields
      * constructor and sets
      * isOpen to the given value.
+     *
      * @param isOpen Returns the value of isOpen.
      */
     public Hole(boolean isOpen) {
@@ -40,6 +41,7 @@ public class Hole extends Field {
      * If it is closed it calls the Fields
      * onStepped(player, direction) method and returns
      * its value.
+     *
      * @see Field#onStepped(Player, Direction)
      */
     @Override
@@ -61,6 +63,7 @@ public class Hole extends Field {
      * If it is closed it calls the Fields
      * onStepped(player, direction) method and returns
      * its value.
+     *
      * @see Field#onStepped(Box, Direction)
      */
     @Override
@@ -75,18 +78,17 @@ public class Hole extends Field {
     }
 
     //TODO: Delete this
+
     /**
      * Overrides the toString() method to make it
      * easier to use for logging purposes.
      */
     @Override
-    public String toString()
-    {
-        if(gameElement == null){
+    public String toString() {
+        if (gameElement == null) {
             return "Hole";
         } else {
             return gameElement.toString();
         }
     }
-
 }

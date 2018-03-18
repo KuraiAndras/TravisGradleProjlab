@@ -14,7 +14,7 @@ public class CyclicIterator<E, C extends Collection<E>> implements Iterator<E> {
 
     @Override
     public boolean hasNext() {
-        if (! mIterator.hasNext()) {
+        if (!mIterator.hasNext()) {
             mIterator = mElements.iterator();
         }
         return mIterator.hasNext();
@@ -22,7 +22,7 @@ public class CyclicIterator<E, C extends Collection<E>> implements Iterator<E> {
 
     @Override
     public E next() {
-        if (! mIterator.hasNext()) {
+        if (!mIterator.hasNext()) {
             mIterator = mElements.iterator();
         }
         return mIterator.next();

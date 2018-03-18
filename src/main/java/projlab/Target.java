@@ -14,9 +14,10 @@ public class Target extends Field {
      * stored object is null or it could be moved then it
      * locks the box and increases the active players score.
      * If the stored object couldn't move then it returns false.
-     * @param box The box stepping on the field.
+     *
+     * @param box       The box stepping on the field.
      * @param direction The direction of the box
-     * @return      Returns true if the box stepped on it, else returns false.
+     * @return Returns true if the box stepped on it, else returns false.
      */
     @Override
     public boolean onStepped(Box box, Direction direction) {
@@ -38,13 +39,14 @@ public class Target extends Field {
     }
 
     //TODO: Delete this
+
     /**
      * Overrides the toString() method to make it
      * easier to use for logging purposes.
      */
     @Override
     public String toString() {
-        if(gameElement == null){
+        if (gameElement == null) {
             return "Target";
         } else {
             return gameElement.toString();
