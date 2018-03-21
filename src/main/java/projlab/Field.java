@@ -9,18 +9,17 @@ import java.util.HashMap;
  */
 public class Field implements IStep {
 
+    private static double referenceStickiness = 1;
+    /**
+     * The GameElement that stands on the field.
+     */
+    protected GameElement gameElement;
     /**
      * This HashMap contains all the
      * neighbours of the current field
      * in the possible directions.
      */
     private HashMap<Direction, Field> neighbours;
-
-    /**
-     * The GameElement that stands on the field.
-     */
-    protected GameElement gameElement;
-
     private double stickiness;
 
     /**
@@ -32,11 +31,20 @@ public class Field implements IStep {
         //System.out.println("\tField created");
         neighbours = new HashMap<>();
         gameElement = null;
-        stickiness = 1;
+        stickiness = referenceStickiness;
     }
 
     public double getStickiness() {
         return stickiness;
+    }
+
+    public boolean setStickiness(double newStickiness) {
+        if (this.stickiness != referenceStickiness) {
+            return false;
+        } else {
+            stickiness = newStickiness;
+            return true;
+        }
     }
 
     /**

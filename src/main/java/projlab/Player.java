@@ -78,6 +78,11 @@ public class Player extends GameElement implements IPlayable, IMovable {
         return move(direction, (power + weight) * owner.getStickiness());
     }
 
+    @Override
+    public boolean placeSticky(double stickiness) {
+        return owner.setStickiness(stickiness);
+    }
+
     /**
      * This method checks if this player can be pushed by the given
      * Player object to the given direction.
