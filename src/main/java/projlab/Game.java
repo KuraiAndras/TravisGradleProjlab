@@ -165,6 +165,7 @@ public class Game {
         //->boxot targetra tolunk
         //->boxot probalunk targetrol mozgatni
         System.out.println("13: P B T");
+        System.out.println("14: P B P B B B B F");
         System.out.println("0: EXIT ");
         System.out.println("Please choose a test case:");
     }
@@ -229,6 +230,11 @@ public class Game {
                     break;
                 case 13:
                     game.startGame("maps/skeleton13");
+                    game.movePlayer(Direction.RIGHT);
+                    game.movePlayer(Direction.RIGHT);
+                    break;
+                case 14:
+                    game.startGame("maps/longPowerTest");
                     game.movePlayer(Direction.RIGHT);
                     game.movePlayer(Direction.RIGHT);
                     break;

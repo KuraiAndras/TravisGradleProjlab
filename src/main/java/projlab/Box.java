@@ -70,7 +70,7 @@ public class Box extends GameElement implements IMovable {
      */
     @Override
     public boolean getCanMove() {
-        System.out.println("\tBox getCanMove()");
+        //System.out.println("\tBox getCanMove()");
         return canMove;
     }
 

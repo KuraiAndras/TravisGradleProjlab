@@ -103,7 +103,7 @@ public class Player extends GameElement implements IPlayable, IMovable {
     @Override
     public boolean collide(Box box, Direction direction, double power) {
         System.out.println("\tPlayer collides with box.");
-        if (this.move(direction)) {
+        if (this.move(direction, power)) {
             return true;
         } else {
             this.die();
@@ -118,7 +118,7 @@ public class Player extends GameElement implements IPlayable, IMovable {
      */
     @Override
     public boolean getCanMove() {
-        System.out.println("\tPlayer getCanMove()");
+//        System.out.println("\tPlayer getCanMove()");
         return true;
     }
 
