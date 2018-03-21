@@ -21,7 +21,7 @@ public class Field implements IStep {
      */
     protected GameElement gameElement;
 
-    private int stickyness;
+    private double stickiness;
 
     /**
      * Constructor. It makes an empty HashMap
@@ -32,11 +32,11 @@ public class Field implements IStep {
         //System.out.println("\tField created");
         neighbours = new HashMap<>();
         gameElement = null;
-        stickyness = 1;
+        stickiness = 1;
     }
 
-    public int getStickyness() {
-        return stickyness;
+    public double getStickiness() {
+        return stickiness;
     }
 
     /**
@@ -116,15 +116,15 @@ public class Field implements IStep {
      * @return Returns true if the move was completed, else false.
      */
     @Override
-    public boolean onStepped(Player player, Direction direction, int power) {
+    public boolean onStepped(Player player, Direction direction, double power) {
         System.out.println("\tField onStepped(player, direction)");
         if (gameElement == null) {
             gameElement = player;
             return true;
         }
         if (gameElement.collide(player, direction, power)) {
-            if(Game.getInstance().checkPlayerVitality(player))
-            gameElement = player;
+            if (Game.getInstance().checkPlayerVitality(player))
+                gameElement = player;
             Game.getInstance().doLockManagement();
             return true;
         } else {
@@ -145,7 +145,7 @@ public class Field implements IStep {
      * @return Returns true if the move was completed, else false.
      */
     @Override
-    public boolean onStepped(Box box, Direction direction, int power) {
+    public boolean onStepped(Box box, Direction direction, double power) {
         System.out.println("\tField onStepped(box, direction)");
         if (gameElement == null) {
             gameElement = box;

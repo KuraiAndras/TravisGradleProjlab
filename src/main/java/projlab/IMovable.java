@@ -1,5 +1,5 @@
 package projlab;
 
 public interface IMovable {
-    boolean move(Direction direction, int power);
+    boolean move(Direction direction, double power);
 }

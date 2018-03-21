@@ -39,7 +39,7 @@ public class Game {
         if (playerScore.size() == 1) {
             onGameEnd();
         }
-        if(player==currentTurn){
+        if (player == currentTurn) {
             currentTurn = cyclicIterator.next();
             stepsLeft = totalSteps;
         }
@@ -109,20 +109,16 @@ public class Game {
         return lastMove;
     }
 
-    public boolean checkPlayerCompression(Player examining){
-        if(currentTurn!=examining){
+    public boolean checkPlayerCompression(Player examining) {
+        if (currentTurn != examining) {
             examining.die();
-             return true;
-        }
-        else
+            return true;
+        } else
             return false;
     }
 
-    public boolean checkPlayerVitality(Player examining){
-        if(currentTurn==examining)
-            return true;
-        else
-            return false;
+    public boolean checkPlayerVitality(Player examining) {
+        return currentTurn == examining;
     }
 
     //TODO: Delete logging

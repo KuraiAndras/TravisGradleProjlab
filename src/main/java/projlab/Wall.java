@@ -15,6 +15,8 @@ public class Wall extends GameElement {
      */
     public Wall(Field field) {
         super(field);
+        //Maximum value of double in java
+        weight = Double.MAX_VALUE;
         //System.out.println("\tWall created with field given");
     }
 
@@ -27,7 +29,7 @@ public class Wall extends GameElement {
      * @return This method always returns false.
      */
     @Override
-    public boolean collide(Player player, Direction direction) {
+    public boolean collide(Player player, Direction direction, double power) {
         System.out.println("\tWall collides with player");
         return Game.getInstance().checkPlayerCompression(player);
     }
@@ -41,7 +43,7 @@ public class Wall extends GameElement {
      * @return This method always returns false.
      */
     @Override
-    public boolean collide(Box box, Direction direction) {
+    public boolean collide(Box box, Direction direction, double power) {
         System.out.println("\tWall collides with box");
         return false;
     }
@@ -79,7 +81,7 @@ public class Wall extends GameElement {
      * Potential for a new feature.
      */
     @Override
-    public void die(){
+    public void die() {
         System.out.println("\tWall die()");
         owner.setGameElement(null);
     }

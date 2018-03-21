@@ -12,7 +12,7 @@ public abstract class GameElement implements ICollide {
      */
     protected Field owner;
 
-    protected int weight;
+    protected double weight;
 
     /**
      * Constructor. This method creates a GameElement
@@ -32,6 +32,7 @@ public abstract class GameElement implements ICollide {
      */
     public GameElement(Field field) {
         //System.out.println("\tGameElement created with given field");
+        weight = 0;
         owner = field;
     }
 
@@ -43,7 +44,7 @@ public abstract class GameElement implements ICollide {
      * @param direction The direction we want the GameElement to move.
      * @return This returns true if the GameElement moved, false if not.
      */
-    abstract public boolean collide(Player player, Direction direction, int power);
+    abstract public boolean collide(Player player, Direction direction, double power);
 
     /**
      * This method checks if this GameElement can be pushed by the given
@@ -53,7 +54,7 @@ public abstract class GameElement implements ICollide {
      * @param direction The direction we want the GameElement to move.
      * @return This returns true if the GameElement moved, false if not.
      */
-    abstract public boolean collide(Box box, Direction direction, int power);
+    abstract public boolean collide(Box box, Direction direction, double power);
 
     /**
      * This method checks if the GameElement can move
@@ -71,5 +72,5 @@ public abstract class GameElement implements ICollide {
     /**
      * This method destroy the GameElement
      */
-    abstract  public void die();
+    abstract public void die();
 }

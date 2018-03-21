@@ -75,6 +75,7 @@ public class Box extends GameElement implements IMovable {
     }
 
     //TODO: Repair Javadoc
+
     /**
      * This method moves the box to the given direction.
      * If the box can't move to the direction, the box stays
@@ -84,8 +85,8 @@ public class Box extends GameElement implements IMovable {
      * @return canMove This returns true if the box was moved, false if not.
      */
     @Override
-    public boolean move(Direction direction, int power) {
-        int decreasedPower = power - weight*owner.getStickyness();
+    public boolean move(Direction direction, double power) {
+        double decreasedPower = power - weight * owner.getStickiness();
 
         if (decreasedPower <= 0) {
             System.out.println("\tBox says Player power too low");
@@ -117,7 +118,7 @@ public class Box extends GameElement implements IMovable {
      * @return This returns true if the box moved, false if not.
      */
     @Override
-    public boolean collide(Player player, Direction direction, int power) {
+    public boolean collide(Player player, Direction direction, double power) {
         System.out.println("\tBox collides with player.");
         if (canMove && move(direction, power)) {
             return true;
@@ -134,7 +135,7 @@ public class Box extends GameElement implements IMovable {
      * @return This returns true if the box moved, false if not.
      */
     @Override
-    public boolean collide(Box box, Direction direction, int power) {
+    public boolean collide(Box box, Direction direction, double power) {
         System.out.println("\tBox collides with box.");
         return canMove && move(direction, power);
     }
