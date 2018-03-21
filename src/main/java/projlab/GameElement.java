@@ -11,6 +11,8 @@ public abstract class GameElement implements ICollide {
      * The Field object the GameElement stands on.
      */
     protected Field owner;
+    
+    private int weight;
 
     /**
      * Constructor. This method creates a GameElement

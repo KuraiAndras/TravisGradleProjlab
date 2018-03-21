@@ -5,7 +5,7 @@ package projlab;
  * This is a GameElement that represents a Box
  * in the game.
  */
-public class Box extends GameElement implements IPlayable {
+public class Box extends GameElement {
 
     /**
      * True if the box can use the move() method, false if it is locked
@@ -80,6 +80,7 @@ public class Box extends GameElement implements IPlayable {
      * @param direction The direction we want the box to move.
      * @return canMove This returns true if the box was moved, false if not.
      */
+    //TODO: Do something with this
     @Override
     public boolean move(Direction direction) {
         System.out.println("\tBox tries to move");

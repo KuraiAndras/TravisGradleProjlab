@@ -85,7 +85,6 @@ public class Player extends GameElement implements IPlayable {
             return true;
         } else {
             this.die();
-            //This may kill the whole program?
             return false;
         }
     }

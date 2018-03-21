@@ -21,6 +21,8 @@ public class Field implements IStep {
      */
     protected GameElement gameElement;
 
+    private int stickyness;
+
     /**
      * Constructor. It makes an empty HashMap
      * for the neighbours and sets the currently
