@@ -174,8 +174,9 @@ public class Game {
     }
 
     public boolean movePlayer(Direction direction) {
+        boolean lastMove = currentTurn.move(direction);
         decreaseSteps();
-        return currentTurn.move(direction);
+        return lastMove;
     }
 
     public boolean placeHoney() {
