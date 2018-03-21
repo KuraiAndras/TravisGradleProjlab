@@ -239,7 +239,7 @@ public class Game {
         logGame();
     }
 
-    public void displaySkeletonMenu() {
+    private void displaySkeletonMenu() {
         System.out.flush();
         System.out.println("Welcome to We <3 IIT skeleton");
         System.out.println("1: P F ");
