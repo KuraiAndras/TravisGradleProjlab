@@ -5,7 +5,7 @@ package projlab;
  * This is a GameElement that represents a Box
  * in the game.
  */
-public class Box extends GameElement implements IPlayable {
+public class Box extends GameElement implements IMovable {
 
     /**
      * True if the box can use the move() method, false if it is locked
@@ -21,6 +21,7 @@ public class Box extends GameElement implements IPlayable {
      */
     public Box() {
         super();
+        weight = 1;
         canMove = true;
         System.out.println("\tBox created");
     }
@@ -35,6 +36,7 @@ public class Box extends GameElement implements IPlayable {
     public Box(Field field) {
         super(field);
         canMove = true;
+        weight = 1;
         //System.out.println("\tBox created with field given");
     }
 
@@ -43,7 +45,7 @@ public class Box extends GameElement implements IPlayable {
      * decreases the movable box count by 1.
      */
     @Override
-    public void die(){
+    public void die() {
         System.out.println("\tBox dies");
         owner.setGameElement(null);
         Game.getInstance().decreaseMovableBox();
@@ -54,7 +56,7 @@ public class Box extends GameElement implements IPlayable {
      * This method locks the box to its current position and
      * decreases the movable box count by 1.
      */
-     @Override
+    @Override
     public void lockRequest() {
         canMove = false;
         Game.getInstance().decreaseMovableBox();
@@ -68,9 +70,11 @@ public class Box extends GameElement implements IPlayable {
      */
     @Override
     public boolean getCanMove() {
-        System.out.println("\tBox getCanMove()");
+        //System.out.println("\tBox getCanMove()");
         return canMove;
     }
+
+    //TODO: Repair Javadoc
 
     /**
      * This method moves the box to the given direction.
@@ -81,11 +85,20 @@ public class Box extends GameElement implements IPlayable {
      * @return canMove This returns true if the box was moved, false if not.
      */
     @Override
-    public boolean move(Direction direction) {
+    public boolean move(Direction direction, double power) {
+        double decreasedPower = power - weight * owner.getStickiness();
+
+        if (decreasedPower <= 0) {
+            System.out.println("\tBox says Player power too low");
+            return false;
+        }
+
         System.out.println("\tBox tries to move");
+
         Field field1 = owner;
         Field field2 = field1.offStepped(this, direction);
-        if (field2.onStepped(this, direction)) {
+
+        if (field2.onStepped(this, direction, decreasedPower)) {
             owner = field2;
             System.out.println("\t\tBox moved successfully.");
             return true;
@@ -105,9 +118,9 @@ public class Box extends GameElement implements IPlayable {
      * @return This returns true if the box moved, false if not.
      */
     @Override
-    public boolean collide(Player player, Direction direction) {
+    public boolean collide(Player player, Direction direction, double power) {
         System.out.println("\tBox collides with player.");
-        if(canMove && move(direction)){
+        if (canMove && move(direction, power)) {
             return true;
         }
         return Game.getInstance().checkPlayerCompression(player);
@@ -122,9 +135,9 @@ public class Box extends GameElement implements IPlayable {
      * @return This returns true if the box moved, false if not.
      */
     @Override
-    public boolean collide(Box box, Direction direction) {
+    public boolean collide(Box box, Direction direction, double power) {
         System.out.println("\tBox collides with box.");
-        return canMove && move(direction);
+        return canMove && move(direction, power);
     }
 
     /**

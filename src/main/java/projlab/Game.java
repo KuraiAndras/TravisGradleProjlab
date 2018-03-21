@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 //TODO: Add Javadoc
 public class Game {
+    private static Game ourInstance = new Game();
     private HashMap<Player, Integer> playerScore;
     private Player currentTurn;
     private int totalSteps;
@@ -16,12 +17,6 @@ public class Game {
     private LinkedHashSet<Player> playerList;
     private CyclicIterator<Player, LinkedHashSet<Player>> cyclicIterator;
 
-    private static Game ourInstance = new Game();
-
-    public static Game getInstance() {
-        return ourInstance;
-    }
-
     private Game() {
         //TODO: Implement this
         map = new WareHouse();
@@ -30,147 +25,8 @@ public class Game {
         cyclicIterator = new CyclicIterator<>(playerList);
     }
 
-    private void onGameEnd() {
-        //TODO: Implement this
-    }
-
-    public void onPlayerDead(Player player) {
-        playerScore.remove(player);
-        if (playerScore.size() == 1) {
-            onGameEnd();
-        }
-        if(player==currentTurn){
-            currentTurn = cyclicIterator.next();
-            stepsLeft = totalSteps;
-        }
-    }
-
-    public void incrementScore() {
-        playerScore.put(currentTurn, playerScore.get(currentTurn) + 1);
-    }
-
-    public int getMovableBox() {
-        return movableBox;
-    }
-
-    public void registerPlayer(Player player) {
-        playerList.add(player);
-        playerScore.put(player, 0);
-
-        if (currentTurn == null) {
-            currentTurn = player;
-        }
-    }
-
-
-    public void registerBox() {
-        movableBox++;
-    }
-
-    public void decreaseMovableBox() {
-        movableBox--;
-        if (movableBox == 0) {
-            onGameEnd();
-        }
-    }
-
-    //this method is only used during development?
-    public void doLockManagement() {
-        map.lockManagement();
-    }
-
-    public void logGame() {
-        map.logMap();
-        System.out.println("Map is Generated");
-        System.out.println("Number of players: " + playerScore.size());
-        System.out.println("Movable boxes: " + movableBox);
-        System.out.println("Current players:");
-        for (Map.Entry<Player, Integer> item :
-                playerScore.entrySet()) {
-            Player key = item.getKey();
-            Integer value = item.getValue();
-            System.out.println(key + " " + value);
-        }
-        System.out.println("Current turn: " + currentTurn);
-        System.out.println("Total steps: " + totalSteps);
-        System.out.println("Steps left: " + stepsLeft);
-        System.out.print("\n");
-    }
-
-    public boolean movePlayer(Direction direction) {
-        boolean lastMove;
-        lastMove = currentTurn.move(direction);
-        stepsLeft--;
-        if (stepsLeft == 0) {
-            currentTurn = cyclicIterator.next();
-            stepsLeft = totalSteps;
-        }
-        logGame();
-        return lastMove;
-    }
-
-    public boolean checkPlayerCompression(Player examining){
-        if(currentTurn!=examining){
-            examining.die();
-             return true;
-        }
-        else
-            return false;
-    }
-
-    public boolean checkPlayerVitality(Player examining){
-        if(currentTurn==examining)
-            return true;
-        else
-            return false;
-    }
-
-    //TODO: Delete logging
-    //Should we make it private? Only tests need public visibility
-    public void startGame(String file) {
-        playerScore = new HashMap<>();
-        currentTurn = null;
-        movableBox = 0;
-        playerList = new LinkedHashSet<>();
-        cyclicIterator = new CyclicIterator<>(playerList);
-        map = new WareHouse();
-        map = map.generateMap(file);
-        if (map == null) {
-            System.err.println("Map Generation Failed");
-            return;
-        }
-        if (!playerList.isEmpty()) {
-            cyclicIterator.next();
-        }
-        stepsLeft = 5;
-        totalSteps = 5;
-        logGame();
-    }
-
-    public void displaySkeletonMenu() {
-        System.out.flush();
-        System.out.println("Welcome to We <3 IIT skeleton");
-        System.out.println("1: P F ");
-        System.out.println("2: P B F ");
-        System.out.println("3: P B B F");
-        System.out.println("4: P P ");
-        System.out.println("5: P B P F");
-        System.out.println("6: P B P W");
-        System.out.println("7: P B P B W");
-        System.out.println("8: P W ");
-        System.out.println("9: P B W ");
-        //2x tolunk, ket allapotot fedunk le
-        //->switch.onStepped(box)
-        //->switch.offStepped(box)
-        System.out.println("10: P B S");
-        System.out.println("11: P B H");
-        System.out.println("12: P H");
-        //2x tolunk, ket allapotot fedunk le
-        //->boxot targetra tolunk
-        //->boxot probalunk targetrol mozgatni
-        System.out.println("13: P B T");
-        System.out.println("0: EXIT ");
-        System.out.println("Please choose a test case:");
+    public static Game getInstance() {
+        return ourInstance;
     }
 
     public static void main(String[] args) {
@@ -236,6 +92,11 @@ public class Game {
                     game.movePlayer(Direction.RIGHT);
                     game.movePlayer(Direction.RIGHT);
                     break;
+                case 14:
+                    game.startGame("maps/longPowerTest");
+                    game.movePlayer(Direction.RIGHT);
+                    game.movePlayer(Direction.RIGHT);
+                    break;
                 case 0:
 
                     break;
@@ -244,5 +105,165 @@ public class Game {
             }
         }
 
+    }
+
+    private void onGameEnd() {
+        //TODO: Implement this
+    }
+
+    public void onPlayerDead(Player player) {
+        playerScore.remove(player);
+        if (playerScore.size() == 1) {
+            onGameEnd();
+        }
+        if (player == currentTurn) {
+            currentTurn = cyclicIterator.next();
+            stepsLeft = totalSteps;
+        }
+    }
+
+    public void incrementScore() {
+        playerScore.put(currentTurn, playerScore.get(currentTurn) + 1);
+    }
+
+    public int getMovableBox() {
+        return movableBox;
+    }
+
+    public void registerPlayer(Player player) {
+        playerList.add(player);
+        playerScore.put(player, 0);
+
+        if (currentTurn == null) {
+            currentTurn = player;
+        }
+    }
+
+    public void registerBox() {
+        movableBox++;
+    }
+
+    public void decreaseMovableBox() {
+        movableBox--;
+        if (movableBox == 0) {
+            onGameEnd();
+        }
+    }
+
+    //this method is only used during development?
+    public void doLockManagement() {
+        map.lockManagement();
+    }
+
+    public void logGame() {
+        map.logMap();
+        System.out.println("Map is Generated");
+        System.out.println("Number of players: " + playerScore.size());
+        System.out.println("Movable boxes: " + movableBox);
+        System.out.println("Current players:");
+        for (Map.Entry<Player, Integer> item :
+                playerScore.entrySet()) {
+            Player key = item.getKey();
+            Integer value = item.getValue();
+            System.out.println(key + " " + value);
+        }
+        System.out.println("Current turn: " + currentTurn);
+        System.out.println("Total steps: " + totalSteps);
+        System.out.println("Steps left: " + stepsLeft);
+        System.out.print("\n");
+    }
+
+    public boolean movePlayer(Direction direction) {
+        boolean lastMove = currentTurn.move(direction);
+        decreaseSteps();
+        return lastMove;
+    }
+
+    public boolean placeHoney() {
+        if (currentTurn.placeSticky(2)) {
+            decreaseSteps();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean placeOil() {
+        if (currentTurn.placeSticky(0.5)) {
+            decreaseSteps();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void decreaseSteps() {
+        stepsLeft--;
+        if (stepsLeft == 0) {
+            currentTurn = cyclicIterator.next();
+            stepsLeft = totalSteps;
+        }
+        logGame();
+    }
+
+    public boolean checkPlayerCompression(Player examining) {
+        if (currentTurn != examining) {
+            examining.die();
+            return true;
+        } else
+            return false;
+    }
+
+    public boolean checkPlayerVitality(Player examining) {
+        return currentTurn == examining;
+    }
+
+    //TODO: Delete logging
+    //Should we make it private? Only tests need public visibility
+    public void startGame(String file) {
+        playerScore = new HashMap<>();
+        currentTurn = null;
+        movableBox = 0;
+        playerList = new LinkedHashSet<>();
+        cyclicIterator = new CyclicIterator<>(playerList);
+        map = new WareHouse();
+        map = map.generateMap(file);
+        if (map == null) {
+            System.err.println("Map Generation Failed");
+            return;
+        }
+        if (!playerList.isEmpty()) {
+            cyclicIterator.next();
+        }
+        stepsLeft = 5;
+        totalSteps = 5;
+        logGame();
+    }
+
+    private void displaySkeletonMenu() {
+        System.out.flush();
+        System.out.println("Welcome to We <3 IIT skeleton");
+        System.out.println("1: P F ");
+        System.out.println("2: P B F ");
+        System.out.println("3: P B B F");
+        System.out.println("4: P P ");
+        System.out.println("5: P B P F");
+        System.out.println("6: P B P W");
+        System.out.println("7: P B P B W");
+        System.out.println("8: P W ");
+        System.out.println("9: P B W ");
+        //2x tolunk, ket allapotot fedunk le
+        //->switch.onStepped(box)
+        //->switch.offStepped(box)
+        System.out.println("10: P B S");
+        System.out.println("11: P B H");
+        System.out.println("12: P H");
+        //2x tolunk, ket allapotot fedunk le
+        //->boxot targetra tolunk
+        //->boxot probalunk targetrol mozgatni
+        System.out.println("13: P B T");
+        System.out.println("14: P B P B B B B F");
+        System.out.println("0: EXIT ");
+        System.out.println("Please choose a test case:");
     }
 }

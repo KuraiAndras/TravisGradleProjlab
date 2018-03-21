@@ -34,10 +34,12 @@ public class Hole extends Field {
      */
     public void switchHole() {
         isOpen = !isOpen;
-        if(isOpen==true && gameElement!=null)       //Azok amik függetlenek a tolástól
+        if (isOpen && gameElement != null)       //Azok amik függetlenek a tolástól
             gameElement.die();
         System.out.println("\tHole switchHole()");
     }
+
+    //TODO: Fix this
 
     /**
      * This method is called when a Player steps
@@ -45,19 +47,19 @@ public class Hole extends Field {
      * If it is closed it calls the Fields
      * onStepped(player, direction) method and returns
      * its value.
-     *
-     * @see Field#onStepped(Player, Direction)
      */
     @Override
-    public boolean onStepped(Player player, Direction direction) {
+    public boolean onStepped(Player player, Direction direction, double power) {
         System.out.println("\tHole onStepped(player, direction)");
-        if (!super.onStepped(player, direction))
+        if (!super.onStepped(player, direction, power))
             return false;
         else {
             if (isOpen) player.die();
             return true;
         }
     }
+
+    //TODO: fix this
 
     /**
      * This method is called when a Box steps
@@ -66,13 +68,11 @@ public class Hole extends Field {
      * If it is closed it calls the Fields
      * onStepped(player, direction) method and returns
      * its value.
-     *
-     * @see Field#onStepped(Box, Direction)
      */
     @Override
-    public boolean onStepped(Box box, Direction direction) {
+    public boolean onStepped(Box box, Direction direction, double power) {
         System.out.println("\tHole onStepped(box, direction)");
-        if (!super.onStepped(box, direction))
+        if (!super.onStepped(box, direction, power))
             return false;
         else {
             if (isOpen) box.die();

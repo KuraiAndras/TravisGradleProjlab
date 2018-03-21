@@ -9,17 +9,18 @@ import java.util.HashMap;
  */
 public class Field implements IStep {
 
+    private static double referenceStickiness = 1;
+    /**
+     * The GameElement that stands on the field.
+     */
+    protected GameElement gameElement;
     /**
      * This HashMap contains all the
      * neighbours of the current field
      * in the possible directions.
      */
     private HashMap<Direction, Field> neighbours;
-
-    /**
-     * The GameElement that stands on the field.
-     */
-    protected GameElement gameElement;
+    private double stickiness;
 
     /**
      * Constructor. It makes an empty HashMap
@@ -30,8 +31,21 @@ public class Field implements IStep {
         //System.out.println("\tField created");
         neighbours = new HashMap<>();
         gameElement = null;
+        stickiness = referenceStickiness;
     }
 
+    public double getStickiness() {
+        return stickiness;
+    }
+
+    public boolean setStickiness(double newStickiness) {
+        if (this.stickiness != referenceStickiness) {
+            return false;
+        } else {
+            stickiness = newStickiness;
+            return true;
+        }
+    }
 
     /**
      * This method sets the GameElement stored
@@ -110,15 +124,15 @@ public class Field implements IStep {
      * @return Returns true if the move was completed, else false.
      */
     @Override
-    public boolean onStepped(Player player, Direction direction) {
+    public boolean onStepped(Player player, Direction direction, double power) {
         System.out.println("\tField onStepped(player, direction)");
         if (gameElement == null) {
             gameElement = player;
             return true;
         }
-        if (gameElement.collide(player, direction)) {
-            if(Game.getInstance().checkPlayerVitality(player))
-            gameElement = player;
+        if (gameElement.collide(player, direction, power)) {
+            if (Game.getInstance().checkPlayerVitality(player))
+                gameElement = player;
             Game.getInstance().doLockManagement();
             return true;
         } else {
@@ -139,13 +153,13 @@ public class Field implements IStep {
      * @return Returns true if the move was completed, else false.
      */
     @Override
-    public boolean onStepped(Box box, Direction direction) {
+    public boolean onStepped(Box box, Direction direction, double power) {
         System.out.println("\tField onStepped(box, direction)");
         if (gameElement == null) {
             gameElement = box;
             return true;
         }
-        if (gameElement.collide(box, direction)) {
+        if (gameElement.collide(box, direction, power)) {
             gameElement = box;
             return true;
         } else {
