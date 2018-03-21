@@ -182,10 +182,8 @@ public class WareHouse {
                     //Current field
                     Field current = map.get(row).get(column);
                     //If there is no element we just skip it
-                    if (!current.hasElement()) {
-                    }
                     //If the gameElement is already locked we skip it
-                    else if (!current.canElementMove()) {
+                    if (!current.hasElement() || !current.canElementMove()) {
                     }
                     //If there is an unlocked gameElement we check if we need to lock it
                     else {
