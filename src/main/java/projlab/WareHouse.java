@@ -7,7 +7,7 @@ import java.util.*;
 //TODO: Add Javadoc//TODO: Delete logging
 //TODO: Implement Map creation, and lock Management
 public class WareHouse {
-    protected ArrayList<ArrayList<Field>> map;
+    private ArrayList<ArrayList<Field>> map;
 
     public WareHouse() {
         map = new ArrayList<>();
@@ -42,6 +42,8 @@ public class WareHouse {
                 charMap.add(line);
                 Arrays.fill(items, null);
             }
+
+            file.close();
 
             for (ArrayList<String> item :
                     charMap) {
@@ -192,7 +194,7 @@ public class WareHouse {
                     //If there is an unlocked gameElement we check if we need to lock it
                     else {
                         //Storing neighbours of current Field
-                        HashMap neighbours = current.getNeighbours();
+                        HashMap<Direction, Field> neighbours = current.getNeighbours();
                         /*
                         Checking for a possible block to trigger a lockRequest
                         Possible blocks:

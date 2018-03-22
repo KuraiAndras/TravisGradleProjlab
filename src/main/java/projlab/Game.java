@@ -107,7 +107,7 @@ public class Game {
                     break;
             }
         }
-
+        scanner.close();
     }
 
     private void onGameEnd() {
