@@ -158,7 +158,7 @@ public class Game {
         map.lockManagement();
     }
 
-    public void logGame() {
+    private void logGame() {
         map.logMap();
         System.out.println("Map is Generated");
         System.out.println("Number of players: " + playerScore.size());

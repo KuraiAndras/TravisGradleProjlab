@@ -13,7 +13,7 @@ public class Field implements IStep {
     /**
      * The GameElement that stands on the field.
      */
-    protected GameElement gameElement;
+    GameElement gameElement;
     /**
      * This HashMap contains all the
      * neighbours of the current field

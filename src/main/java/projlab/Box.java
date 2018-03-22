@@ -120,10 +120,7 @@ public class Box extends GameElement implements IMovable {
     @Override
     public boolean collide(Player player, Direction direction, double power) {
         System.out.println("\tBox collides with player.");
-        if (canMove && move(direction, power)) {
-            return true;
-        }
-        return Game.getInstance().checkPlayerCompression(player);
+        return canMove && move(direction, power) || Game.getInstance().checkPlayerCompression(player);
     }
 
     /**

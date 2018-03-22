@@ -10,15 +10,15 @@ public abstract class GameElement implements ICollide {
     /**
      * The Field object the GameElement stands on.
      */
-    protected Field owner;
+    Field owner;
 
-    protected double weight;
+    double weight;
 
     /**
      * Constructor. This method creates a GameElement
      * and sets its owner to null by default.
      */
-    public GameElement() {
+    GameElement() {
         System.out.println("\tGameElement created");
         owner = null;
         weight = 0;
@@ -30,7 +30,7 @@ public abstract class GameElement implements ICollide {
      *
      * @param field The field object to store the GameElement.
      */
-    public GameElement(Field field) {
+    GameElement(Field field) {
         //System.out.println("\tGameElement created with given field");
         weight = 0;
         owner = field;

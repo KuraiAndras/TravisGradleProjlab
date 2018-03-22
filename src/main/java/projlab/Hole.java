@@ -20,7 +20,7 @@ public class Hole extends Field {
      *
      * @param isOpen Returns the value of isOpen.
      */
-    public Hole(boolean isOpen) {
+    Hole(boolean isOpen) {
         super();
         this.isOpen = isOpen;
         System.out.println("\tHole created");

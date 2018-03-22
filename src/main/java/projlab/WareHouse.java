@@ -9,7 +9,7 @@ import java.util.*;
 public class WareHouse {
     private ArrayList<ArrayList<Field>> map;
 
-    public WareHouse() {
+    WareHouse() {
         map = new ArrayList<>();
     }
 
@@ -260,7 +260,7 @@ public class WareHouse {
                 colNum = 0;
             }
             boxesLeft--;
-            if(rowNum == map.size() && colNum == map.get(0).size()){
+            if (rowNum == map.size() && colNum == map.get(0).size()) {
                 break;
             }
         }

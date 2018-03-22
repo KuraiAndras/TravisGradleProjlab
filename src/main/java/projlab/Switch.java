@@ -16,7 +16,7 @@ public class Switch extends Field {
      * Constructor. Calls the Fields constructor
      * and sets the pair to null.
      */
-    public Switch() {
+    Switch() {
         super();
         pair = null;
         System.out.println("\tSwitch created");
