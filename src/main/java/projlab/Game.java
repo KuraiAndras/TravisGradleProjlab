@@ -97,6 +97,9 @@ public class Game {
                     game.movePlayer(Direction.RIGHT);
                     game.movePlayer(Direction.RIGHT);
                     break;
+                case 15:
+                    game.startGame("maps/map_lock_management_test.txt");
+                    game.doLockManagement();
                 case 0:
 
                     break;
@@ -263,6 +266,7 @@ public class Game {
         //->boxot probalunk targetrol mozgatni
         System.out.println("13: P B T");
         System.out.println("14: P B P B B B B F");
+        System.out.println("15: Lock Management test");
         System.out.println("0: EXIT ");
         System.out.println("Please choose a test case:");
     }

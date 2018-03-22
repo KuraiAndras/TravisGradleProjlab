@@ -176,10 +176,13 @@ public class WareHouse {
     public void lockManagement() {
         //We need to go trough all the fields for the number of movable boxes
         //to handle every possible lock that needs to occur after a lock
-        for (int boxesLeft = Game.getInstance().getMovableBox(); boxesLeft > 0; boxesLeft--) {
-
-            for (int row = 0; row < map.size(); row++) {
-                for (int column = 0; column < map.get(row).size(); column++) {
+        int boxesLeft = Game.getInstance().getMovableBox();
+        while (boxesLeft > 0) {
+            int rowNum = 0;
+            int colNum = 0;
+            firstLoop:
+            for (int row = 0; row < map.size(); row++, rowNum++) {
+                for (int column = 0; column < map.get(row).size(); column++, colNum++) {
                     //Current field
                     Field current = map.get(row).get(column);
                     //If there is no element we just skip it
@@ -208,6 +211,7 @@ public class WareHouse {
                                         //TODO: Delete logging
                                         System.out.println("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
                                         current.lockElement();
+                                        break firstLoop;
                                     }
                                 }
                                 //UP + RIGHT
@@ -216,6 +220,7 @@ public class WareHouse {
                                         //TODO: Delete logging
                                         System.out.println("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
                                         current.lockElement();
+                                        break firstLoop;
                                     }
                                 }
                             }
@@ -232,6 +237,7 @@ public class WareHouse {
                                         //TODO: Delete logging
                                         System.out.println("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
                                         current.lockElement();
+                                        break firstLoop;
                                     }
                                 }
                                 //DOWN + RIGHT
@@ -240,6 +246,7 @@ public class WareHouse {
                                         //TODO: Delete logging
                                         System.out.println("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
                                         current.lockElement();
+                                        break firstLoop;
                                     }
                                 }
                             }
@@ -248,6 +255,11 @@ public class WareHouse {
                 }
                 //TODO: Delete logging
                 //System.out.println();
+                colNum = 0;
+            }
+            boxesLeft--;
+            if(rowNum == map.size() && colNum == map.get(0).size()){
+                break;
             }
         }
     }
