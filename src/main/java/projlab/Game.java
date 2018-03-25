@@ -142,6 +142,7 @@ public class Game {
         }
     }
 
+
     public void registerBox() {
         movableBox++;
     }
