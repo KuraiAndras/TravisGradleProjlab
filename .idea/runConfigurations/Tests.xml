@@ -10,14 +10,14 @@
       </option>
       <option name="taskNames">
         <list>
+          <option value="jacocoTestCoverageVerification" />
+          <option value="jacocoTestReport" />
           <option value="test" />
         </list>
       </option>
       <option name="vmOptions" value="" />
     </ExternalSystemSettings>
     <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-    <method>
-      <option name="Gradle.BeforeRunTask" enabled="true" tasks="jacocoTestReport" externalProjectPath="$PROJECT_DIR$" vmOptions="" scriptParameters="" />
-    </method>
+    <method />
   </configuration>
 </component>
