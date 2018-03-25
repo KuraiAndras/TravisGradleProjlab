@@ -2,9 +2,13 @@ package projlabTest;
 
 import org.junit.Before;
 import org.junit.Test;
-import projlab.*;
+import projlab.Direction;
+import projlab.Field;
+import projlab.Game;
+import projlab.Player;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 
 public class PlayerTest {

@@ -1,14 +1,15 @@
 package projlabTest;
 
-import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
+import projlab.Direction;
+import projlab.Game;
 
-import projlab.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class TurnTest {
-    private  Game game;
+    private Game game;
 
 
     @Before
