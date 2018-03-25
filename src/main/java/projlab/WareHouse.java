@@ -13,6 +13,10 @@ public class WareHouse {
         map = new ArrayList<>();
     }
 
+    public ArrayList<ArrayList<Field>> getMap(){
+        return map;
+    }
+
     //TODO: Delete logging
     //Here for debugging reasons
     public void logMap() {
@@ -211,7 +215,7 @@ public class WareHouse {
                                 if (left.hasElement()) {
                                     if (!up.canElementMove() && !left.canElementMove()) {
                                         //TODO: Delete logging
-                                        System.out.println("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
+                                       // System.out.println("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
                                         current.lockElement();
                                         break firstLoop;
                                     }
@@ -220,7 +224,7 @@ public class WareHouse {
                                 if (right.hasElement()) {
                                     if (!up.canElementMove() && !right.canElementMove()) {
                                         //TODO: Delete logging
-                                        System.out.println("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
+                                        //System.out.println("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
                                         current.lockElement();
                                         break firstLoop;
                                     }
@@ -237,7 +241,7 @@ public class WareHouse {
                                 if (left.hasElement()) {
                                     if (!down.canElementMove() && !left.canElementMove()) {
                                         //TODO: Delete logging
-                                        System.out.println("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
+                                        //System.out.println("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
                                         current.lockElement();
                                         break firstLoop;
                                     }
@@ -246,7 +250,7 @@ public class WareHouse {
                                 if (right.hasElement()) {
                                     if (!down.canElementMove() && !right.canElementMove()) {
                                         //TODO: Delete logging
-                                        System.out.println("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
+                                        //System.out.println("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
                                         current.lockElement();
                                         break firstLoop;
                                     }

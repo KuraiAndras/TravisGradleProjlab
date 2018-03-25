@@ -1,9 +1,13 @@
 package projlab;
 
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Scanner;
+import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
+
+import static java.lang.Math.sqrt;
 
 //TODO: Add Javadoc
 public class Game {
@@ -33,77 +37,150 @@ public class Game {
         //Test map for the lockManagement method
         Game game = Game.getInstance();
         Scanner scanner = new Scanner(System.in);
-        int command = -1;
-        while (command != 0) {
-            game.displaySkeletonMenu();
-            command = scanner.nextInt();
-            switch (command) {
+
+        int answer = -1;
+        while (answer != 0) {
+            game.displayProtoMenu();
+            answer = scanner.nextInt();
+            List<String> difference;
+            switch (answer) {
                 case 1:
-                    game.startGame("maps/skeleton1");
-                    game.movePlayer(Direction.RIGHT);
+                    try {
+                        ArrayList<String> in = readFile("proto_tests/listPlayerTest_in.txt");
+                        execute(game, processInput(in));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    difference = diffFiles("proto_tests/testResult.txt", "proto_tests/listPlayerTest_out.txt");
+                    if (difference.size() == 0) {
+                        System.out.println("!!!!!!!!!!!!!!!");
+                        System.out.println("Test successful");
+                        System.out.println("!!!!!!!!!!!!!!!");
+                    } else {
+                        System.out.println("!!!!!!!!!!!!!!!");
+                        System.out.println("Difference:");
+                        System.out.println(difference.toString());
+                        System.out.println("!!!!!!!!!!!!!!!");
+                    }
                     break;
                 case 2:
-                    game.startGame("maps/skeleton2");
-                    game.movePlayer(Direction.RIGHT);
+                    try {
+                        ArrayList<String> in = readFile("proto_tests/listBoxesTest_in.txt");
+                        execute(game, processInput(in));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    difference = diffFiles("proto_tests/testResult.txt", "proto_tests/listBoxesTest_out.txt");
+                    if (difference.size() == 0) {
+                        System.out.println("!!!!!!!!!!!!!!!");
+                        System.out.println("Test successful");
+                        System.out.println("!!!!!!!!!!!!!!!");
+                    } else {
+                        System.out.println("!!!!!!!!!!!!!!!");
+                        System.out.println("Difference:");
+                        System.out.println(difference.toString());
+                        System.out.println("!!!!!!!!!!!!!!!");
+                    }
                     break;
                 case 3:
-                    game.startGame("maps/skeleton3");
-                    game.movePlayer(Direction.RIGHT);
+                    try {
+                        ArrayList<String> in = readFile("proto_tests/listWallsTest_in.txt");
+                        execute(game, processInput(in));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    difference = diffFiles("proto_tests/testResult.txt", "proto_tests/listWallsTest_out.txt");
+                    if (difference.size() == 0) {
+                        System.out.println("!!!!!!!!!!!!!!!");
+                        System.out.println("Test successful");
+                        System.out.println("!!!!!!!!!!!!!!!");
+                    } else {
+                        System.out.println("!!!!!!!!!!!!!!!");
+                        System.out.println("Difference:");
+                        System.out.println(difference.toString());
+                        System.out.println("!!!!!!!!!!!!!!!");
+                    }
                     break;
                 case 4:
-                    game.startGame("maps/skeleton4");
-                    game.movePlayer(Direction.RIGHT);
+                    try {
+                        ArrayList<String> in = readFile("proto_tests/listEmptyFieldsTest_in.txt");
+                        execute(game, processInput(in));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    difference = diffFiles("proto_tests/testResult.txt", "proto_tests/listEmptyFieldsTest_out.txt");
+                    if (difference.size() == 0) {
+                        System.out.println("!!!!!!!!!!!!!!!");
+                        System.out.println("Test successful");
+                        System.out.println("!!!!!!!!!!!!!!!");
+                    } else {
+                        System.out.println("!!!!!!!!!!!!!!!");
+                        System.out.println("Difference:");
+                        System.out.println(difference.toString());
+                        System.out.println("!!!!!!!!!!!!!!!");
+                    }
                     break;
                 case 5:
-                    game.startGame("maps/skeleton5");
-                    game.movePlayer(Direction.RIGHT);
+                    try {
+                        ArrayList<String> in = readFile("proto_tests/listSwitchesTest_in.txt");
+                        execute(game, processInput(in));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    difference = diffFiles("proto_tests/testResult.txt", "proto_tests/listSwitchesTest_out.txt");
+                    if (difference.size() == 0) {
+                        System.out.println("!!!!!!!!!!!!!!!");
+                        System.out.println("Test successful");
+                        System.out.println("!!!!!!!!!!!!!!!");
+                    } else {
+                        System.out.println("!!!!!!!!!!!!!!!");
+                        System.out.println("Difference:");
+                        System.out.println(difference.toString());
+                        System.out.println("!!!!!!!!!!!!!!!");
+                    }
                     break;
                 case 6:
-                    game.startGame("maps/skeleton6");
-                    game.movePlayer(Direction.RIGHT);
+                    try {
+                        ArrayList<String> in = readFile("proto_tests/listHolesTest_in.txt");
+                        execute(game, processInput(in));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    difference = diffFiles("proto_tests/testResult.txt", "proto_tests/listHolesTest_out.txt");
+                    if (difference.size() == 0) {
+                        System.out.println("!!!!!!!!!!!!!!!");
+                        System.out.println("Test successful");
+                        System.out.println("!!!!!!!!!!!!!!!");
+                    } else {
+                        System.out.println("!!!!!!!!!!!!!!!");
+                        System.out.println("Difference:");
+                        System.out.println(difference.toString());
+                        System.out.println("!!!!!!!!!!!!!!!");
+                    }
                     break;
                 case 7:
-                    game.startGame("maps/skeleton7");
-                    game.movePlayer(Direction.RIGHT);
+                    try {
+                        ArrayList<String> in = readFile("proto_tests/listTargetsTest_in.txt");
+                        execute(game, processInput(in));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    difference = diffFiles("proto_tests/testResult.txt", "proto_tests/listTargetsTest_out.txt");
+                    if (difference.size() == 0) {
+                        System.out.println("!!!!!!!!!!!!!!!");
+                        System.out.println("Test successful");
+                        System.out.println("!!!!!!!!!!!!!!!");
+                    } else {
+                        System.out.println("!!!!!!!!!!!!!!!");
+                        System.out.println("Difference:");
+                        System.out.println(difference.toString());
+                        System.out.println("!!!!!!!!!!!!!!!");
+                    }
                     break;
-                case 8:
-                    game.startGame("maps/skeleton8");
-                    game.movePlayer(Direction.RIGHT);
-                    break;
-                case 9:
-                    game.startGame("maps/skeleton9");
-                    game.movePlayer(Direction.RIGHT);
-                    break;
-                case 10:
-                    game.startGame("maps/skeleton10");
-                    game.movePlayer(Direction.RIGHT);
-                    game.movePlayer(Direction.RIGHT);
-                    break;
-                case 11:
-                    game.startGame("maps/skeleton11");
-                    game.movePlayer(Direction.RIGHT);
-                    break;
-                case 12:
-                    game.startGame("maps/skeleton12");
-                    game.movePlayer(Direction.RIGHT);
-                    break;
-                case 13:
-                    game.startGame("maps/skeleton13");
-                    game.movePlayer(Direction.RIGHT);
-                    game.movePlayer(Direction.RIGHT);
-                    break;
-                case 14:
-                    game.startGame("maps/longPowerTest");
-                    game.movePlayer(Direction.RIGHT);
-                    game.movePlayer(Direction.RIGHT);
-                    break;
-                case 15:
-                    game.startGame("maps/map_lock_management_test.txt");
-                    game.doLockManagement();
                 case 0:
-
                     break;
                 default:
+                    System.out.println("Invalid test file!");
                     break;
             }
         }
@@ -153,7 +230,7 @@ public class Game {
         }
     }
 
-    //this method is only used during development?
+    //this method is only used during development
     public void doLockManagement() {
         map.lockManagement();
     }
@@ -240,34 +317,272 @@ public class Game {
         }
         stepsLeft = 5;
         totalSteps = 5;
-        logGame();
+        // logGame();
     }
 
-    private void displaySkeletonMenu() {
+
+    /*
+    Proto tests starting from here
+
+     */
+
+    private void displayProtoMenu() {
         System.out.flush();
         System.out.println("Welcome to We <3 IIT skeleton");
-        System.out.println("1: P F ");
-        System.out.println("2: P B F ");
-        System.out.println("3: P B B F");
-        System.out.println("4: P P ");
-        System.out.println("5: P B P F");
-        System.out.println("6: P B P W");
-        System.out.println("7: P B P B W");
-        System.out.println("8: P W ");
-        System.out.println("9: P B W ");
-        //2x tolunk, ket allapotot fedunk le
-        //->switch.onStepped(box)
-        //->switch.offStepped(box)
-        System.out.println("10: P B S");
-        System.out.println("11: P B H");
-        System.out.println("12: P H");
-        //2x tolunk, ket allapotot fedunk le
-        //->boxot targetra tolunk
-        //->boxot probalunk targetrol mozgatni
-        System.out.println("13: P B T");
-        System.out.println("14: P B P B B B B F");
-        System.out.println("15: Lock Management test");
-        System.out.println("0: EXIT ");
-        System.out.println("Please choose a test case:");
+        System.out.println("1: Check generated players");
+        System.out.println("2: Check generated boxes ");
+        System.out.println("3: Check generated walls ");
+        System.out.println("4: Check generated empty fields ");
+        System.out.println("5: Check generated switches ");
+        System.out.println("6: Check generated holes");
+        System.out.println("7: Check generated targets");
+        System.out.println("0: Exit ");
+        System.out.println("Please choose one:");
+    }
+
+    private static void loadMap(Game game, String path) {
+        game.startGame(path);
+    }
+
+    private static List<String> listPlayers(Game game) {
+        List<String> players = new ArrayList<String>();
+        int id = 1;
+        for (int i = 0; i < game.map.getMap().size(); i++) {
+            for (int k = 0; k < game.map.getMap().get(i).size(); k++) {
+                if (game.map.getMap().get(i).get(k).hasElement()) {
+                    if (game.map.getMap().get(i).get(k).gameElement.weight == 0.5) {
+                        players.add(String.format("%d (%d,%d) Player", id, i, k));
+                        id++;
+                    }
+                }
+            }
+
+        }
+        return players;
+    }
+
+    private static List<String> listBoxes(Game game) {
+        List<String> boxes = new ArrayList<String>();
+        int id = 1;
+        for (int i = 0; i < game.map.getMap().size(); i++) {
+            for (int k = 0; k < game.map.getMap().get(i).size(); k++) {
+                if (game.map.getMap().get(i).get(k).hasElement()) {
+                    if (game.map.getMap().get(i).get(k).gameElement.weight == 1) {
+                        boxes.add(String.format("%d (%d,%d) Box %s", id, i, k,
+                                Boolean.toString(game.map.getMap().get(i).get(k).gameElement.getCanMove())));
+                        id++;
+                    }
+                }
+            }
+
+        }
+        return boxes;
+    }
+
+    private static List<String> listWalls(Game game) {
+        List<String> walls = new ArrayList<String>();
+        int id = 1;
+        for (int i = 0; i < game.map.getMap().size(); i++) {
+            for (int k = 0; k < game.map.getMap().get(i).size(); k++) {
+                if (game.map.getMap().get(i).get(k).hasElement()) {
+                    if (game.map.getMap().get(i).get(k).gameElement.weight == Double.MAX_VALUE) {
+                        walls.add(String.format("%d (%d,%d) Wall", id, i, k));
+                        id++;
+                    }
+                }
+            }
+
+        }
+        return walls;
+    }
+
+    private static List<String> listEmptyFields(Game game) {
+        List<String> fields = new ArrayList<String>();
+        int id = 1;
+        for (int i = 0; i < game.map.getMap().size(); i++) {
+            for (int k = 0; k < game.map.getMap().get(i).size(); k++) {
+                if (!game.map.getMap().get(i).get(k).hasElement()) {
+                    fields.add(String.format("%d (%d,%d) Field %.1f", id, i, k, game.map.getMap().get(i).get(k).getStickiness()));
+                    id++;
+                }
+            }
+
+        }
+        return fields;
+    }
+
+    private static List<String> listSwitches(Game game) {
+        List<String> switches = new ArrayList<String>();
+        int id = 1;
+        for (int i = 0; i < game.map.getMap().size(); i++) {
+            for (int k = 0; k < game.map.getMap().get(i).size(); k++) {
+                if (game.map.getMap().get(i).get(k) instanceof Switch) {
+                    switches.add(String.format("%d (%d,%d) Switch %.1f", id, i, k, game.map.getMap().get(i).get(k).getStickiness()));
+                    id++;
+                }
+            }
+
+        }
+        return switches;
+    }
+
+    private static List<String> listTargets(Game game) {
+        List<String> targets = new ArrayList<String>();
+        int id = 1;
+        for (int i = 0; i < game.map.getMap().size(); i++) {
+            for (int k = 0; k < game.map.getMap().get(i).size(); k++) {
+                if (game.map.getMap().get(i).get(k) instanceof Target) {
+                    targets.add(String.format("%d (%d,%d) Target %.1f", id, i, k, game.map.getMap().get(i).get(k).getStickiness()));
+                    id++;
+                }
+            }
+
+        }
+        return targets;
+    }
+
+    private static List<String> listHoles(Game game) {
+        List<String> holes = new ArrayList<String>();
+        int id = 1;
+        for (int i = 0; i < game.map.getMap().size(); i++) {
+            for (int k = 0; k < game.map.getMap().get(i).size(); k++) {
+                if (game.map.getMap().get(i).get(k) instanceof Hole) {
+                    holes.add(String.format("%d (%d,%d) Hole %s %.1f", id, i, k,
+                            Boolean.toString(((Hole) game.map.getMap().get(i).get(k)).getIsOpen()),
+                            game.map.getMap().get(i).get(k).getStickiness()));
+                    id++;
+                }
+            }
+
+        }
+        return holes;
+    }
+
+    private static void stepPlayer(Game game, Direction dir) {
+        game.currentTurn.move(dir);
+    }
+
+    private static void stepBox(Game game, Direction dir) {
+        Box temp = new Box();
+        game.map.getMap().get(2).get(1).gameElement.collide(temp, dir, 5.5);
+    }
+
+    private static ArrayList<String> readFile(String fin) throws IOException {
+        ArrayList<String> out = new ArrayList<String>();
+        File file = new File(fin);
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String line = null;
+        while ((line = br.readLine()) != null) {
+            out.add(line);
+        }
+        br.close();
+        return out;
+    }
+
+    private static ArrayList<String[]> processInput(ArrayList<String> input) {
+        ArrayList<String[]> separated = new ArrayList<String[]>();
+        for (int i = 0; i < input.size(); i++) {
+            String line = input.get(i);
+            separated.add(line.split(" "));
+        }
+        return separated;
+    }
+
+    private static void execute(Game game, ArrayList<String[]> commands) {
+        for (int i = 0; i < commands.size(); i++) {
+            if (commands.get(i).length > 1) {
+                String command = commands.get(i)[0];
+                String arg = commands.get(i)[1];
+
+                switch (command) {
+                    case "loadMap":
+                        game.startGame(arg);
+                        game.doLockManagement();
+                        break;
+                    case "stepPlayer":
+                        stepPlayer(game, Direction.valueOf(arg));
+                        break;
+                    case "stepBox":
+                        stepBox(game, Direction.valueOf(arg));
+                }
+            } else {
+                String command = commands.get(i)[0];
+                switch (command) {
+                    case "listPlayers":
+                        writeResults(listPlayers(game));
+                        break;
+                    case "listBoxes":
+                        writeResults(listBoxes(game));
+                        break;
+                    case "listWalls":
+                        writeResults(listWalls(game));
+                        break;
+                    case "listEmptyFields":
+                        writeResults(listEmptyFields(game));
+                        break;
+                    case "listTargets":
+                        writeResults(listTargets(game));
+                        break;
+                    case "listSwitches":
+                        writeResults(listSwitches(game));
+                        break;
+                    case "listHoles":
+                        writeResults(listHoles(game));
+                        break;
+                    case "putOil":
+                        game.placeOil();
+                        break;
+                    case "putHoney":
+                        game.placeHoney();
+                }
+            }
+
+        }
+
+    }
+
+    public static void writeResults(List<String> res) {
+        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream("proto_tests/testResult.txt"), "utf-8"))) {
+            for (int i = 0; i < res.size(); i++) {
+                writer.write(res.get(i));
+                if (i < res.size() - 1) {
+                    writer.newLine();
+                }
+            }
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static List<String> diffFiles(String firstFilePath,
+                                          String secondFilePath) {
+        Path firstFile = Paths.get(firstFilePath);
+        Path secondFile = Paths.get(secondFilePath);
+        List<String> firstFileContent = null;
+        try {
+            firstFileContent = Files.readAllLines(firstFile,
+                    Charset.defaultCharset());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        List<String> secondFileContent = null;
+        try {
+            secondFileContent = Files.readAllLines(secondFile,
+                    Charset.defaultCharset());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        List<String> diff = new ArrayList<String>();
+        for (String line : firstFileContent) {
+            if (!secondFileContent.contains(line)) {
+                diff.add((firstFileContent.indexOf(line) + 1) + " " + line);
+            }
+        }
+        return diff;
     }
 }

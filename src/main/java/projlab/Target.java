@@ -21,7 +21,7 @@ public class Target extends Field {
      */
     @Override
     public boolean onStepped(Box box, Direction direction, double power) {
-        System.out.println("\tTarget onStepped(box, direction)");
+      //  System.out.println("\tTarget onStepped(box, direction)");
         if (gameElement == null) {
             gameElement = box;
             Game.getInstance().incrementScore();

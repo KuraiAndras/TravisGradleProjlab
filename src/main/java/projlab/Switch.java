@@ -19,7 +19,7 @@ public class Switch extends Field {
     Switch() {
         super();
         pair = null;
-        System.out.println("\tSwitch created");
+        //System.out.println("\tSwitch created");
     }
 
     //TODO: Warehouse must set hole's is hole open properly before using it as a parameter
@@ -30,7 +30,7 @@ public class Switch extends Field {
      * @param pair The Hole object connected to this Switch.
      */
     public void setPair(Hole pair) {
-        System.out.println("\tSwitch setPair()");
+       // System.out.println("\tSwitch setPair()");
         this.pair = pair;
     }
 
@@ -43,7 +43,7 @@ public class Switch extends Field {
      */
     @Override
     public boolean onStepped(Box box, Direction direction, double power) {
-        System.out.println("\tSwitch onStepped(box, direction");
+       // System.out.println("\tSwitch onStepped(box, direction");
         pair.switchHole();
         return super.onStepped(box, direction, power);
     }
@@ -57,7 +57,7 @@ public class Switch extends Field {
      */
     @Override
     public Field offStepped(Box box, Direction direction) {
-        System.out.println("\tSwitch offStepped(box, direction");
+       // System.out.println("\tSwitch offStepped(box, direction");
         pair.switchHole();
         return super.offStepped(box, direction);
     }
