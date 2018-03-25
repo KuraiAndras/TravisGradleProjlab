@@ -1,11 +1,15 @@
 package projlab;
 
+import java.util.Random;
+
 /**
  * <h1>Player</h1>
  * This is a GameElement that represents a Player
  * in the game.
  */
-public class Player extends GameElement implements IPlayable {
+public class Player extends GameElement implements IPlayable, IMovable {
+
+    private double power;
 
     /**
      * Constructor. This method calls the GameElement
@@ -16,6 +20,10 @@ public class Player extends GameElement implements IPlayable {
      */
     public Player(Field field) {
         super(field);
+        //Random power value for player within reasons
+        double random = new Random().nextDouble();
+        power = 5.1 + (random * (6.5 - 5.1));
+        weight = 0.5;
         //System.out.println("\tPlayer created with field given");
     }
 
@@ -41,19 +49,38 @@ public class Player extends GameElement implements IPlayable {
      * @return canMove This returns true if the player was moved, false if not.
      */
     @Override
-    public boolean move(Direction direction) {
+    public boolean move(Direction direction, double power) {
+        double decreasedPower = power - weight * owner.getStickiness();
+
+        if (decreasedPower <= 0) {
+            System.out.println("\tNthPlayer says Player power too low");
+            return false;
+        }
+
         System.out.println("\tPlayer tries to move");
+
         Field field1 = owner;
         Field field2 = field1.offStepped(this, direction);
-        if (field2.onStepped(this, direction)) {
-            System.out.println("\t\tPlayer moved successfully.");
+
+        if (field2.onStepped(this, direction, decreasedPower)) {
             owner = field2;
+            System.out.println("\t\tPlayer moved successfully.");
             return true;
         } else {
             field1.setGameElement(this);
             System.out.println("\t\tPlayer couldn't move.");
             return false;
         }
+    }
+
+    @Override
+    public boolean move(Direction direction) {
+        return move(direction, (power + weight) * owner.getStickiness());
+    }
+
+    @Override
+    public boolean placeSticky(double stickiness) {
+        return owner.setStickiness(stickiness);
     }
 
     /**
@@ -65,7 +92,7 @@ public class Player extends GameElement implements IPlayable {
      * @return This returns false since a player cant push a player.
      */
     @Override
-    public boolean collide(Player player, Direction direction) {
+    public boolean collide(Player player, Direction direction, double power) {
         System.out.println("\tPlayer collides with player.");
         return false;
     }
@@ -79,13 +106,12 @@ public class Player extends GameElement implements IPlayable {
      * @return This returns true if the player moved, false if not.
      */
     @Override
-    public boolean collide(Box box, Direction direction) {
+    public boolean collide(Box box, Direction direction, double power) {
         System.out.println("\tPlayer collides with box.");
-        if (this.move(direction)) {
+        if (this.move(direction, power)) {
             return true;
         } else {
             this.die();
-            //This may kill the whole program?
             return false;
         }
     }
@@ -97,7 +123,7 @@ public class Player extends GameElement implements IPlayable {
      */
     @Override
     public boolean getCanMove() {
-        System.out.println("\tPlayer getCanMove()");
+//        System.out.println("\tPlayer getCanMove()");
         return true;
     }
 

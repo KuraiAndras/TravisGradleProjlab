@@ -7,7 +7,7 @@ public class CyclicIterator<E, C extends Collection<E>> implements Iterator<E> {
     final private C mElements;
     private Iterator<E> mIterator;
 
-    public CyclicIterator(C elements) {
+    CyclicIterator(C elements) {
         mElements = elements;
         mIterator = elements.iterator();
     }

@@ -16,7 +16,7 @@ public class Switch extends Field {
      * Constructor. Calls the Fields constructor
      * and sets the pair to null.
      */
-    public Switch() {
+    Switch() {
         super();
         pair = null;
         System.out.println("\tSwitch created");
@@ -34,18 +34,18 @@ public class Switch extends Field {
         this.pair = pair;
     }
 
+    //TODO: fix this
+
     /**
      * This method opens the connected hole when a box has
      * moved to it. Then calls the Fields onStepped
      * method with the box and direction given.
-     *
-     * @see Field#onStepped(Box, Direction)
      */
     @Override
-    public boolean onStepped(Box box, Direction direction) {
+    public boolean onStepped(Box box, Direction direction, double power) {
         System.out.println("\tSwitch onStepped(box, direction");
         pair.switchHole();
-        return super.onStepped(box, direction);
+        return super.onStepped(box, direction, power);
     }
 
     /**

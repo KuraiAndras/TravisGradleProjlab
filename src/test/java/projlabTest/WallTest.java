@@ -1,11 +1,13 @@
 package projlabTest;
 
-import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
+import projlab.Direction;
+import projlab.Field;
+import projlab.Game;
+import projlab.Wall;
 
-import projlab.*;
+import static org.junit.Assert.assertFalse;
 
 public class WallTest {
     private Wall wall;

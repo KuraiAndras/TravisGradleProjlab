@@ -1,14 +1,15 @@
 package projlab;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 //TODO: Add Javadoc//TODO: Delete logging
 //TODO: Implement Map creation, and lock Management
 public class WareHouse {
-    protected ArrayList<ArrayList<Field>> map;
+    private ArrayList<ArrayList<Field>> map;
 
-    public WareHouse() {
+    WareHouse() {
         map = new ArrayList<>();
     }
 
@@ -41,6 +42,8 @@ public class WareHouse {
                 charMap.add(line);
                 Arrays.fill(items, null);
             }
+
+            file.close();
 
             for (ArrayList<String> item :
                     charMap) {
@@ -175,22 +178,23 @@ public class WareHouse {
     public void lockManagement() {
         //We need to go trough all the fields for the number of movable boxes
         //to handle every possible lock that needs to occur after a lock
-        for (int boxesLeft = Game.getInstance().getMovableBox(); boxesLeft > 0; boxesLeft--) {
-
-            for (int row = 0; row < map.size(); row++) {
-                for (int column = 0; column < map.get(row).size(); column++) {
+        int boxesLeft = Game.getInstance().getMovableBox();
+        while (boxesLeft > 0) {
+            int rowNum = 0;
+            int colNum = 0;
+            firstLoop:
+            for (int row = 0; row < map.size(); row++, rowNum++) {
+                for (int column = 0; column < map.get(row).size(); column++, colNum++) {
                     //Current field
                     Field current = map.get(row).get(column);
                     //If there is no element we just skip it
-                    if (!current.hasElement()) {
-                    }
                     //If the gameElement is already locked we skip it
-                    else if (!current.canElementMove()) {
+                    if (!current.hasElement() || !current.canElementMove()) {
                     }
                     //If there is an unlocked gameElement we check if we need to lock it
                     else {
                         //Storing neighbours of current Field
-                        HashMap neighbours = current.getNeighbours();
+                        HashMap<Direction, Field> neighbours = current.getNeighbours();
                         /*
                         Checking for a possible block to trigger a lockRequest
                         Possible blocks:
@@ -209,6 +213,7 @@ public class WareHouse {
                                         //TODO: Delete logging
                                         System.out.println("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
                                         current.lockElement();
+                                        break firstLoop;
                                     }
                                 }
                                 //UP + RIGHT
@@ -217,6 +222,7 @@ public class WareHouse {
                                         //TODO: Delete logging
                                         System.out.println("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
                                         current.lockElement();
+                                        break firstLoop;
                                     }
                                 }
                             }
@@ -233,6 +239,7 @@ public class WareHouse {
                                         //TODO: Delete logging
                                         System.out.println("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
                                         current.lockElement();
+                                        break firstLoop;
                                     }
                                 }
                                 //DOWN + RIGHT
@@ -241,6 +248,7 @@ public class WareHouse {
                                         //TODO: Delete logging
                                         System.out.println("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
                                         current.lockElement();
+                                        break firstLoop;
                                     }
                                 }
                             }
@@ -249,6 +257,11 @@ public class WareHouse {
                 }
                 //TODO: Delete logging
                 //System.out.println();
+                colNum = 0;
+            }
+            boxesLeft--;
+            if (rowNum == map.size() && colNum == map.get(0).size()) {
+                break;
             }
         }
     }

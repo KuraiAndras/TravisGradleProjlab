@@ -20,7 +20,7 @@ public class Target extends Field {
      * @return Returns true if the box stepped on it, else returns false.
      */
     @Override
-    public boolean onStepped(Box box, Direction direction) {
+    public boolean onStepped(Box box, Direction direction, double power) {
         System.out.println("\tTarget onStepped(box, direction)");
         if (gameElement == null) {
             gameElement = box;
@@ -28,7 +28,7 @@ public class Target extends Field {
             box.lockRequest();
             return true;
         }
-        if (gameElement.collide(box, direction)) {
+        if (gameElement.collide(box, direction, power)) {
             gameElement = box;
             Game.getInstance().incrementScore();
             box.lockRequest();
