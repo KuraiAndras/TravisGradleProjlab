@@ -145,9 +145,4 @@ public class Player extends GameElement implements IPlayable, IMovable {
     public String toString() {
         return "Player";
     }
-
-    @Override
-    public String toString() {
-        return "Player";
-    }
 }
