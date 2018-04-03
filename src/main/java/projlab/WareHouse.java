@@ -12,6 +12,7 @@ public class WareHouse {
         map = new ArrayList<>();
     }
 
+    //Why need the whole map?
     public ArrayList<ArrayList<Field>> getMap(){
         return map;
     }
