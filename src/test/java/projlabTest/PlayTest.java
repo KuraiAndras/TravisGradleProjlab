@@ -59,4 +59,18 @@ public class PlayTest {
         game.movePlayer(Direction.LEFT);
         game.movePlayer(Direction.UP);
     }
+
+    @Test
+    public void playerPushPlayer() {
+        game.startGame("maps/unitTest/playerPushPlayer.txt");
+        for (int i = 0; i < 5; i++){
+            assertFalse(game.movePlayer(Direction.RIGHT));
+        }
+
+        for (int i = 0; i < 5; i++){
+            assertFalse(game.movePlayer(Direction.LEFT));
+        }
+    }
+
+    
 }
