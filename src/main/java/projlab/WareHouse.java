@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 //TODO: Add Javadoc//TODO: Delete logging
-//TODO: Implement Map creation, and lock Management
 public class WareHouse {
     private ArrayList<ArrayList<Field>> map;
 

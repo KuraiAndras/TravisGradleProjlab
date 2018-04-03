@@ -7,8 +7,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-import static java.lang.Math.sqrt;
-
 //TODO: Add Javadoc
 public class Game {
     private static Game ourInstance = new Game();
@@ -427,7 +425,7 @@ public class Game {
     }
 
     private static List<String> listTargets(Game game) {
-        List<String> targets = new ArrayList<String>();
+        List<String> targets = new ArrayList<>();
         int id = 1;
         for (int i = 0; i < game.map.getMap().size(); i++) {
             for (int k = 0; k < game.map.getMap().get(i).size(); k++) {
@@ -442,7 +440,7 @@ public class Game {
     }
 
     private static List<String> listHoles(Game game) {
-        List<String> holes = new ArrayList<String>();
+        List<String> holes = new ArrayList<>();
         int id = 1;
         for (int i = 0; i < game.map.getMap().size(); i++) {
             for (int k = 0; k < game.map.getMap().get(i).size(); k++) {
