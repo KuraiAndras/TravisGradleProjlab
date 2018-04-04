@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 //TODO: Add Javadoc//TODO: Delete logging
-//TODO: Implement Map creation, and lock Management
 public class WareHouse {
     private ArrayList<ArrayList<Field>> map;
 
@@ -13,6 +12,7 @@ public class WareHouse {
         map = new ArrayList<>();
     }
 
+    //Why need the whole map?
     public ArrayList<ArrayList<Field>> getMap(){
         return map;
     }

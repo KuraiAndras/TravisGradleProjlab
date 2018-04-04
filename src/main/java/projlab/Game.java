@@ -7,8 +7,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-import static java.lang.Math.sqrt;
-
 //TODO: Add Javadoc
 public class Game {
     private static Game ourInstance = new Game();
@@ -317,7 +315,7 @@ public class Game {
         }
         stepsLeft = 5;
         totalSteps = 5;
-        // logGame();
+        logGame();
     }
 
 
@@ -340,12 +338,8 @@ public class Game {
         System.out.println("Please choose one:");
     }
 
-    private static void loadMap(Game game, String path) {
-        game.startGame(path);
-    }
-
     private static List<String> listPlayers(Game game) {
-        List<String> players = new ArrayList<String>();
+        List<String> players = new ArrayList<>();
         int id = 1;
         for (int i = 0; i < game.map.getMap().size(); i++) {
             for (int k = 0; k < game.map.getMap().get(i).size(); k++) {
@@ -362,7 +356,7 @@ public class Game {
     }
 
     private static List<String> listBoxes(Game game) {
-        List<String> boxes = new ArrayList<String>();
+        List<String> boxes = new ArrayList<>();
         int id = 1;
         for (int i = 0; i < game.map.getMap().size(); i++) {
             for (int k = 0; k < game.map.getMap().get(i).size(); k++) {
@@ -380,7 +374,7 @@ public class Game {
     }
 
     private static List<String> listWalls(Game game) {
-        List<String> walls = new ArrayList<String>();
+        List<String> walls = new ArrayList<>();
         int id = 1;
         for (int i = 0; i < game.map.getMap().size(); i++) {
             for (int k = 0; k < game.map.getMap().get(i).size(); k++) {
@@ -397,7 +391,7 @@ public class Game {
     }
 
     private static List<String> listEmptyFields(Game game) {
-        List<String> fields = new ArrayList<String>();
+        List<String> fields = new ArrayList<>();
         int id = 1;
         for (int i = 0; i < game.map.getMap().size(); i++) {
             for (int k = 0; k < game.map.getMap().get(i).size(); k++) {
@@ -412,7 +406,7 @@ public class Game {
     }
 
     private static List<String> listSwitches(Game game) {
-        List<String> switches = new ArrayList<String>();
+        List<String> switches = new ArrayList<>();
         int id = 1;
         for (int i = 0; i < game.map.getMap().size(); i++) {
             for (int k = 0; k < game.map.getMap().get(i).size(); k++) {
@@ -427,7 +421,7 @@ public class Game {
     }
 
     private static List<String> listTargets(Game game) {
-        List<String> targets = new ArrayList<String>();
+        List<String> targets = new ArrayList<>();
         int id = 1;
         for (int i = 0; i < game.map.getMap().size(); i++) {
             for (int k = 0; k < game.map.getMap().get(i).size(); k++) {
@@ -442,7 +436,7 @@ public class Game {
     }
 
     private static List<String> listHoles(Game game) {
-        List<String> holes = new ArrayList<String>();
+        List<String> holes = new ArrayList<>();
         int id = 1;
         for (int i = 0; i < game.map.getMap().size(); i++) {
             for (int k = 0; k < game.map.getMap().get(i).size(); k++) {
@@ -458,20 +452,22 @@ public class Game {
         return holes;
     }
 
+    //Why? same as move player, does lesss
     private static void stepPlayer(Game game, Direction dir) {
         game.currentTurn.move(dir);
     }
 
+    //Why??
     private static void stepBox(Game game, Direction dir) {
         Box temp = new Box();
         game.map.getMap().get(2).get(1).gameElement.collide(temp, dir, 5.5);
     }
 
     private static ArrayList<String> readFile(String fin) throws IOException {
-        ArrayList<String> out = new ArrayList<String>();
+        ArrayList<String> out = new ArrayList<>();
         File file = new File(fin);
         BufferedReader br = new BufferedReader(new FileReader(file));
-        String line = null;
+        String line;
         while ((line = br.readLine()) != null) {
             out.add(line);
         }
@@ -480,19 +476,18 @@ public class Game {
     }
 
     private static ArrayList<String[]> processInput(ArrayList<String> input) {
-        ArrayList<String[]> separated = new ArrayList<String[]>();
-        for (int i = 0; i < input.size(); i++) {
-            String line = input.get(i);
+        ArrayList<String[]> separated = new ArrayList<>();
+        for (String line : input) {
             separated.add(line.split(" "));
         }
         return separated;
     }
 
     private static void execute(Game game, ArrayList<String[]> commands) {
-        for (int i = 0; i < commands.size(); i++) {
-            if (commands.get(i).length > 1) {
-                String command = commands.get(i)[0];
-                String arg = commands.get(i)[1];
+        for (String[] command1 : commands) {
+            if (command1.length > 1) {
+                String command = command1[0];
+                String arg = command1[1];
 
                 switch (command) {
                     case "loadMap":
@@ -506,7 +501,7 @@ public class Game {
                         stepBox(game, Direction.valueOf(arg));
                 }
             } else {
-                String command = commands.get(i)[0];
+                String command = command1[0];
                 switch (command) {
                     case "listPlayers":
                         writeResults(listPlayers(game));
@@ -541,7 +536,7 @@ public class Game {
 
     }
 
-    public static void writeResults(List<String> res) {
+    private static void writeResults(List<String> res) {
         try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream("proto_tests/testResult.txt"), "utf-8"))) {
             for (int i = 0; i < res.size(); i++) {
@@ -550,17 +545,12 @@ public class Game {
                     writer.newLine();
                 }
             }
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e){
             e.printStackTrace();
         }
     }
 
-    private static List<String> diffFiles(String firstFilePath,
-                                          String secondFilePath) {
+    private static List<String> diffFiles(String firstFilePath, String secondFilePath) {
         Path firstFile = Paths.get(firstFilePath);
         Path secondFile = Paths.get(secondFilePath);
         List<String> firstFileContent = null;
@@ -577,7 +567,7 @@ public class Game {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        List<String> diff = new ArrayList<String>();
+        List<String> diff = new ArrayList<>();
         for (String line : firstFileContent) {
             if (!secondFileContent.contains(line)) {
                 diff.add((firstFileContent.indexOf(line) + 1) + " " + line);
