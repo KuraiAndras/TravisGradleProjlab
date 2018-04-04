@@ -47,12 +47,7 @@ public class Game {
             answer = scanner.nextInt();
 
             if (answer >= 0 && answer < mapList.size() - 1) {
-                ArrayList<String> filePaths = new ArrayList<>();
-                for (String fileName : mapList) {
-                    filePaths.add(partialMapPath + '/' + fileName + ".txt");
-                }
-
-                loadGame(filePaths.get(answer));
+                loadGame(mapList.get(answer));
             } else if (answer == -1) {
                 System.out.println("");
             } else {
@@ -87,7 +82,13 @@ public class Game {
         for (String map : mapList) {
             System.out.println(i++ + ": " + map);
         }
-        return mapList;
+
+        ArrayList<String> filePaths = new ArrayList<>();
+        for (String fileName : mapList) {
+            filePaths.add(partialMapPath + '/' + fileName + ".txt");
+        }
+
+        return filePaths;
     }
 
 
