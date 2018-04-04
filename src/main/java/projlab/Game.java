@@ -47,7 +47,7 @@ public class Game {
             answer = scanner.nextInt();
 
             if (answer >= 0 && answer < mapList.size() - 1) {
-                loadGame(mapList.get(answer));
+                playGame(mapList.get(answer));
             } else if (answer == -1) {
                 System.out.println("");
             } else {
@@ -91,6 +91,37 @@ public class Game {
         return filePaths;
     }
 
+
+    private void playGame(String mapPath) {
+        loadGame(mapPath);
+        Scanner scanner = new Scanner(System.in);
+        int move = -1;
+        while (move != 0) {
+            move = scanner.nextInt();
+            switch (move) {
+                case 1:
+                    movePlayer(Direction.LEFT);
+                    break;
+                case 2:
+                    movePlayer(Direction.UP);
+                    break;
+                case 3:
+                    movePlayer(Direction.DOWN);
+                    break;
+                case 4:
+                    movePlayer(Direction.RIGHT);
+                    break;
+                case 5:
+                    placeHoney();
+                    break;
+                case 6:
+                    placeOil();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
     private void onGameEnd() {
         //TODO: Implement this
