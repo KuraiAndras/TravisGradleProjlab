@@ -19,13 +19,13 @@ public class PlayTest {
 
     @Test
     public void pushSingleBox() {
-        game.startGame("maps/unitTest/pushTest.txt");
+        game.loadGame("maps/unitTest/pushTest.txt");
         assertTrue(game.movePlayer(Direction.RIGHT));
     }
 
     @Test
     public void pushMultipleBox() {
-        game.startGame("maps/unitTest/pushMultipleBox.txt");
+        game.loadGame("maps/unitTest/pushMultipleBox.txt");
         System.out.println("1 Box");
         assertTrue(game.movePlayer(Direction.RIGHT));
         game.movePlayer(Direction.LEFT);
@@ -62,7 +62,7 @@ public class PlayTest {
 
     @Test
     public void playerPushPlayer() {
-        game.startGame("maps/unitTest/playerPushPlayer.txt");
+        game.loadGame("maps/unitTest/playerPushPlayer.txt");
         for (int i = 0; i < 5; i++){
             assertFalse(game.movePlayer(Direction.RIGHT));
         }

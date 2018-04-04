@@ -15,6 +15,8 @@ public class Game {
     private WareHouse map;
     private LinkedHashSet<Player> playerList;
     private CyclicIterator<Player, LinkedHashSet<Player>> cyclicIterator;
+    private static String clearConsole = "\033[H\033[2J";
+    private static String partialMapPath = "maps/playableMaps";
 
     private Game() {
         map = new WareHouse();
@@ -33,41 +35,45 @@ public class Game {
 
     }
 
+    //TODO: Fix illegal input
     private void playGameMenu() {
-        String partialPath = "maps/playableMaps";
-        File directory = new File(partialPath);
-        ArrayList<String> mapList = new ArrayList<>();
-
+        ArrayList<String> mapList;
         Scanner scanner = new Scanner(System.in);
-        int answer = -1;
 
-        while (answer != 0) {
-            displayPlayMenu(directory, mapList);
+        int answer = -2;
+        while (answer != -1) {
+            mapList = displayPlayMenu();
+
             answer = scanner.nextInt();
-            if (answer >= mapList.size()) {
-                System.out.println("Bad input");
-                try {
-                    System.in.read();
-                    break;
-                } catch (IOException e) {
-                    e.printStackTrace();
+
+            if (answer >= 0 && answer < mapList.size() - 1) {
+                ArrayList<String> filePaths = new ArrayList<>();
+                for (String fileName : mapList) {
+                    filePaths.add(partialMapPath + '/' + fileName + ".txt");
                 }
+
+                loadGame(filePaths.get(answer));
+            } else if (answer == -1) {
+                System.out.println("");
+            } else {
+                System.out.println("Bad Input");
             }
-            ArrayList<String> filePaths = new ArrayList<>();
-            for (String fileName : mapList) {
-                filePaths.add(partialPath + '/' + fileName + ".txt");
-            }
-            startGame(filePaths.get(answer));
         }
+        scanner.close();
     }
 
-    private void displayPlayMenu(File directory, ArrayList<String> mapList) {
-        System.out.print("\033[H\033[2J");
+    private ArrayList<String> displayPlayMenu() {
+        File directory = new File(partialMapPath);
+        ArrayList<String> mapList = new ArrayList<>();
+
+        System.out.println(clearConsole);
         System.out.println("Which map you want to play?");
+
         if (directory.isDirectory()) {
             String[] files = directory.list();
             Pattern pattern = Pattern.compile("^(.*?)\\.txt$");
             assert files != null;
+
             for (String file : files) {
                 Matcher matcher = pattern.matcher(file);
                 if (matcher.matches()) {
@@ -75,10 +81,13 @@ public class Game {
                 }
             }
         }
+
+        System.out.println("-1: Exit");
         int i = 0;
         for (String map : mapList) {
             System.out.println(i++ + ": " + map);
         }
+        return mapList;
     }
 
 
@@ -131,6 +140,7 @@ public class Game {
     }
 
     private void logGame() {
+        System.out.print(clearConsole);
         map.logMap();
         System.out.println("Number of players: " + playerScore.size());
         System.out.println("Movable boxes: " + movableBox);
@@ -193,7 +203,7 @@ public class Game {
 
     //TODO: Delete logging
     //Should we make it private? Only tests need public visibility
-    public void startGame(String file) {
+    public void loadGame(String file) {
         playerScore = new HashMap<>();
         currentTurn = null;
         movableBox = 0;

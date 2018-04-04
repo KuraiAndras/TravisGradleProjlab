@@ -13,7 +13,7 @@ public class StickyTest {
 
     @Before
     public void setUp() {
-        game.startGame("maps/stickyTest");
+        game.loadGame("maps/stickyTest");
     }
 
     @Test

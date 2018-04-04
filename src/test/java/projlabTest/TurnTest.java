@@ -15,7 +15,7 @@ public class TurnTest {
     @Before
     public void setUp() throws Exception {
         game = Game.getInstance();
-        game.startGame("maps/iterationTest");
+        game.loadGame("maps/iterationTest");
     }
 
     @Test

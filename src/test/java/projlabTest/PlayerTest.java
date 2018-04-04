@@ -21,7 +21,7 @@ public class PlayerTest {
         player = new Player(field);
         field.setGameElement(player);
 
-        game.startGame("maps/wallTest.txt");
+        game.loadGame("maps/wallTest.txt");
     }
 
     @Test

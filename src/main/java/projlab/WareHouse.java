@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 //TODO: Add Javadoc//TODO: Delete logging
-public class WareHouse {
+class WareHouse {
     private ArrayList<ArrayList<Field>> map;
 
     WareHouse() {
@@ -13,13 +13,13 @@ public class WareHouse {
     }
 
     //Why need the whole map?
-    public ArrayList<ArrayList<Field>> getMap(){
+    ArrayList<ArrayList<Field>> getMap(){
         return map;
     }
 
     //TODO: Delete logging
     //Here for debugging reasons
-    public void logMap() {
+    void logMap() {
         for (ArrayList<Field> item1 :
                 map) {
             for (Field item2 :
@@ -32,7 +32,7 @@ public class WareHouse {
 
     //Todo: Throw exception when box and target number differ
     //Todo: Throw exception when map is not surrounded with walls
-    public WareHouse generateMap(String mapLocation) {
+    WareHouse generateMap(String mapLocation) {
         try {
             ArrayList<ArrayList<String>> charMap = new ArrayList<>();
             Scanner file = new Scanner(new File(mapLocation));
@@ -180,7 +180,7 @@ public class WareHouse {
 
     //Iterates trough all the fields in the map object to lock a box if needed
     //Should be called after every step that caused collision ( ?? maybe after every step ?? )
-    public void lockManagement() {
+    void lockManagement() {
         //We need to go trough all the fields for the number of movable boxes
         //to handle every possible lock that needs to occur after a lock
         int boxesLeft = Game.getInstance().getMovableBox();
