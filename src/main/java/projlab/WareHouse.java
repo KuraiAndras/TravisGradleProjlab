@@ -30,6 +30,7 @@ public class WareHouse {
         }
     }
 
+    //Todo: Throw exception when box and target number differ
     //Todo: Throw exception when map is not surrounded with walls
     public WareHouse generateMap(String mapLocation) {
         try {

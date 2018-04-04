@@ -1,6 +1,8 @@
 package projlab;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 //TODO: Add Javadoc
 public class Game {
@@ -15,7 +17,6 @@ public class Game {
     private CyclicIterator<Player, LinkedHashSet<Player>> cyclicIterator;
 
     private Game() {
-        //TODO: Implement this
         map = new WareHouse();
         playerScore = new HashMap<>();
         playerList = new LinkedHashSet<>();
@@ -27,17 +28,65 @@ public class Game {
     }
 
     public static void main(String[] args) {
-        //Test map for the lockManagement method
         Game game = Game.getInstance();
-        ProtoTest pt = new ProtoTest();
-        pt.runTestMenu(game);
+        game.playGameMenu();
+
     }
+
+    private void playGameMenu() {
+        String partialPath = "maps/playableMaps";
+        File directory = new File(partialPath);
+        ArrayList<String> mapList = new ArrayList<>();
+
+        Scanner scanner = new Scanner(System.in);
+        int answer = -1;
+
+        while (answer != 0) {
+            displayPlayMenu(directory, mapList);
+            answer = scanner.nextInt();
+            if (answer >= mapList.size()) {
+                System.out.println("Bad input");
+                try {
+                    System.in.read();
+                    break;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            ArrayList<String> filePaths = new ArrayList<>();
+            for (String fileName : mapList) {
+                filePaths.add(partialPath + '/' + fileName + ".txt");
+            }
+            startGame(filePaths.get(answer));
+        }
+    }
+
+    private void displayPlayMenu(File directory, ArrayList<String> mapList) {
+        System.out.print("\033[H\033[2J");
+        System.out.println("Which map you want to play?");
+        if (directory.isDirectory()) {
+            String[] files = directory.list();
+            Pattern pattern = Pattern.compile("^(.*?)\\.txt$");
+            assert files != null;
+            for (String file : files) {
+                Matcher matcher = pattern.matcher(file);
+                if (matcher.matches()) {
+                    mapList.add(matcher.group(1));
+                }
+            }
+        }
+        int i = 0;
+        for (String map : mapList) {
+            System.out.println(i++ + ": " + map);
+        }
+    }
+
 
     private void onGameEnd() {
         //TODO: Implement this
     }
 
-    public void onPlayerDead(Player player) {
+    void onPlayerDead(Player player) {
         playerScore.remove(player);
         if (playerScore.size() == 1) {
             onGameEnd();
@@ -48,15 +97,15 @@ public class Game {
         }
     }
 
-    public void incrementScore() {
+    void incrementScore() {
         playerScore.put(currentTurn, playerScore.get(currentTurn) + 1);
     }
 
-    public int getMovableBox() {
+    int getMovableBox() {
         return movableBox;
     }
 
-    public void registerPlayer(Player player) {
+    void registerPlayer(Player player) {
         playerList.add(player);
         playerScore.put(player, 0);
 
@@ -65,11 +114,11 @@ public class Game {
         }
     }
 
-    public void registerBox() {
+    void registerBox() {
         movableBox++;
     }
 
-    public void decreaseMovableBox() {
+    void decreaseMovableBox() {
         movableBox--;
         if (movableBox == 0) {
             onGameEnd();
@@ -77,18 +126,16 @@ public class Game {
     }
 
     //this method is only used during development
-    public void doLockManagement() {
+    void doLockManagement() {
         map.lockManagement();
     }
 
     private void logGame() {
         map.logMap();
-        System.out.println("Map is Generated");
         System.out.println("Number of players: " + playerScore.size());
         System.out.println("Movable boxes: " + movableBox);
         System.out.println("Current players:");
-        for (Map.Entry<Player, Integer> item :
-                playerScore.entrySet()) {
+        for (Map.Entry<Player, Integer> item : playerScore.entrySet()) {
             Player key = item.getKey();
             Integer value = item.getValue();
             System.out.println(key + " " + value);
@@ -132,7 +179,7 @@ public class Game {
        // logGame();
     }
 
-    public boolean checkPlayerCompression(Player examining) {
+    boolean checkPlayerCompression(Player examining) {
         if (currentTurn != examining) {
             examining.die();
             return true;
@@ -140,7 +187,7 @@ public class Game {
             return false;
     }
 
-    public boolean checkPlayerVitality(Player examining) {
+    boolean checkPlayerVitality(Player examining) {
         return currentTurn == examining;
     }
 
