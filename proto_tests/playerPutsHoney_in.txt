@@ -1,0 +1,4 @@
+loadMap proto_testmaps/put_honey_test.txt
+putHoney
+stepPlayer RIGHT
+listEmptyFields

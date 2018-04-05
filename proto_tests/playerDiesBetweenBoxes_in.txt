@@ -1,0 +1,3 @@
+loadMap proto_testmaps/player_dies_between_boxes_test.txt
+stepPlayer RIGHT
+listPlayers
