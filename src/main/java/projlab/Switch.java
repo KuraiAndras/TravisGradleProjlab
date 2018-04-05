@@ -43,7 +43,7 @@ public class Switch extends Field {
      */
     @Override
     public boolean onStepped(Box box, Direction direction, double power) {
-        System.out.println("\tSwitch onStepped(box, direction)");
+        //System.out.println(String.format("\tSwitch onStepped(box, %s)", direction));
         pair.switchHole();
         return super.onStepped(box, direction, power);
     }

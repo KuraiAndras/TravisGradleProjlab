@@ -111,7 +111,7 @@ public class Player extends GameElement implements IPlayable, IMovable {
         if (this.move(direction, power)) {
             return true;
         } else {
-            System.out.println("PLAYER DIES TO BOX");
+            //System.out.println("PLAYER DIES TO BOX");
             this.die();
             return false;
         }

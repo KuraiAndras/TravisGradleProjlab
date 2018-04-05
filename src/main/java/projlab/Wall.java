@@ -30,7 +30,7 @@ public class Wall extends GameElement {
      */
     @Override
     public boolean collide(Player player, Direction direction, double power) {
-        System.out.println("\tWall collides with player");
+        //System.out.println("\tWall collides with player");
         return Game.getInstance().checkPlayerCompression(player);
     }
 
