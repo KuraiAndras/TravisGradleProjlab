@@ -1,5 +1,6 @@
 package projlab;
 
+import java.io.File;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,7 +33,6 @@ public class Game {
     public static void main(String[] args) {
         Game game = Game.getInstance();
         game.playGameMenu();
-
     }
 
     //TODO: Fix illegal input

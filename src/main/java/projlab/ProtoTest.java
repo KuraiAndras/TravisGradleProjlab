@@ -169,7 +169,7 @@ public class ProtoTest {
 
                 switch (command) {
                     case "loadMap":
-                        game.startGame(arg);
+                        game.loadGame(arg);
                         game.doLockManagement();
                         break;
                     case "stepPlayer":
