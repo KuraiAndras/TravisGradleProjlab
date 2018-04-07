@@ -54,11 +54,14 @@ public class Hole extends Field {
      */
     @Override
     public boolean onStepped(Player player, Direction direction, double power) {
-       // System.out.println("\tHole onStepped(player, direction)");
+        //System.out.println(String.format("\tHole onStepped(player, %s)", direction));
         if (!super.onStepped(player, direction, power))
             return false;
         else {
-            if (isOpen) player.die();
+            if (isOpen) {
+                player.die();
+                gameElement = null;
+            }
             return true;
         }
     }
@@ -75,11 +78,14 @@ public class Hole extends Field {
      */
     @Override
     public boolean onStepped(Box box, Direction direction, double power) {
-       // System.out.println("\tHole onStepped(box, direction)");
+        //System.out.println(String.format("\tHole onStepped(box, %s)", direction));
         if (!super.onStepped(box, direction, power))
             return false;
         else {
-            if (isOpen) box.die();
+            if (isOpen) {
+                box.die();
+                gameElement = null;
+            }
             return true;
         }
     }

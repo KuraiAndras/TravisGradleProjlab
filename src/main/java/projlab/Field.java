@@ -54,7 +54,7 @@ public class Field implements IStep {
      * @param gameElement The GameElement we want to store.
      */
     public void setGameElement(GameElement gameElement) {
-        //System.out.println("\tField setGameElement()");
+        //System.out.println(String.format("\tField setGameElement(%s)", gameElement));
         this.gameElement = gameElement;
     }
 

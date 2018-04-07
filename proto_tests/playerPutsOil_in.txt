@@ -1,0 +1,4 @@
+loadMap proto_testmaps/put_oil_test.txt
+putOil
+stepPlayer RIGHT
+listEmptyFields
