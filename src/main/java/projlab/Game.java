@@ -32,11 +32,44 @@ public class Game {
 
     public static void main(String[] args) {
         Game game = Game.getInstance();
-        game.playGameMenu();
+
+        mainMenu(game);
+    }
+
+    private static void mainMenu(Game game) {
+        Scanner scnnr = new Scanner(System.in);
+
+        int answr = -1;
+        while (answr != 0) {
+            //Only works in terminal, not in ide consoles
+            clearConsole();
+            System.out.println("KillerSokoban main menu:");
+            System.out.println("1: Play the game with console interface");
+            System.out.println("2: Run the proto test menu");
+            System.out.println("0: Exit the program");
+
+            answr = scnnr.nextInt();
+
+            switch (answr) {
+                case 1:
+                    game.playGameMenu();
+                    break;
+                case 2:
+                    ProtoTest pt = new ProtoTest();
+                    pt.runTestMenu(game);
+                    break;
+                case 0:
+                    answr = 0;
+                    break;
+                default:
+                    System.out.println("Invalid answer!");
+                    break;
+            }
+        }
     }
 
     //TODO: Fix illegal input
-    private void playGameMenu() {
+    private void playGameMenu(){
         ArrayList<String> mapList;
         Scanner scanner = new Scanner(System.in);
 
@@ -54,12 +87,21 @@ public class Game {
                 System.out.println("Bad Input");
             }
         }
-        scanner.close();
+        /* !!!!!!!!!!!!!!!!!!!!!!!!!!
+            Closing the scanner closes the input stream
+            -> mainMenu will throw an exception because
+            its input stream is closed
+            !!!!!!!!!!!!!!!!!!!!!!!!!!
+         */
+        //scanner.close();
     }
 
     private ArrayList<String> displayPlayMenu() {
         File directory = new File(partialMapPath);
         ArrayList<String> mapList = new ArrayList<>();
+
+        //Only works in terminal, not in ide consoles
+        clearConsole();
 
         System.out.println(clearConsole);
         System.out.println("Which map you want to play?");
@@ -257,6 +299,29 @@ public class Game {
 
     public ArrayList<ArrayList<Field>> getMap() {
         return map.getMap();
+    }
+
+
+    //Just for proto
+    public final static void clearConsole()
+    {
+        try
+        {
+            final String os = System.getProperty("os.name");
+
+            if (os.contains("Windows"))
+            {
+                Runtime.getRuntime().exec("cls");
+            }
+            else
+            {
+                Runtime.getRuntime().exec("clear");
+            }
+        }
+        catch (final Exception e)
+        {
+            //  Handle any exceptions.
+        }
     }
 }
 

@@ -283,6 +283,8 @@ public class ProtoTest {
         System.out.println("13: Player dies between boxes");
         System.out.println("14: Player puts honey and field becomes sticky");
         System.out.println("15: Player puts oil and field becomes slippery");
+        System.out.println("16: Player can't push too many boxes");
+        System.out.println("17: Player uses honey and pushes many boxes");
         System.out.println("0: Exit ");
         System.out.println("Please choose one:");
     }
@@ -292,6 +294,8 @@ public class ProtoTest {
 
         int answer = -1;
         while (answer != 0) {
+            //Only works in terminal, not in ide consoles
+            game.clearConsole();
             displayProtoMenu();
             answer = scanner.nextInt();
             switch (answer) {
@@ -431,6 +435,24 @@ public class ProtoTest {
                     }
                     diffFiles("proto_tests/testResult.txt", "proto_tests/playerPutsOil_out.txt");
                     break;
+                case 16:
+                    try {
+                        ArrayList<String> in = readFile("proto_tests/playerFailsToPushManyBoxes_in.txt");
+                        execute(game, processInput(in));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    diffFiles("proto_tests/testResult.txt", "proto_tests/playerFailsToPushManyBoxes_out.txt");
+                    break;
+                case 17:
+                    try {
+                        ArrayList<String> in = readFile("proto_tests/playerPushesManyBoxesWithHoney_in.txt");
+                        execute(game, processInput(in));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    diffFiles("proto_tests/testResult.txt", "proto_tests/playerPushesManyBoxesWithHoney_out.txt");
+                    break;
                 case 0:
                     break;
                 default:
@@ -438,7 +460,13 @@ public class ProtoTest {
                     break;
             }
         }
-        scanner.close();
+        /* !!!!!!!!!!!!!!!!!!!!!!!!!!
+            Closing the scanner closes the input stream
+            -> mainMenu will throw an exception because
+            its input stream is closed
+            !!!!!!!!!!!!!!!!!!!!!!!!!!
+         */
+        //scanner.close();
     }
 
 }
