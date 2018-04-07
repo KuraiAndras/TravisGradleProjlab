@@ -19,7 +19,7 @@ public class WallTest {
         Field field = new Field();
         wall = new Wall(field);
         field.setGameElement(wall);
-        game.startGame("maps/wallTest.txt");
+        game.loadGame("maps/wallTest.txt");
     }
 
     @Test

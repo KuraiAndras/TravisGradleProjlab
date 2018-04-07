@@ -19,7 +19,7 @@ public class BoxTest {
         Field field = new Field();
         box = new Box(field);
         field.setGameElement(box);
-        game.startGame("maps/wallTest.txt");
+        game.loadGame("maps/wallTest.txt");
 
     }
 

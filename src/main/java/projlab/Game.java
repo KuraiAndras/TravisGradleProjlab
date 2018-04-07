@@ -1,6 +1,9 @@
 package projlab;
 
+import java.io.File;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 //TODO: Add Javadoc
 public class Game {
@@ -13,9 +16,10 @@ public class Game {
     private WareHouse map;
     private LinkedHashSet<Player> playerList;
     private CyclicIterator<Player, LinkedHashSet<Player>> cyclicIterator;
+    private static String clearConsole = "\033[H\033[2J";
+    private static String partialMapPath = "maps/playableMaps";
 
     private Game() {
-        //TODO: Implement this
         map = new WareHouse();
         playerScore = new HashMap<>();
         playerList = new LinkedHashSet<>();
@@ -27,17 +31,103 @@ public class Game {
     }
 
     public static void main(String[] args) {
-        //Test map for the lockManagement method
         Game game = Game.getInstance();
-        ProtoTest pt = new ProtoTest();
-        pt.runTestMenu(game);
+        game.playGameMenu();
+    }
+
+    //TODO: Fix illegal input
+    private void playGameMenu() {
+        ArrayList<String> mapList;
+        Scanner scanner = new Scanner(System.in);
+
+        int answer = -2;
+        while (answer != -1) {
+            mapList = displayPlayMenu();
+
+            answer = scanner.nextInt();
+
+            if (answer >= 0 && answer < mapList.size() - 1) {
+                playGame(mapList.get(answer));
+            } else if (answer == -1) {
+                System.out.println("");
+            } else {
+                System.out.println("Bad Input");
+            }
+        }
+        scanner.close();
+    }
+
+    private ArrayList<String> displayPlayMenu() {
+        File directory = new File(partialMapPath);
+        ArrayList<String> mapList = new ArrayList<>();
+
+        System.out.println(clearConsole);
+        System.out.println("Which map you want to play?");
+
+        if (directory.isDirectory()) {
+            String[] files = directory.list();
+            Pattern pattern = Pattern.compile("^(.*?)\\.txt$");
+            assert files != null;
+
+            for (String file : files) {
+                Matcher matcher = pattern.matcher(file);
+                if (matcher.matches()) {
+                    mapList.add(matcher.group(1));
+                }
+            }
+        }
+
+        System.out.println("-1: Exit");
+        int i = 0;
+        for (String map : mapList) {
+            System.out.println(i++ + ": " + map);
+        }
+
+        ArrayList<String> filePaths = new ArrayList<>();
+        for (String fileName : mapList) {
+            filePaths.add(partialMapPath + '/' + fileName + ".txt");
+        }
+
+        return filePaths;
+    }
+
+
+    private void playGame(String mapPath) {
+        loadGame(mapPath);
+        Scanner scanner = new Scanner(System.in);
+        int move = -1;
+        while (move != 0) {
+            move = scanner.nextInt();
+            switch (move) {
+                case 1:
+                    movePlayer(Direction.LEFT);
+                    break;
+                case 2:
+                    movePlayer(Direction.UP);
+                    break;
+                case 3:
+                    movePlayer(Direction.DOWN);
+                    break;
+                case 4:
+                    movePlayer(Direction.RIGHT);
+                    break;
+                case 5:
+                    placeHoney();
+                    break;
+                case 6:
+                    placeOil();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     private void onGameEnd() {
         //TODO: Implement this
     }
 
-    public void onPlayerDead(Player player) {
+    void onPlayerDead(Player player) {
         playerScore.remove(player);
         if (playerScore.size() == 1) {
             onGameEnd();
@@ -48,15 +138,15 @@ public class Game {
         }
     }
 
-    public void incrementScore() {
+    void incrementScore() {
         playerScore.put(currentTurn, playerScore.get(currentTurn) + 1);
     }
 
-    public int getMovableBox() {
+    int getMovableBox() {
         return movableBox;
     }
 
-    public void registerPlayer(Player player) {
+    void registerPlayer(Player player) {
         playerList.add(player);
         playerScore.put(player, 0);
 
@@ -65,11 +155,11 @@ public class Game {
         }
     }
 
-    public void registerBox() {
+    void registerBox() {
         movableBox++;
     }
 
-    public void decreaseMovableBox() {
+    void decreaseMovableBox() {
         movableBox--;
         if (movableBox == 0) {
             onGameEnd();
@@ -77,18 +167,17 @@ public class Game {
     }
 
     //this method is only used during development
-    public void doLockManagement() {
+    void doLockManagement() {
         map.lockManagement();
     }
 
     private void logGame() {
+        System.out.print(clearConsole);
         map.logMap();
-        System.out.println("Map is Generated");
         System.out.println("Number of players: " + playerScore.size());
         System.out.println("Movable boxes: " + movableBox);
         System.out.println("Current players:");
-        for (Map.Entry<Player, Integer> item :
-                playerScore.entrySet()) {
+        for (Map.Entry<Player, Integer> item : playerScore.entrySet()) {
             Player key = item.getKey();
             Integer value = item.getValue();
             System.out.println(key + " " + value);
@@ -129,10 +218,10 @@ public class Game {
             currentTurn = cyclicIterator.next();
             stepsLeft = totalSteps;
         }
-       // logGame();
+        logGame();
     }
 
-    public boolean checkPlayerCompression(Player examining) {
+    boolean checkPlayerCompression(Player examining) {
         if (currentTurn != examining) {
             examining.die();
             return true;
@@ -140,13 +229,13 @@ public class Game {
             return false;
     }
 
-    public boolean checkPlayerVitality(Player examining) {
+    boolean checkPlayerVitality(Player examining) {
         return currentTurn == examining;
     }
 
     //TODO: Delete logging
     //Should we make it private? Only tests need public visibility
-    public void startGame(String file) {
+    public void loadGame(String file) {
         playerScore = new HashMap<>();
         currentTurn = null;
         movableBox = 0;
@@ -163,7 +252,7 @@ public class Game {
         }
         stepsLeft = 5;
         totalSteps = 5;
-        //logGame();
+        logGame();
     }
 
     public ArrayList<ArrayList<Field>> getMap() {
