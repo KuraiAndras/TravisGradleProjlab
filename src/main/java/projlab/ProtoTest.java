@@ -292,6 +292,8 @@ public class ProtoTest {
 
         int answer = -1;
         while (answer != 0) {
+            //Only works in terminal, not in ide consoles
+            game.clearConsole();
             displayProtoMenu();
             answer = scanner.nextInt();
             switch (answer) {
@@ -438,7 +440,13 @@ public class ProtoTest {
                     break;
             }
         }
-        scanner.close();
+        /* !!!!!!!!!!!!!!!!!!!!!!!!!!
+            Closing the scanner closes the input stream
+            -> mainMenu will throw an exception because
+            its input stream is closed
+            !!!!!!!!!!!!!!!!!!!!!!!!!!
+         */
+        //scanner.close();
     }
 
 }
