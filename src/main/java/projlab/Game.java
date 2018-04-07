@@ -218,7 +218,7 @@ public class Game {
             currentTurn = cyclicIterator.next();
             stepsLeft = totalSteps;
         }
-       // logGame();
+        logGame();
     }
 
     boolean checkPlayerCompression(Player examining) {
@@ -252,7 +252,7 @@ public class Game {
         }
         stepsLeft = 5;
         totalSteps = 5;
-        //logGame();
+        logGame();
     }
 
     public ArrayList<ArrayList<Field>> getMap() {
