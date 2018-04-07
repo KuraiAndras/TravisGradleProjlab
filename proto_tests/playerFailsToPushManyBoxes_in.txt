@@ -1,0 +1,3 @@
+loadMap proto_testmaps/player_pushes_many_boxes.txt
+stepPlayer RIGHT
+listPlayers
