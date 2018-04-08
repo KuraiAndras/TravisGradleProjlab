@@ -67,6 +67,7 @@ public class Wall extends GameElement {
         //System.out.println("\tWall lockRequest()");
     }
 
+
     /**
      * Overrides the toString() method to make it
      * easier to use for logging purposes.

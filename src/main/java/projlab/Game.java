@@ -197,8 +197,9 @@ public class Game {
         }
     }
 
+
     void registerBox() {
-        movableBox++;
+         movableBox++;
     }
 
     void decreaseMovableBox() {
