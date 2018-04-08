@@ -285,6 +285,7 @@ public class ProtoTest {
         System.out.println("15: Player puts oil and field becomes slippery");
         System.out.println("16: Player can't push too many boxes");
         System.out.println("17: Player uses honey and pushes many boxes");
+        System.out.println("18: Box falls into hole and dies");
         System.out.println("0: Exit ");
         System.out.println("Please choose one:");
     }
@@ -452,6 +453,15 @@ public class ProtoTest {
                         e.printStackTrace();
                     }
                     diffFiles("proto_tests/testResult.txt", "proto_tests/playerPushesManyBoxesWithHoney_out.txt");
+                    break;
+                case 18:
+                    try {
+                        ArrayList<String> in = readFile("proto_tests/boxFallsIntoHole_in.txt");
+                        execute(game, processInput(in));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    diffFiles("proto_tests/testResult.txt", "proto_tests/boxFallsIntoHole_out.txt");
                     break;
                 case 0:
                     break;
