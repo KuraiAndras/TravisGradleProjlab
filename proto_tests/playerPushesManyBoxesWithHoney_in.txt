@@ -1,0 +1,4 @@
+loadMap proto_testmaps/player_pushes_many_boxes.txt
+putHoney
+stepPlayer RIGHT
+listPlayers

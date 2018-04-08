@@ -1,0 +1,3 @@
+loadMap proto_testmaps/player_steps_into_hole_test.txt
+stepPlayer RIGHT
+listPlayers

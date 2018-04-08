@@ -1,0 +1,5 @@
+W,W,W,W,W
+W,B,B,S1,W
+W,T,H1,P,W
+W,P,B,H,W
+W,W,W,W,W

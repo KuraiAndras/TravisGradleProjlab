@@ -35,7 +35,7 @@ public class Player extends GameElement implements IPlayable, IMovable {
      * @see Game#onPlayerDead(Player)
      */
     public void die() {
-        System.out.println("\tPlayer dies");
+        //System.out.println("\tPlayer dies");
         owner.setGameElement(null);     //For more than 2 players,the corpse must be removed so that the game can continue
         Game.getInstance().onPlayerDead(this);
     }
@@ -53,22 +53,22 @@ public class Player extends GameElement implements IPlayable, IMovable {
         double decreasedPower = power - weight * owner.getStickiness();
 
         if (decreasedPower <= 0) {
-            System.out.println("\tNthPlayer says Player power too low");
+            //System.out.println("\tNthPlayer says Player power too low");
             return false;
         }
 
-        System.out.println("\tPlayer tries to move");
+        //System.out.println("\tPlayer tries to move");
 
         Field field1 = owner;
         Field field2 = field1.offStepped(this, direction);
 
         if (field2.onStepped(this, direction, decreasedPower)) {
             owner = field2;
-            System.out.println("\t\tPlayer moved successfully.");
+            //System.out.println("\t\tPlayer moved successfully.");
             return true;
         } else {
             field1.setGameElement(this);
-            System.out.println("\t\tPlayer couldn't move.");
+            //System.out.println("\t\tPlayer couldn't move.");
             return false;
         }
     }
@@ -93,7 +93,7 @@ public class Player extends GameElement implements IPlayable, IMovable {
      */
     @Override
     public boolean collide(Player player, Direction direction, double power) {
-        System.out.println("\tPlayer collides with player.");
+        //System.out.println("\tPlayer collides with player.");
         return false;
     }
 
@@ -107,10 +107,11 @@ public class Player extends GameElement implements IPlayable, IMovable {
      */
     @Override
     public boolean collide(Box box, Direction direction, double power) {
-        System.out.println("\tPlayer collides with box.");
+        //System.out.println("\tPlayer collides with box.");
         if (this.move(direction, power)) {
             return true;
         } else {
+            //System.out.println("PLAYER DIES TO BOX");
             this.die();
             return false;
         }
@@ -134,7 +135,7 @@ public class Player extends GameElement implements IPlayable, IMovable {
      */
     @Override
     public void lockRequest() {
-        System.out.println("\tPlayer lockRequest()");
+        //System.out.println("\tPlayer lockRequest()");
     }
 
     /**

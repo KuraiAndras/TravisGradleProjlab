@@ -1,9 +1,9 @@
 package projlab;
 
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Scanner;
+import java.io.File;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 //TODO: Add Javadoc
 public class Game {
@@ -16,9 +16,10 @@ public class Game {
     private WareHouse map;
     private LinkedHashSet<Player> playerList;
     private CyclicIterator<Player, LinkedHashSet<Player>> cyclicIterator;
+    private static String clearConsole = "\033[H\033[2J";
+    private static String partialMapPath = "maps/playableMaps";
 
     private Game() {
-        //TODO: Implement this
         map = new WareHouse();
         playerScore = new HashMap<>();
         playerList = new LinkedHashSet<>();
@@ -30,91 +31,145 @@ public class Game {
     }
 
     public static void main(String[] args) {
-        //Test map for the lockManagement method
         Game game = Game.getInstance();
-        Scanner scanner = new Scanner(System.in);
-        int command = -1;
-        while (command != 0) {
-            game.displaySkeletonMenu();
-            command = scanner.nextInt();
-            switch (command) {
+
+        mainMenu(game);
+    }
+
+    private static void mainMenu(Game game) {
+        Scanner scnnr = new Scanner(System.in);
+
+        int answr = -1;
+        while (answr != 0) {
+            //Only works in terminal, not in ide consoles
+            clearConsole();
+            System.out.println("KillerSokoban main menu:");
+            System.out.println("1: Play the game with console interface");
+            System.out.println("2: Run the proto test menu");
+            System.out.println("0: Exit the program");
+
+            answr = scnnr.nextInt();
+
+            switch (answr) {
                 case 1:
-                    game.startGame("maps/skeleton1");
-                    game.movePlayer(Direction.RIGHT);
+                    game.playGameMenu();
                     break;
                 case 2:
-                    game.startGame("maps/skeleton2");
-                    game.movePlayer(Direction.RIGHT);
+                    ProtoTest pt = new ProtoTest();
+                    pt.runTestMenu(game);
+                    break;
+                case 0:
+                    answr = 0;
+                    break;
+                default:
+                    System.out.println("Invalid answer!");
+                    break;
+            }
+        }
+    }
+
+    //TODO: Fix illegal input
+    private void playGameMenu(){
+        ArrayList<String> mapList;
+        Scanner scanner = new Scanner(System.in);
+
+        int answer = -2;
+        while (answer != -1) {
+            mapList = displayPlayMenu();
+
+            answer = scanner.nextInt();
+
+            if (answer >= 0 && answer < mapList.size() - 1) {
+                playGame(mapList.get(answer));
+            } else if (answer == -1) {
+                System.out.println("");
+            } else {
+                System.out.println("Bad Input");
+            }
+        }
+        /* !!!!!!!!!!!!!!!!!!!!!!!!!!
+            Closing the scanner closes the input stream
+            -> mainMenu will throw an exception because
+            its input stream is closed
+            !!!!!!!!!!!!!!!!!!!!!!!!!!
+         */
+        //scanner.close();
+    }
+
+    private ArrayList<String> displayPlayMenu() {
+        File directory = new File(partialMapPath);
+        ArrayList<String> mapList = new ArrayList<>();
+
+        //Only works in terminal, not in ide consoles
+        clearConsole();
+
+        System.out.println(clearConsole);
+        System.out.println("Which map you want to play?");
+
+        if (directory.isDirectory()) {
+            String[] files = directory.list();
+            Pattern pattern = Pattern.compile("^(.*?)\\.txt$");
+            assert files != null;
+
+            for (String file : files) {
+                Matcher matcher = pattern.matcher(file);
+                if (matcher.matches()) {
+                    mapList.add(matcher.group(1));
+                }
+            }
+        }
+
+        System.out.println("-1: Exit");
+        int i = 0;
+        for (String map : mapList) {
+            System.out.println(i++ + ": " + map);
+        }
+
+        ArrayList<String> filePaths = new ArrayList<>();
+        for (String fileName : mapList) {
+            filePaths.add(partialMapPath + '/' + fileName + ".txt");
+        }
+
+        return filePaths;
+    }
+
+
+    private void playGame(String mapPath) {
+        loadGame(mapPath);
+        Scanner scanner = new Scanner(System.in);
+        int move = -1;
+        while (move != 0) {
+            move = scanner.nextInt();
+            switch (move) {
+                case 1:
+                    movePlayer(Direction.LEFT);
+                    break;
+                case 2:
+                    movePlayer(Direction.UP);
                     break;
                 case 3:
-                    game.startGame("maps/skeleton3");
-                    game.movePlayer(Direction.RIGHT);
+                    movePlayer(Direction.DOWN);
                     break;
                 case 4:
-                    game.startGame("maps/skeleton4");
-                    game.movePlayer(Direction.RIGHT);
+                    movePlayer(Direction.RIGHT);
                     break;
                 case 5:
-                    game.startGame("maps/skeleton5");
-                    game.movePlayer(Direction.RIGHT);
+                    placeHoney();
                     break;
                 case 6:
-                    game.startGame("maps/skeleton6");
-                    game.movePlayer(Direction.RIGHT);
-                    break;
-                case 7:
-                    game.startGame("maps/skeleton7");
-                    game.movePlayer(Direction.RIGHT);
-                    break;
-                case 8:
-                    game.startGame("maps/skeleton8");
-                    game.movePlayer(Direction.RIGHT);
-                    break;
-                case 9:
-                    game.startGame("maps/skeleton9");
-                    game.movePlayer(Direction.RIGHT);
-                    break;
-                case 10:
-                    game.startGame("maps/skeleton10");
-                    game.movePlayer(Direction.RIGHT);
-                    game.movePlayer(Direction.RIGHT);
-                    break;
-                case 11:
-                    game.startGame("maps/skeleton11");
-                    game.movePlayer(Direction.RIGHT);
-                    break;
-                case 12:
-                    game.startGame("maps/skeleton12");
-                    game.movePlayer(Direction.RIGHT);
-                    break;
-                case 13:
-                    game.startGame("maps/skeleton13");
-                    game.movePlayer(Direction.RIGHT);
-                    game.movePlayer(Direction.RIGHT);
-                    break;
-                case 14:
-                    game.startGame("maps/longPowerTest");
-                    game.movePlayer(Direction.RIGHT);
-                    game.movePlayer(Direction.RIGHT);
-                    break;
-                case 15:
-                    game.startGame("maps/map_lock_management_test.txt");
-                    game.doLockManagement();
-                case 0:
-
+                    placeOil();
                     break;
                 default:
                     break;
             }
         }
-        scanner.close();
     }
 
     private void onGameEnd() {
         //TODO: Implement this
     }
 
-    public void onPlayerDead(Player player) {
+    void onPlayerDead(Player player) {
         playerScore.remove(player);
         if (playerScore.size() == 1) {
             onGameEnd();
@@ -125,15 +180,15 @@ public class Game {
         }
     }
 
-    public void incrementScore() {
+    void incrementScore() {
         playerScore.put(currentTurn, playerScore.get(currentTurn) + 1);
     }
 
-    public int getMovableBox() {
+    int getMovableBox() {
         return movableBox;
     }
 
-    public void registerPlayer(Player player) {
+    void registerPlayer(Player player) {
         playerList.add(player);
         playerScore.put(player, 0);
 
@@ -143,30 +198,29 @@ public class Game {
     }
 
 
-    public void registerBox() {
-        movableBox++;
+    void registerBox() {
+         movableBox++;
     }
 
-    public void decreaseMovableBox() {
+    void decreaseMovableBox() {
         movableBox--;
         if (movableBox == 0) {
             onGameEnd();
         }
     }
 
-    //this method is only used during development?
-    public void doLockManagement() {
+    //this method is only used during development
+    void doLockManagement() {
         map.lockManagement();
     }
 
     private void logGame() {
+        System.out.print(clearConsole);
         map.logMap();
-        System.out.println("Map is Generated");
         System.out.println("Number of players: " + playerScore.size());
         System.out.println("Movable boxes: " + movableBox);
         System.out.println("Current players:");
-        for (Map.Entry<Player, Integer> item :
-                playerScore.entrySet()) {
+        for (Map.Entry<Player, Integer> item : playerScore.entrySet()) {
             Player key = item.getKey();
             Integer value = item.getValue();
             System.out.println(key + " " + value);
@@ -210,7 +264,7 @@ public class Game {
         logGame();
     }
 
-    public boolean checkPlayerCompression(Player examining) {
+    boolean checkPlayerCompression(Player examining) {
         if (currentTurn != examining) {
             examining.die();
             return true;
@@ -218,13 +272,13 @@ public class Game {
             return false;
     }
 
-    public boolean checkPlayerVitality(Player examining) {
+    boolean checkPlayerVitality(Player examining) {
         return currentTurn == examining;
     }
 
     //TODO: Delete logging
     //Should we make it private? Only tests need public visibility
-    public void startGame(String file) {
+    public void loadGame(String file) {
         playerScore = new HashMap<>();
         currentTurn = null;
         movableBox = 0;
@@ -244,31 +298,31 @@ public class Game {
         logGame();
     }
 
-    private void displaySkeletonMenu() {
-        System.out.flush();
-        System.out.println("Welcome to We <3 IIT skeleton");
-        System.out.println("1: P F ");
-        System.out.println("2: P B F ");
-        System.out.println("3: P B B F");
-        System.out.println("4: P P ");
-        System.out.println("5: P B P F");
-        System.out.println("6: P B P W");
-        System.out.println("7: P B P B W");
-        System.out.println("8: P W ");
-        System.out.println("9: P B W ");
-        //2x tolunk, ket allapotot fedunk le
-        //->switch.onStepped(box)
-        //->switch.offStepped(box)
-        System.out.println("10: P B S");
-        System.out.println("11: P B H");
-        System.out.println("12: P H");
-        //2x tolunk, ket allapotot fedunk le
-        //->boxot targetra tolunk
-        //->boxot probalunk targetrol mozgatni
-        System.out.println("13: P B T");
-        System.out.println("14: P B P B B B B F");
-        System.out.println("15: Lock Management test");
-        System.out.println("0: EXIT ");
-        System.out.println("Please choose a test case:");
+    public ArrayList<ArrayList<Field>> getMap() {
+        return map.getMap();
+    }
+
+
+    //Just for proto
+    public final static void clearConsole()
+    {
+        try
+        {
+            final String os = System.getProperty("os.name");
+
+            if (os.contains("Windows"))
+            {
+                Runtime.getRuntime().exec("cls");
+            }
+            else
+            {
+                Runtime.getRuntime().exec("clear");
+            }
+        }
+        catch (final Exception e)
+        {
+            //  Handle any exceptions.
+        }
     }
 }
+

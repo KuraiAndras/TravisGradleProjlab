@@ -54,7 +54,7 @@ public class Field implements IStep {
      * @param gameElement The GameElement we want to store.
      */
     public void setGameElement(GameElement gameElement) {
-        //System.out.println("\tField setGameElement()");
+        //System.out.println(String.format("\tField setGameElement(%s)", gameElement));
         this.gameElement = gameElement;
     }
 
@@ -125,7 +125,7 @@ public class Field implements IStep {
      */
     @Override
     public boolean onStepped(Player player, Direction direction, double power) {
-        System.out.println("\tField onStepped(player, direction)");
+       // System.out.println("\tField onStepped(player, direction)");
         if (gameElement == null) {
             gameElement = player;
             return true;
@@ -154,7 +154,7 @@ public class Field implements IStep {
      */
     @Override
     public boolean onStepped(Box box, Direction direction, double power) {
-        System.out.println("\tField onStepped(box, direction)");
+      //  System.out.println("\tField onStepped(box, direction)");
         if (gameElement == null) {
             gameElement = box;
             return true;
@@ -180,7 +180,7 @@ public class Field implements IStep {
      */
     @Override
     public Field offStepped(Player player, Direction direction) {
-        System.out.println("\tField offStepped(player, direction)");
+       // System.out.println("\tField offStepped(player, direction)");
         gameElement = null;
         return neighbours.get(direction);
     }
@@ -198,7 +198,7 @@ public class Field implements IStep {
      */
     @Override
     public Field offStepped(Box box, Direction direction) {
-        System.out.println("\tField offStepped(box, direction)");
+      //  System.out.println("\tField offStepped(box, direction)");
         gameElement = null;
         return neighbours.get(direction);
     }

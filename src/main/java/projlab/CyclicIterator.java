@@ -3,10 +3,18 @@ package projlab;
 import java.util.Collection;
 import java.util.Iterator;
 
+/**
+ * Iterator class for iterating in a cycle
+ * @param <E> Stored object
+ * @param <C> List
+ */
 public class CyclicIterator<E, C extends Collection<E>> implements Iterator<E> {
     final private C mElements;
     private Iterator<E> mIterator;
 
+    /**
+     * @param elements List to iterate through
+     */
     CyclicIterator(C elements) {
         mElements = elements;
         mIterator = elements.iterator();
