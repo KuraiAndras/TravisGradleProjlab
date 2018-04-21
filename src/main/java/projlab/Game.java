@@ -56,7 +56,7 @@ public class Game {
                     break;
                 case 2:
                     ProtoTest pt = new ProtoTest();
-                    pt.runTestMenu(game);
+                    pt.runProtoMainMenu(game);
                     break;
                 case 0:
                     answr = 0;
