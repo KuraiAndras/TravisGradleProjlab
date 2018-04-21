@@ -19,11 +19,11 @@ public class ProtoTest {
 
     private class ConsoleTest{
         String name;
-        List<String> map;
-        List<String> commandsIn;
-        List<String> expectedOut;
+        ArrayList<String> map;
+        ArrayList<String> commandsIn;
+        ArrayList<String> expectedOut;
 
-        public ConsoleTest(String name, List<String> map, List<String> commandsIn, List<String> expectedOut){
+        public ConsoleTest(String name, ArrayList<String> map, ArrayList<String> commandsIn, ArrayList<String> expectedOut){
             this.name = name;
             this.map = map;
             this.commandsIn = commandsIn;
@@ -73,11 +73,11 @@ public class ProtoTest {
         System.out.println("Name:");
         String name = scnr.nextLine();
         System.out.println("Map:");
-        List<String> mapIn = readFromConsoleUntilEof();
+        ArrayList<String> mapIn = readFromConsoleUntilEof();
         System.out.println("Commands to run:");
-        List<String> commandsIn = readFromConsoleUntilEof();
+       ArrayList<String> commandsIn = readFromConsoleUntilEof();
         System.out.println("Expected output:");
-        List<String> expOutput = readFromConsoleUntilEof();
+        ArrayList<String> expOutput = readFromConsoleUntilEof();
         consoleTests.add( new ConsoleTest(name, mapIn, commandsIn, expOutput));
     }
 
@@ -135,8 +135,8 @@ public class ProtoTest {
 
     //Do not close the scanner, it'll mess up the whole menu system!
     //Reads until EOF, easy to make tests on the console with it.
-    private List<String> readFromConsoleUntilEof(){
-        List<String> map = new ArrayList<>();
+    private ArrayList<String> readFromConsoleUntilEof(){
+        ArrayList<String> map = new ArrayList<>();
         String line = null;
         BufferedReader br = new BufferedReader( new InputStreamReader((System.in)));
         try{
@@ -294,7 +294,7 @@ public class ProtoTest {
         return out;
     }
 
-    private static ArrayList<String[]> processInput(List<String> input) {
+    private static ArrayList<String[]> processInput(ArrayList<String> input) {
         ArrayList<String[]> separated = new ArrayList<>();
         for (String line : input) {
             separated.add(line.split(" "));
