@@ -11,9 +11,150 @@ import java.util.Scanner;
 
 public class ProtoTest {
 
+    List<ConsoleTest> consoleTests;
 
     public ProtoTest(){
+        consoleTests = new ArrayList<>();
+    }
 
+    private class ConsoleTest{
+        String name;
+        ArrayList<String> map;
+        ArrayList<String> commandsIn;
+        ArrayList<String> expectedOut;
+
+        public ConsoleTest(String name, ArrayList<String> map, ArrayList<String> commandsIn, ArrayList<String> expectedOut){
+            this.name = name;
+            this.map = map;
+            this.commandsIn = commandsIn;
+            this.expectedOut = expectedOut;
+        }
+
+    }
+
+    private void displayProtoMainMenu(){
+        System.out.flush();
+        System.out.println("Proto Main Menu");
+        System.out.println("1. Run premade tests");
+        System.out.println("2. Create a test with a console interface");
+        System.out.println("3. Run selfmade tests");
+        System.out.println("0. Exit");
+        System.out.println("Please choose one:");
+    }
+
+    public void runProtoMainMenu(Game game) {
+        Scanner scanner = new Scanner(System.in);
+
+        int answer = -1;
+        while (answer != 0) {
+            //Only works in terminal, not in ide consoles
+            game.clearConsole();
+            displayProtoMainMenu();
+            answer = scanner.nextInt();
+            switch (answer) {
+                case 1:
+                    runTestMenu(game);
+                    break;
+                case 2:
+                    createTest();
+                    break;
+                case 3:
+                    runSelfmadeTestMenu(game);
+                    break;
+                case 4:
+                    answer = 0;
+                    break;
+            }
+        }
+    }
+
+    private void createTest(){
+        Scanner scnr = new Scanner(System.in);
+        System.out.println("Name:");
+        String name = scnr.nextLine();
+        System.out.println("Map:");
+        ArrayList<String> mapIn = readFromConsoleUntilEof();
+        System.out.println("Commands to run:");
+       ArrayList<String> commandsIn = readFromConsoleUntilEof();
+        System.out.println("Expected output:");
+        ArrayList<String> expOutput = readFromConsoleUntilEof();
+        consoleTests.add( new ConsoleTest(name, mapIn, commandsIn, expOutput));
+    }
+
+    private void runSelfmadeTestMenu(Game game){
+        System.out.println("Current tests in database:");
+        for(int i = 0; i < consoleTests.size(); i++){
+            System.out.println(consoleTests.get(i).name);
+        }
+        System.out.println("Pick a test and type its name into the console:");
+        Scanner scanner = new Scanner(System.in);
+        String toRun = scanner.next();
+        for (ConsoleTest ct : consoleTests){
+            if (ct.name.equals(toRun)){
+                runSelfmadeTest(toRun, game);
+            }
+        }
+        System.out.println("If the test didn't run maybe it doesn't exist or you made a typo!");
+
+    }
+
+    private void runSelfmadeTest(String name, Game game){
+        for(ConsoleTest ct : consoleTests){
+            if(ct.name.equals(name)){
+                try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
+                        new FileOutputStream("console_tests/map.txt"), "utf-8"))) {
+                    for (int i = 0; i < ct.map.size(); i++) {
+                        writer.write(ct.map.get(i));
+                        if (i < ct.map.size() - 1) {
+                            writer.newLine();
+                        }
+                    }
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+
+                try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
+                        new FileOutputStream("console_tests/test_out.txt"), "utf-8"))) {
+                    for (int i = 0; i < ct.expectedOut.size(); i++) {
+                        writer.write(ct.expectedOut.get(i));
+                        if (i < ct.expectedOut.size() - 1) {
+                            writer.newLine();
+                        }
+                    }
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+                ct.commandsIn.add(0,"loadMap console_tests/map.txt");
+                execute(game, processInput(ct.commandsIn));
+                diffFiles("proto_tests/testResult.txt", "console_tests/test_out.txt");
+            }
+        }
+    }
+
+
+
+    //Do not close the scanner, it'll mess up the whole menu system!
+    //Reads until EOF, easy to make tests on the console with it.
+    private ArrayList<String> readFromConsoleUntilEof(){
+        ArrayList<String> map = new ArrayList<>();
+        String line = null;
+        BufferedReader br = new BufferedReader( new InputStreamReader((System.in)));
+        try{
+            line = br.readLine();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        while( !"".equals(line) && line != null){
+            map.add(line);
+            try{
+                line = br.readLine();
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+
+        return map;
     }
 
 
