@@ -318,6 +318,8 @@ public class ImageManager {
         return switchImageWithOil;
     }
 
+
+    
     public static Image getTarget() {
         if (target == null) {
             try {
