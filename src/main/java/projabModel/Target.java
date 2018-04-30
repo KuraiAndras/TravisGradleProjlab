@@ -1,4 +1,4 @@
-package projlab;
+package projabModel;
 
 /**
  * <h1>Target</h1>

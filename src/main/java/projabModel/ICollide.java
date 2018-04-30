@@ -1,4 +1,4 @@
-package projlab;
+package projabModel;
 
 //TODO: Add Javadoc
 public interface ICollide {

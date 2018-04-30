@@ -1,4 +1,4 @@
-package projlab;
+package projabModel;
 
 /**
  * Interface for things a GameObject can step to.

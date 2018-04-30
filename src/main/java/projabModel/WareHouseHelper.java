@@ -1,4 +1,4 @@
-package projlab;
+package projabModel;
 
 /**
  * Helper class for warehouse to store id-s and coordinates

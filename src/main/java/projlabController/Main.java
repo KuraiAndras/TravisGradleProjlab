@@ -1,4 +1,4 @@
-package projlab;
+package projlabController;
 
 public class Main {
     //TODO: Make Penis Map

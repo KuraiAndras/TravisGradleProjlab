@@ -1,4 +1,4 @@
-package projlab;
+package projlabView;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

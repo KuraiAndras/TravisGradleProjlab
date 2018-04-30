@@ -1,7 +1,7 @@
-package projlab;
+package projlabController;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import projabModel.Game;
+import projlabView.MainMenu;
 
 public class MainController {
     private Game game = Game.getInstance();

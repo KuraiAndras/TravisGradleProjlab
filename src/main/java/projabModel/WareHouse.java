@@ -1,4 +1,4 @@
-package projlab;
+package projabModel;
 
 import java.io.File;
 import java.io.FileNotFoundException;

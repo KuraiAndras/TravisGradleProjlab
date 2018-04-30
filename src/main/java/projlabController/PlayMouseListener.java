@@ -1,13 +1,16 @@
-package projlab;
+package projlabController;
+
+import projabModel.Game;
+import projlabView.MainMenu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PlayMouseListener implements ActionListener {
-    Game game = Game.getInstance();
+    private Game game = Game.getInstance();
     private MainMenu parent;
 
-    PlayMouseListener(MainMenu main) {
+    public PlayMouseListener(MainMenu main) {
         parent = main;
     }
 

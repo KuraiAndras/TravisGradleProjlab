@@ -1,9 +1,9 @@
-package projlab;
+package projlabView;
+
+import projlabController.PlayMouseListener;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -18,7 +18,7 @@ public class MainMenu extends JFrame {
         return (String) listOfMaps.getSelectedItem();
     }
 
-    MainMenu(){
+    public MainMenu() {
         playButton = new JButton("Play");
         listOfMaps = new JComboBox<String>();
         jPanel = new JPanel();
@@ -32,9 +32,9 @@ public class MainMenu extends JFrame {
         playButton.addActionListener(new PlayMouseListener(this));
 
 
-        this.setMinimumSize(new Dimension(800,600));
+        this.setMinimumSize(new Dimension(800, 600));
 
-        this.add(jPanel,BorderLayout.CENTER);
+        this.add(jPanel, BorderLayout.CENTER);
         this.pack();
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
         this.setVisible(true);
@@ -57,7 +57,7 @@ public class MainMenu extends JFrame {
                 }
             }
         }
-        return  mapList;
+        return mapList;
     }
 
 

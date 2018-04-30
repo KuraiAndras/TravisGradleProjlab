@@ -2,10 +2,10 @@ package projlabTest;
 
 import org.junit.Before;
 import org.junit.Test;
-import projlab.Box;
-import projlab.Direction;
-import projlab.Field;
-import projlab.Game;
+import projabModel.Box;
+import projabModel.Direction;
+import projabModel.Field;
+import projabModel.Game;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

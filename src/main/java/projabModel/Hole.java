@@ -1,4 +1,4 @@
-package projlab;
+package projabModel;
 
 /**
  * <h1>Hole</h1>

@@ -1,4 +1,4 @@
-package projlab;
+package projabModel;
 
 
 /**
