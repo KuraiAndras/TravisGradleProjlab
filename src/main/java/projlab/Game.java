@@ -16,7 +16,7 @@ public class Game {
     private WareHouse map;
     private LinkedHashSet<Player> playerList;
     private CyclicIterator<Player, LinkedHashSet<Player>> cyclicIterator;
-    private static String clearConsole = "\033[H\033[2J";
+    //private static String clearConsole = "\033[H\033[2J";
     private static String partialMapPath = "maps/playableMaps";
 
     private Game() {
@@ -32,109 +32,9 @@ public class Game {
 
     public static void main(String[] args) {
         Game game = Game.getInstance();
-
-        mainMenu(game);
     }
 
-    private static void mainMenu(Game game) {
-        Scanner scnnr = new Scanner(System.in);
-
-        int answr = -1;
-        while (answr != 0) {
-            //Only works in terminal, not in ide consoles
-            clearConsole();
-            System.out.println("KillerSokoban main menu:");
-            System.out.println("1: Play the game with console interface");
-            System.out.println("2: Run the proto test menu");
-            System.out.println("0: Exit the program");
-
-            answr = scnnr.nextInt();
-
-            switch (answr) {
-                case 1:
-                    game.playGameMenu();
-                    break;
-                case 2:
-                    ProtoTest pt = new ProtoTest();
-                    pt.runProtoMainMenu(game);
-                    break;
-                case 0:
-                    answr = 0;
-                    break;
-                default:
-                    System.out.println("Invalid answer!");
-                    break;
-            }
-        }
-    }
-
-    //TODO: Fix illegal input
-    private void playGameMenu(){
-        ArrayList<String> mapList;
-        Scanner scanner = new Scanner(System.in);
-
-        int answer = -2;
-        while (answer != -1) {
-            mapList = displayPlayMenu();
-
-            answer = scanner.nextInt();
-
-            if (answer >= 0 && answer < mapList.size() - 1) {
-                playGame(mapList.get(answer));
-            } else if (answer == -1) {
-                System.out.println("");
-            } else {
-                System.out.println("Bad Input");
-            }
-        }
-        /* !!!!!!!!!!!!!!!!!!!!!!!!!!
-            Closing the scanner closes the input stream
-            -> mainMenu will throw an exception because
-            its input stream is closed
-            !!!!!!!!!!!!!!!!!!!!!!!!!!
-         */
-        //scanner.close();
-    }
-
-    private ArrayList<String> displayPlayMenu() {
-        File directory = new File(partialMapPath);
-        ArrayList<String> mapList = new ArrayList<>();
-
-        //Only works in terminal, not in ide consoles
-        clearConsole();
-
-        System.out.println(clearConsole);
-        System.out.println("Which map you want to play?");
-
-        if (directory.isDirectory()) {
-            String[] files = directory.list();
-            Pattern pattern = Pattern.compile("^(.*?)\\.txt$");
-            assert files != null;
-
-            for (String file : files) {
-                Matcher matcher = pattern.matcher(file);
-                if (matcher.matches()) {
-                    mapList.add(matcher.group(1));
-                }
-            }
-        }
-
-        System.out.println("-1: Exit");
-        int i = 0;
-        for (String map : mapList) {
-            System.out.println(i++ + ": " + map);
-        }
-
-        ArrayList<String> filePaths = new ArrayList<>();
-        for (String fileName : mapList) {
-            filePaths.add(partialMapPath + '/' + fileName + ".txt");
-        }
-
-        return filePaths;
-    }
-
-
-    private void playGame(String mapPath) {
+    public void playGame(String mapPath) {
         loadGame(mapPath);
         Scanner scanner = new Scanner(System.in);
         int move = -1;
@@ -214,23 +114,6 @@ public class Game {
         map.lockManagement();
     }
 
-    private void logGame() {
-        System.out.print(clearConsole);
-        map.logMap();
-        System.out.println("Number of players: " + playerScore.size());
-        System.out.println("Movable boxes: " + movableBox);
-        System.out.println("Current players:");
-        for (Map.Entry<Player, Integer> item : playerScore.entrySet()) {
-            Player key = item.getKey();
-            Integer value = item.getValue();
-            System.out.println(key + " " + value);
-        }
-        System.out.println("Current turn: " + currentTurn);
-        System.out.println("Total steps: " + totalSteps);
-        System.out.println("Steps left: " + stepsLeft);
-        System.out.print("\n");
-    }
-
     public boolean movePlayer(Direction direction) {
         boolean lastMove = currentTurn.move(direction);
         decreaseSteps();
@@ -261,7 +144,6 @@ public class Game {
             currentTurn = cyclicIterator.next();
             stepsLeft = totalSteps;
         }
-        logGame();
     }
 
     boolean checkPlayerCompression(Player examining) {
@@ -295,34 +177,10 @@ public class Game {
         }
         stepsLeft = 5;
         totalSteps = 5;
-        logGame();
     }
 
-    public ArrayList<ArrayList<Field>> getMap() {
+    ArrayList<ArrayList<Field>> getMap() {
         return map.getMap();
-    }
-
-
-    //Just for proto
-    public final static void clearConsole()
-    {
-        try
-        {
-            final String os = System.getProperty("os.name");
-
-            if (os.contains("Windows"))
-            {
-                Runtime.getRuntime().exec("cls");
-            }
-            else
-            {
-                Runtime.getRuntime().exec("clear");
-            }
-        }
-        catch (final Exception e)
-        {
-            //  Handle any exceptions.
-        }
     }
 }
 
