@@ -14,14 +14,27 @@ public class PlayerInputListener implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_W) {
-            Game.getInstance().movePlayer(Direction.UP);
-        } else if (e.getKeyCode() == KeyEvent.VK_A) {
-            Game.getInstance().movePlayer(Direction.LEFT);
-        } else if (e.getKeyCode() == KeyEvent.VK_D) {
-            Game.getInstance().movePlayer(Direction.RIGHT);
-        } else if (e.getKeyCode() == KeyEvent.VK_S) {
-            Game.getInstance().movePlayer(Direction.DOWN);
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_W:
+                Game.getInstance().movePlayer(Direction.UP);
+                break;
+            case KeyEvent.VK_A:
+                Game.getInstance().movePlayer(Direction.LEFT);
+                break;
+            case KeyEvent.VK_D:
+                Game.getInstance().movePlayer(Direction.RIGHT);
+                break;
+            case KeyEvent.VK_S:
+                Game.getInstance().movePlayer(Direction.DOWN);
+                break;
+            case KeyEvent.VK_Q:
+                Game.getInstance().placeHoney();
+                break;
+            case KeyEvent.VK_E:
+                Game.getInstance().placeOil();
+                break;
+            default:
+                break;
         }
         MainController.getInstance().redrawPlayField();
     }
