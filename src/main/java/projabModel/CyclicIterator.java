@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 /**
  * Iterator class for iterating in a cycle
+ *
  * @param <E> Stored object
  * @param <C> List
  */

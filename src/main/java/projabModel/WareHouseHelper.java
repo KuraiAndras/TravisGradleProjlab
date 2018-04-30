@@ -30,6 +30,7 @@ public class WareHouseHelper {
 
     /**
      * Equals by ID
+     *
      * @param wareHouseHelper Target to equal
      * @return Returns match
      */

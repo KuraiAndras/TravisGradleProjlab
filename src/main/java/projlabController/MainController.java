@@ -15,22 +15,22 @@ public class MainController {
         return ourInstance;
     }
 
-    void initializeComponents(){
+    void initializeComponents() {
         mainMenu = new MainMenu();
         gameWindow = new GameWindow();
     }
 
-    void startGame(){
+    void startGame() {
         mainMenu.setVisible(false);
         gameWindow.setVisible(true);
         gameWindow.load();
     }
 
-    String getCurrentMap(){
+    String getCurrentMap() {
         return mainMenu.getCurrentMap();
     }
 
-    void redrawPlayField(){
+    void redrawPlayField() {
         gameWindow.drawElements();
     }
 }

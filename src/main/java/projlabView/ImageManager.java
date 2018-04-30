@@ -187,117 +187,117 @@ public class ImageManager {
     }
 
     public static Image getPlayerOnField() {
-        if ( playerOnField == null) {
+        if (playerOnField == null) {
             try {
                 playerOnField = ImageIO.read(new FileInputStream("graphics/PlayerOnField.png"));
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
         }
-        return  playerOnField;
+        return playerOnField;
     }
 
     public static Image getPlayerOnFieldWithHoney() {
-        if ( playerOnFieldWithHoney == null) {
+        if (playerOnFieldWithHoney == null) {
             try {
                 playerOnFieldWithHoney = ImageIO.read(new FileInputStream("graphics/PlayerOnFieldWithHoney.png"));
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
         }
-        return  playerOnFieldWithHoney;
+        return playerOnFieldWithHoney;
     }
 
     public static Image getPlayerOnFieldWithOil() {
-        if ( playerOnFieldWithOil == null) {
+        if (playerOnFieldWithOil == null) {
             try {
                 playerOnFieldWithOil = ImageIO.read(new FileInputStream("graphics/PlayerOnFieldWithOil.png"));
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
         }
-        return  playerOnFieldWithOil;
+        return playerOnFieldWithOil;
     }
 
     public static Image getPlayerOnSwitch() {
-        if ( playerOnSwitch == null) {
+        if (playerOnSwitch == null) {
             try {
                 playerOnSwitch = ImageIO.read(new FileInputStream("graphics/PlayerOnSwitch.png"));
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
         }
-        return  playerOnSwitch;
+        return playerOnSwitch;
     }
 
     public static Image getPlayerOnSwitchWithHoney() {
-        if ( playerOnSwitchWithHoney == null) {
+        if (playerOnSwitchWithHoney == null) {
             try {
                 playerOnSwitchWithHoney = ImageIO.read(new FileInputStream("graphics/PlayerOnSwitchWithHoney.png"));
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
         }
-        return  playerOnSwitchWithHoney;
+        return playerOnSwitchWithHoney;
     }
 
     public static Image getPlayerOnSwitchWithOil() {
-        if ( playerOnSwitchWithOil == null) {
+        if (playerOnSwitchWithOil == null) {
             try {
                 playerOnSwitchWithOil = ImageIO.read(new FileInputStream("graphics/PlayerOnSwitchWithOil.png"));
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
         }
-        return  playerOnSwitchWithOil;
+        return playerOnSwitchWithOil;
     }
 
     public static Image getPlayerOnTarget() {
-        if ( playerOnTarget == null) {
+        if (playerOnTarget == null) {
             try {
                 playerOnTarget = ImageIO.read(new FileInputStream("graphics/PlayerOnTarget.png"));
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
         }
-        return  playerOnTarget;
+        return playerOnTarget;
     }
 
     public static Image getPlayerOnTargetWithHoney() {
-        if (  playerOnTargetWithHoney == null) {
+        if (playerOnTargetWithHoney == null) {
             try {
                 playerOnTargetWithHoney = ImageIO.read(new FileInputStream("graphics/PlayerOnTargetWithHoney.png"));
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
         }
-        return   playerOnTargetWithHoney;
+        return playerOnTargetWithHoney;
     }
 
     public static Image getPlayerOnTargetWithOil() {
-        if (  playerOnTargetWithOil == null) {
+        if (playerOnTargetWithOil == null) {
             try {
                 playerOnTargetWithOil = ImageIO.read(new FileInputStream("graphics/PlayerOnTargetWithOil.png"));
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
         }
-        return   playerOnTargetWithOil;
+        return playerOnTargetWithOil;
     }
 
     public static Image getSwitchImage() {
-        if ( switchImage == null) {
+        if (switchImage == null) {
             try {
                 switchImage = ImageIO.read(new FileInputStream("graphics/SwitchImage.png"));
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
         }
-        return   switchImage;
+        return switchImage;
     }
 
     public static Image getSwitchImageWithHoney() {
-        if ( switchImageWithHoney == null) {
+        if (switchImageWithHoney == null) {
             try {
                 switchImageWithHoney = ImageIO.read(new FileInputStream("graphics/SwitchImagewithHoney.png"));
             } catch (IOException exception) {
@@ -308,7 +308,7 @@ public class ImageManager {
     }
 
     public static Image getSwitchImageWithOil() {
-        if ( switchImageWithOil == null) {
+        if (switchImageWithOil == null) {
             try {
                 switchImageWithOil = ImageIO.read(new FileInputStream("graphics/SwitchImagewithOil.png"));
             } catch (IOException exception) {
@@ -319,46 +319,46 @@ public class ImageManager {
     }
 
     public static Image getTarget() {
-        if ( target == null) {
+        if (target == null) {
             try {
                 target = ImageIO.read(new FileInputStream("graphics/Target.png"));
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
         }
-        return   target;
+        return target;
     }
 
     public static Image gettargetWithHoney() {
-        if ( targetWithHoney == null) {
+        if (targetWithHoney == null) {
             try {
                 targetWithHoney = ImageIO.read(new FileInputStream("graphics/TargetWithHoney.png"));
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
         }
-        return   targetWithHoney;
+        return targetWithHoney;
     }
 
     public static Image gettargetWithOil() {
-        if ( targetWithOil == null) {
+        if (targetWithOil == null) {
             try {
                 targetWithOil = ImageIO.read(new FileInputStream("graphics/TargetWithOil.png"));
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
         }
-        return   targetWithOil;
+        return targetWithOil;
     }
 
     public static Image getWall() {
-        if ( wall == null) {
+        if (wall == null) {
             try {
                 wall = ImageIO.read(new FileInputStream("graphics/Wall.png"));
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
         }
-        return   wall;
+        return wall;
     }
 }

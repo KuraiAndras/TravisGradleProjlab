@@ -30,7 +30,7 @@ public class Switch extends Field {
      * @param pair The Hole object connected to this Switch.
      */
     public void setPair(Hole pair) {
-       // System.out.println("\tSwitch setPair()");
+        // System.out.println("\tSwitch setPair()");
         this.pair = pair;
     }
 

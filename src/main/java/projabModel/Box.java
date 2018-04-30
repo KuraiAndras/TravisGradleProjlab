@@ -23,7 +23,7 @@ public class Box extends GameElement implements IMovable {
         super();
         weight = 1;
         canMove = true;
-       // System.out.println("\tBox created");
+        // System.out.println("\tBox created");
     }
 
     /**
@@ -46,7 +46,7 @@ public class Box extends GameElement implements IMovable {
      */
     @Override
     public void die() {
-       // System.out.println("\tBox dies");
+        // System.out.println("\tBox dies");
         owner.setGameElement(null);
         Game.getInstance().decreaseMovableBox();
     }
@@ -60,7 +60,7 @@ public class Box extends GameElement implements IMovable {
     public void lockRequest() {
         canMove = false;
         Game.getInstance().decreaseMovableBox();
-       // System.out.println("\tBox locked");
+        // System.out.println("\tBox locked");
     }
 
     /**
@@ -93,18 +93,18 @@ public class Box extends GameElement implements IMovable {
             return false;
         }
 
-       // System.out.println("\tBox tries to move");
+        // System.out.println("\tBox tries to move");
 
         Field field1 = owner;
         Field field2 = field1.offStepped(this, direction);
 
         if (field2.onStepped(this, direction, decreasedPower)) {
             owner = field2;
-          //  System.out.println("\t\tBox moved successfully.");
+            //  System.out.println("\t\tBox moved successfully.");
             return true;
         } else {
             field1.setGameElement(this);
-           // System.out.println("\t\tBox couldn't move.");
+            // System.out.println("\t\tBox couldn't move.");
             return false;
         }
     }

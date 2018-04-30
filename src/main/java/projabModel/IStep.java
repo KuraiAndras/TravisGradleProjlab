@@ -12,7 +12,7 @@ public interface IStep {
     /**
      * This method returns the next field in the given direction.
      *
-     * @param player The player standing on the field.
+     * @param player    The player standing on the field.
      * @param direction The direction of the players next step.
      * @return Returns with the field in the given direction.
      */
@@ -21,7 +21,7 @@ public interface IStep {
     /**
      * This method returns the next field in the given direction.
      *
-     * @param box The box being on the field.
+     * @param box       The box being on the field.
      * @param direction The direction of the boxes next step.
      * @return Returns with the field in the given direction.
      */

@@ -36,10 +36,10 @@ public class Hole extends Field {
         isOpen = !isOpen;
         if (isOpen && gameElement != null)       //Azok amik függetlenek a tolástól
             gameElement.die();
-       // System.out.println("\tHole switchHole()");
+        // System.out.println("\tHole switchHole()");
     }
 
-    public boolean getIsOpen(){
+    public boolean getIsOpen() {
         return isOpen;
     }
 

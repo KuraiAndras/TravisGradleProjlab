@@ -13,7 +13,7 @@ class WareHouse {
     }
 
     //Why need the whole map?
-    ArrayList<ArrayList<Field>> getMap(){
+    ArrayList<ArrayList<Field>> getMap() {
         return map;
     }
 
@@ -216,7 +216,7 @@ class WareHouse {
                                 if (left.hasElement()) {
                                     if (!up.canElementMove() && !left.canElementMove()) {
                                         //TODO: Delete logging
-                                       // System.out.println("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
+                                        // System.out.println("-LOCKING --" + String.valueOf(row) + "-" + String.valueOf(column) + "  ");
                                         current.lockElement();
                                         break firstLoop;
                                     }

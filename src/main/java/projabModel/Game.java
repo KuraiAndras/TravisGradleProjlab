@@ -1,6 +1,8 @@
 package projabModel;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
 
 //TODO: Add Javadoc
 public class Game {
@@ -25,37 +27,6 @@ public class Game {
 
     public static Game getInstance() {
         return ourInstance;
-    }
-
-    public void playGame(String mapPath) {
-        loadGame(mapPath);
-        Scanner scanner = new Scanner(System.in);
-        int move = -1;
-        while (move != 0) {
-            move = scanner.nextInt();
-            switch (move) {
-                case 1:
-                    movePlayer(Direction.LEFT);
-                    break;
-                case 2:
-                    movePlayer(Direction.UP);
-                    break;
-                case 3:
-                    movePlayer(Direction.DOWN);
-                    break;
-                case 4:
-                    movePlayer(Direction.RIGHT);
-                    break;
-                case 5:
-                    placeHoney();
-                    break;
-                case 6:
-                    placeOil();
-                    break;
-                default:
-                    break;
-            }
-        }
     }
 
     private void onGameEnd() {
@@ -92,7 +63,7 @@ public class Game {
 
 
     void registerBox() {
-         movableBox++;
+        movableBox++;
     }
 
     void decreaseMovableBox() {

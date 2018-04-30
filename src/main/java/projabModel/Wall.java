@@ -44,7 +44,7 @@ public class Wall extends GameElement {
      */
     @Override
     public boolean collide(Box box, Direction direction, double power) {
-       // System.out.println("\tWall collides with box");
+        // System.out.println("\tWall collides with box");
         return false;
     }
 
@@ -83,7 +83,7 @@ public class Wall extends GameElement {
      */
     @Override
     public void die() {
-       // System.out.println("\tWall die()");
+        // System.out.println("\tWall die()");
         owner.setGameElement(null);
     }
 }

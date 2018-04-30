@@ -2,7 +2,7 @@ package projlabView;
 
 import projabModel.Field;
 import projabModel.Game;
-import projlabController.MovementListener;
+import projlabController.PlayerInputListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,13 +24,12 @@ public class GameWindow extends JFrame {
         this.setResizable(false);
         this.add(panel);
         this.pack();
-        this.addKeyListener(new MovementListener());
+        this.addKeyListener(new PlayerInputListener());
     }
 
     //TODO: add more cases
     public void drawElements() {
-        panel = null;
-        panel = new JPanel();
+        panel.removeAll();
 
         ArrayList<ArrayList<Field>> map = Game.getInstance().getMap();
         this.setMaximumSize(new Dimension(map.size() * 20, map.get(0).size() * 20));
@@ -57,6 +56,8 @@ public class GameWindow extends JFrame {
                 }
             }
         }
+
+        panel.updateUI();
     }
 
 
