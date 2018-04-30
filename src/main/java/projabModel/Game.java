@@ -172,7 +172,7 @@ public class Game {
         totalSteps = 5;
     }
 
-    ArrayList<ArrayList<Field>> getMap() {
+    public ArrayList<ArrayList<Field>> getMap() {
         return map.getMap();
     }
 }
