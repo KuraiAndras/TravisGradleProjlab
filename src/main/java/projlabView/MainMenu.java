@@ -28,9 +28,7 @@ public class MainMenu extends JFrame {
 
         listOfMaps.setModel(new DefaultComboBoxModel(CreateMapList().toArray()));
 
-
         playButton.addActionListener(new PlayButtonListener());
-
 
         this.setMinimumSize(new Dimension(800, 600));
         this.add(jPanel, BorderLayout.CENTER);

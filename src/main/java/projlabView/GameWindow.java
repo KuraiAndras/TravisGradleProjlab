@@ -10,54 +10,70 @@ import java.util.ArrayList;
 
 public class GameWindow extends JFrame {
 
-    JPanel panel = new JPanel();
-
+    private JPanel gamePanel = new JPanel();
+    private JPanel infoPanel = new JPanel();
+    private JLabel player1Point = new JLabel();
+    private JLabel player2Point = new JLabel();
+    private JLabel stepsLeft = new JLabel();
+    private JLabel movableBoxesLeft = new JLabel();
 
     public GameWindow() {
         this.setVisible(false);
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
-
     }
 
     public void load() {
-        drawElements();
         this.setResizable(false);
-        this.add(panel);
+        this.add(gamePanel, BorderLayout.CENTER);
+        this.add(infoPanel, BorderLayout.NORTH);
+        infoPanel.setLayout(new GridLayout(1, 4));
+        infoPanel.add(player1Point);
+        infoPanel.add(player2Point);
+        infoPanel.add(stepsLeft);
+        infoPanel.add(movableBoxesLeft);
+
+        drawElements();
         this.pack();
         this.addKeyListener(new PlayerInputListener());
     }
 
     //TODO: add more cases
     public void drawElements() {
-        panel.removeAll();
+        gamePanel.removeAll();
+
+        player1Point.setText(Integer.toString(Game.getInstance().getPlayer1Point()) + '\t');
+        player2Point.setText(Integer.toString(Game.getInstance().getPlayer2Point()) + '\t');
+        stepsLeft.setText(Integer.toString(Game.getInstance().getStepsLeft()) + '\t');
+        movableBoxesLeft.setText(Integer.toString(Game.getInstance().getMovableBoxes()) + '\t');
+
 
         ArrayList<ArrayList<Field>> map = Game.getInstance().getMap();
-        this.setMaximumSize(new Dimension(map.size() * 20, map.get(0).size() * 20));
-        panel.setLayout(new GridLayout(map.size(), map.get(0).size()));
+        this.setMaximumSize(new Dimension(map.size() * 20, map.get(0).size() * 20 + 50));
+        gamePanel.setLayout(new GridLayout(map.size(), map.get(0).size()));
 
         for (ArrayList<Field> row : map) {
             for (Field item : row) {
                 switch (item.toString()) {
                     case "Box":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getBox())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getBox())));
                         break;
                     case "Wall":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getWall())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getWall())));
                         break;
                     case "Field":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getField())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getField())));
                         break;
                     case "Player":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getPlayerOnField())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getPlayerOnField())));
                         break;
                     case "Target":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getTarget())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getTarget())));
                         break;
                 }
             }
         }
 
-        panel.updateUI();
+        gamePanel.updateUI();
     }
 
 

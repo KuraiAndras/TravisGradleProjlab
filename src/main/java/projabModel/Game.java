@@ -15,8 +15,6 @@ public class Game {
     private WareHouse map;
     private LinkedHashSet<Player> playerList;
     private CyclicIterator<Player, LinkedHashSet<Player>> cyclicIterator;
-    //private static String clearConsole = "\033[H\033[2J";
-    //private static String partialMapPath = "maps/playableMaps";
 
     private Game() {
         map = new WareHouse();
@@ -35,6 +33,7 @@ public class Game {
 
     void onPlayerDead(Player player) {
         playerScore.remove(player);
+        playerList.remove(player);
         if (playerScore.size() == 1) {
             onGameEnd();
         }
@@ -145,6 +144,22 @@ public class Game {
 
     public ArrayList<ArrayList<Field>> getMap() {
         return map.getMap();
+    }
+
+    public int getPlayer1Point(){
+        return playerList.size() > 1 ? playerScore.get(playerList.toArray()[0]) : 0;
+    }
+
+    public int getPlayer2Point(){
+        return playerList.size() > 1 ? playerScore.get(playerList.toArray()[1]) : 0;
+    }
+
+    public int getStepsLeft(){
+        return stepsLeft;
+    }
+
+    public int getMovableBoxes(){
+        return movableBox;
     }
 }
 
