@@ -6,11 +6,11 @@ import projlabView.MainMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PlayMouseListener implements ActionListener {
+public class PlayButtonListener implements ActionListener {
     private Game game = Game.getInstance();
     private MainMenu parent;
 
-    public PlayMouseListener(MainMenu main) {
+    public PlayButtonListener(MainMenu main) {
         parent = main;
     }
 

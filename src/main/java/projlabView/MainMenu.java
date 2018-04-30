@@ -1,6 +1,6 @@
 package projlabView;
 
-import projlabController.PlayMouseListener;
+import projlabController.PlayButtonListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,7 +29,7 @@ public class MainMenu extends JFrame {
         listOfMaps.setModel(new DefaultComboBoxModel(CreateMapList().toArray()));
 
 
-        playButton.addActionListener(new PlayMouseListener(this));
+        playButton.addActionListener(new PlayButtonListener(this));
 
 
         this.setMinimumSize(new Dimension(800, 600));
@@ -59,6 +59,4 @@ public class MainMenu extends JFrame {
         }
         return mapList;
     }
-
-
 }
