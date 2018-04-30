@@ -17,7 +17,7 @@ public class Game {
     private LinkedHashSet<Player> playerList;
     private CyclicIterator<Player, LinkedHashSet<Player>> cyclicIterator;
     //private static String clearConsole = "\033[H\033[2J";
-    private static String partialMapPath = "maps/playableMaps";
+    //private static String partialMapPath = "maps/playableMaps";
 
     private Game() {
         map = new WareHouse();
@@ -28,10 +28,6 @@ public class Game {
 
     public static Game getInstance() {
         return ourInstance;
-    }
-
-    public static void main(String[] args) {
-        Game game = Game.getInstance();
     }
 
     public void playGame(String mapPath) {
