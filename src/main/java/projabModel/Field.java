@@ -211,11 +211,16 @@ public class Field implements IStep {
      */
     @Override
     public String toString() {
-        if (gameElement == null) {
-            return "Field";
-        } else {
-            return gameElement.toString();
+        String name="";
+        if(hasElement()){
+            name=name.concat(gameElement.toString().concat("On"));
         }
+        name=name.concat("Field");
+        if(getStickiness()<1)
+            name=name.concat("WithOil");
+        if(getStickiness()>1)
+            name=name.concat("WithHoney");
+        return name;
     }
 
 }

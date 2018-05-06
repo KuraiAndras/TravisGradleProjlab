@@ -97,10 +97,18 @@ public class Hole extends Field {
      */
     @Override
     public String toString() {
-        if (gameElement == null) {
+        if(isOpen)
             return "Hole";
-        } else {
-            return gameElement.toString();
+        else{
+            String name="";
+        if(hasElement()){
+            name=name.concat(gameElement.toString().concat("On"));
         }
-    }
+        name=name.concat("Field");          //itt csalunk
+        if(getStickiness()<1)
+            name=name.concat("WithOil");
+        if(getStickiness()>1)
+            name=name.concat("WithHoney");
+        return name;
+    }}
 }
