@@ -1,0 +1,6 @@
+F,T,F,F,F,F
+P,B,S1,H1,T,F
+F,T,F,F,F,F
+F,F,B,F,F,F
+F,B,F,P,F,F
+F,F,F,F,F,F
