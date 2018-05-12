@@ -14,7 +14,6 @@ public class GameWindow extends JFrame {
 
 
     private JPanel gamePanel = new JPanel();
-    private JPanel infoPanel = new JPanel();
     private JLabel player1Point = new JLabel();
     private JLabel player2Point = new JLabel();
     private JLabel stepsLeft = new JLabel();
@@ -23,12 +22,12 @@ public class GameWindow extends JFrame {
 
     public GameWindow() {
         this.setVisible(false);
-        this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
 
     public void load() {
-        infoPanel = new JPanel();
+        JPanel infoPanel = new JPanel();
         gamePanel = new JPanel();
 
         this.setResizable(false);
@@ -58,8 +57,8 @@ public class GameWindow extends JFrame {
         this.setPreferredSize(new Dimension(250, 150));
 
         this.pack();
-        gamePanel.add(new JLabel("Game Over!", (int) CENTER_ALIGNMENT));
-        gamePanel.add(new JLabel(("Winner: Player " + Game.getInstance().getWinner()), (int) CENTER_ALIGNMENT));
+        gamePanel.add(new JLabel("Game Over!", SwingConstants.CENTER));
+        gamePanel.add(new JLabel(("Winner: Player " + Game.getInstance().getWinner()), SwingConstants.CENTER));
         //TODO: Make end button look better
         JButton endButton = new JButton("End");
         endButton.addActionListener(new EndButtonListener());

@@ -19,7 +19,6 @@ public class Game {
     private LinkedHashSet<Player> playerList;
     private CyclicIterator<Player, LinkedHashSet<Player>> cyclicIterator;
     private LinkedHashSet<Player> initialPlayerList = new LinkedHashSet<>();
-    private Player winner;
 
     private Game() {
         map = new WareHouse();

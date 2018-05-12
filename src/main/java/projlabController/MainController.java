@@ -1,11 +1,9 @@
 package projlabController;
 
-import projabModel.Game;
 import projlabView.GameWindow;
 import projlabView.MainMenu;
 
 public class MainController {
-    private Game game = Game.getInstance();
     private MainMenu mainMenu;
     GameWindow gameWindow;
     boolean endFlag = false;

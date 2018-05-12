@@ -32,15 +32,11 @@ public class Hole extends Field {
      * If there is something when it open,
      * then it destroy it.
      */
-    public void switchHole() {
+    void switchHole() {
         isOpen = !isOpen;
         if (isOpen && gameElement != null)       //Azok amik függetlenek a tolástól
             gameElement.die();
         // System.out.println("\tHole switchHole()");
-    }
-
-    public boolean getIsOpen() {
-        return isOpen;
     }
 
     //TODO: Fix this
