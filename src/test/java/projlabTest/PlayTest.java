@@ -2,8 +2,8 @@ package projlabTest;
 
 import org.junit.Before;
 import org.junit.Test;
-import projlab.Direction;
-import projlab.Game;
+import projabModel.Direction;
+import projabModel.Game;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

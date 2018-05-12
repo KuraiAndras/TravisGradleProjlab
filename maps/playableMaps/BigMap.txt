@@ -1,0 +1,17 @@
+W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W
+W,F,F,F,W,W,W,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,W,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,W
+W,F,F,F,W,T,W,F,F,F,F,F,F,F,F,F,F,F,F,S4,F,F,F,W,F,F,F,F,F,T,F,F,F,F,T,F,F,F,F,F,F,F,F,F,F,F,F,F,W
+W,F,F,F,F,F,F,F,S8,F,F,F,F,F,F,F,F,F,F,F,F,F,F,W,B,F,F,F,F,F,F,T,F,F,F,F,F,F,F,F,F,T,F,F,F,F,F,F,W
+W,F,F,F,F,F,F,F,B,W,W,F,F,F,S5,F,F,F,F,F,F,F,F,W,F,F,F,F,F,F,F,F,F,F,B,F,F,S1,F,F,F,F,F,F,F,F,F,F,W
+W,F,F,F,F,F,F,F,B,W,W,F,F,F,F,F,F,F,F,F,F,F,F,W,F,F,F,B,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,W
+W,F,F,F,F,F,F,F,B,W,W,F,F,F,F,F,F,F,F,F,F,F,F,W,F,F,F,F,F,F,F,F,F,F,T,F,F,F,F,F,F,F,F,F,F,F,F,F,W
+W,F,F,F,F,T,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,W,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,W
+W,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,W,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,W
+W,F,F,F,F,F,F,F,F,F,P,F,F,F,F,F,F,F,F,F,F,F,P,F,F,F,F,F,F,F,F,F,F,F,F,F,P,F,F,F,F,F,F,F,F,F,F,F,W
+W,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,W,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,W
+W,F,F,F,F,S7,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,W,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,H1,H8,H2,F,F,F,F,F,W
+W,F,F,F,F,T,F,F,F,F,B,B,F,F,F,F,F,T,F,F,F,F,F,W,F,F,F,F,S3,F,F,F,B,F,F,F,F,F,F,F,H7,T,H3,F,F,F,F,F,W
+W,F,F,F,F,F,F,F,F,F,F,B,F,F,F,F,F,F,F,F,F,F,F,W,F,F,F,F,F,F,F,F,F,F,T,F,F,F,F,F,H6,H5,H4,F,F,F,F,F,W
+W,F,F,F,F,F,F,F,F,F,F,F,F,F,S6,F,F,F,F,F,F,F,F,W,F,F,F,F,F,F,F,T,F,S2,F,F,F,F,F,F,F,F,F,F,F,F,F,F,W
+W,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,T,F,F,F,F,F,W,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,W
+W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W
