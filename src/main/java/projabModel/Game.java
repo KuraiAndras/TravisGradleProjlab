@@ -33,7 +33,6 @@ public class Game {
     }
 
     private void onGameEnd() {
-
         MainController.getInstance().endGame();
     }
 
@@ -137,6 +136,7 @@ public class Game {
         currentTurn = null;
         movableBox = 0;
         playerList = new LinkedHashSet<>();
+        initialPlayerList = new LinkedHashSet<>();
         cyclicIterator = new CyclicIterator<>(playerList);
         map = new WareHouse();
         map = map.generateMap(file);

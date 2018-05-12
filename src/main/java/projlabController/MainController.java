@@ -38,4 +38,11 @@ public class MainController {
     void redrawPlayField() {
         gameWindow.drawElements();
     }
+
+    void switchToMain(){
+        mainMenu.setVisible(true);
+        gameWindow = new GameWindow();
+        gameWindow.setVisible(false);
+        endFlag = false;
+    }
 }

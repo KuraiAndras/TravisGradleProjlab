@@ -2,6 +2,7 @@ package projlabView;
 
 import projabModel.Field;
 import projabModel.Game;
+import projlabController.EndButtonListener;
 import projlabController.PlayerInputListener;
 
 import javax.swing.*;
@@ -27,6 +28,9 @@ public class GameWindow extends JFrame {
 
 
     public void load() {
+        infoPanel = new JPanel();
+        gamePanel = new JPanel();
+
         this.setResizable(false);
         this.add(gamePanel, BorderLayout.CENTER);
         this.add(infoPanel, BorderLayout.NORTH);
@@ -39,7 +43,6 @@ public class GameWindow extends JFrame {
         drawElements();
         this.pack();
         this.addKeyListener(pIL);
-
     }
 
     public void endView() {
@@ -56,7 +59,10 @@ public class GameWindow extends JFrame {
 
         this.pack();
         gamePanel.add(new JLabel("Game Over!", (int) CENTER_ALIGNMENT));
-        gamePanel.add(new JLabel(("Winner: Player " + Game.getInstance().getWinner()),(int) CENTER_ALIGNMENT));
+        gamePanel.add(new JLabel(("Winner: Player " + Game.getInstance().getWinner()), (int) CENTER_ALIGNMENT));
+        JButton endButton = new JButton("End");
+        endButton.addActionListener(new EndButtonListener());
+        gamePanel.add(endButton);
         gamePanel.updateUI();
     }
 
