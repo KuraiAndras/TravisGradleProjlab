@@ -1,5 +1,6 @@
 package projlabView;
 
+import projabModel.Direction;
 import projabModel.Field;
 import projabModel.Game;
 import projlabController.EndButtonListener;
@@ -53,13 +54,11 @@ public class GameWindow extends JFrame {
         stepsLeft.setText(Integer.toString(Game.getInstance().getStepsLeft()) + '\t');
         movableBoxesLeft.setText(Integer.toString(Game.getInstance().getMovableBoxes()));
 
-
-        this.setPreferredSize(new Dimension(250, 150));
+        this.setPreferredSize(new Dimension(250, 200));
 
         this.pack();
         gamePanel.add(new JLabel("Game Over!", SwingConstants.CENTER));
         gamePanel.add(new JLabel(("Winner: Player " + Game.getInstance().getWinner()), SwingConstants.CENTER));
-        //TODO: Make end button look better
         JButton endButton = new JButton("End");
         endButton.addActionListener(new EndButtonListener());
         gamePanel.add(endButton);
