@@ -18,7 +18,8 @@ public class GameWindow extends JFrame {
     private JLabel player2Point = new JLabel();
     private JLabel stepsLeft = new JLabel();
     private JLabel movableBoxesLeft = new JLabel();
-    private KeyListener pIL =new PlayerInputListener();
+    private KeyListener pIL = new PlayerInputListener();
+
     public GameWindow() {
         this.setVisible(false);
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
@@ -41,7 +42,7 @@ public class GameWindow extends JFrame {
 
     }
 
-    public void endView(){
+    public void endView() {
         this.removeKeyListener(pIL);
         gamePanel.removeAll();
 
@@ -51,10 +52,11 @@ public class GameWindow extends JFrame {
         movableBoxesLeft.setText(Integer.toString(Game.getInstance().getMovableBoxes()));
 
 
-        this.setPreferredSize(new Dimension(250,150));
+        this.setPreferredSize(new Dimension(250, 150));
 
         this.pack();
         gamePanel.add(new JLabel("Game Over!", (int) CENTER_ALIGNMENT));
+        gamePanel.add(new JLabel(("Winner: Player " + Game.getInstance().getWinner()),(int) CENTER_ALIGNMENT));
         gamePanel.updateUI();
     }
 

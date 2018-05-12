@@ -8,7 +8,7 @@ public class MainController {
     private Game game = Game.getInstance();
     private MainMenu mainMenu;
     GameWindow gameWindow;
-    boolean endFlag=false;
+    boolean endFlag = false;
 
     private static MainController ourInstance = new MainController();
 
@@ -27,8 +27,8 @@ public class MainController {
         gameWindow.load();
     }
 
-    public void endGame(){
-        endFlag=true;
+    public void endGame() {
+        endFlag = true;
     }
 
     String getCurrentMap() {

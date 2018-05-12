@@ -3,6 +3,7 @@ package projabModel;
 import projlabController.MainController;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 
@@ -17,6 +18,8 @@ public class Game {
     private WareHouse map;
     private LinkedHashSet<Player> playerList;
     private CyclicIterator<Player, LinkedHashSet<Player>> cyclicIterator;
+    private LinkedHashSet<Player> initialPlayerList = new LinkedHashSet<>();
+    private Player winner;
 
     private Game() {
         map = new WareHouse();
@@ -35,7 +38,7 @@ public class Game {
     }
 
     void onPlayerDead(Player player) {
-        playerScore.remove(player);
+//        playerScore.remove(player);
         playerList.remove(player);
         if (playerScore.size() == 1) {
             onGameEnd();
@@ -57,7 +60,7 @@ public class Game {
     void registerPlayer(Player player) {
         playerList.add(player);
         playerScore.put(player, 0);
-
+        initialPlayerList.add(player);
         if (currentTurn == null) {
             currentTurn = player;
         }
@@ -83,6 +86,9 @@ public class Game {
     public boolean movePlayer(Direction direction) {
         boolean lastMove = currentTurn.move(direction);
         decreaseSteps();
+        if (playerList.size() == 1) {
+            onGameEnd();
+        }
         return lastMove;
     }
 
@@ -149,20 +155,36 @@ public class Game {
         return map.getMap();
     }
 
-    public int getPlayer1Point(){
+    public int getPlayer1Point() {
         return playerList.size() > 1 ? playerScore.get(playerList.toArray()[0]) : 0;
     }
 
-    public int getPlayer2Point(){
+    public int getPlayer2Point() {
         return playerList.size() > 1 ? playerScore.get(playerList.toArray()[1]) : 0;
     }
 
-    public int getStepsLeft(){
+    public int getStepsLeft() {
         return stepsLeft;
     }
 
-    public int getMovableBoxes(){
+    public int getMovableBoxes() {
         return movableBox;
+    }
+
+    public int getWinner() {
+        ArrayList<Integer> pointList = new ArrayList<>();
+        for (Player item : initialPlayerList) {
+            pointList.add(playerScore.get(item));
+        }
+        int i = 1;
+        int winner = 0;
+        for (Player item : initialPlayerList) {
+            if (playerScore.get(item).equals(Collections.max(pointList))) {
+                winner = i;
+            }
+            i++;
+        }
+        return winner;
     }
 }
 
