@@ -5,12 +5,12 @@ import projlabController.PlayButtonListener;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import java.util.ArrayList;
+import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainMenu extends JFrame {
-    private JComboBox listOfMaps;
+    private JComboBox<String> listOfMaps;
 
     public String getCurrentMap() {
         return (String) listOfMaps.getSelectedItem();
@@ -18,13 +18,13 @@ public class MainMenu extends JFrame {
 
     public MainMenu() {
         JButton playButton = new JButton("Play");
-        listOfMaps = new JComboBox<String>();
+        listOfMaps = new JComboBox<>();
         JPanel jPanel = new JPanel();
 
         jPanel.add(playButton);
         jPanel.add(listOfMaps);
 
-        listOfMaps.setModel(new DefaultComboBoxModel(CreateMapList().toArray()));
+        listOfMaps.setModel(new DefaultComboBoxModel<>(CreateMapList()));
 
         playButton.addActionListener(new PlayButtonListener());
 
@@ -36,10 +36,10 @@ public class MainMenu extends JFrame {
     }
 
 
-    private ArrayList<String> CreateMapList() {
+    private Vector<String> CreateMapList() {
         String partialMapPath = "maps/playableMaps";
         File directory = new File(partialMapPath);
-        ArrayList<String> mapList = new ArrayList<>();
+        Vector<String> mapList = new Vector<>();
 
         if (directory.isDirectory()) {
             String[] files = directory.list();

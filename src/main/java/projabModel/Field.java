@@ -203,8 +203,6 @@ public class Field implements IStep {
         return neighbours.get(direction);
     }
 
-    //TODO: Delete this
-
     /**
      * Overrides the toString() method to make it
      * easier to use for logging purposes.

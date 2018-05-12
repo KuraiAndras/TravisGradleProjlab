@@ -154,14 +154,6 @@ public class Game {
         return map.getMap();
     }
 
-    public int getPlayer1Point() {
-        return playerList.size() > 1 ? playerScore.get(playerList.toArray()[0]) : 0;
-    }
-
-    public int getPlayer2Point() {
-        return playerList.size() > 1 ? playerScore.get(playerList.toArray()[1]) : 0;
-    }
-
     public int getStepsLeft() {
         return stepsLeft;
     }
@@ -171,10 +163,7 @@ public class Game {
     }
 
     public int getWinner() {
-        ArrayList<Integer> pointList = new ArrayList<>();
-        for (Player item : initialPlayerList) {
-            pointList.add(playerScore.get(item));
-        }
+        ArrayList<Integer> pointList = getPointList();
         int i = 1;
         int winner = 0;
         for (Player item : initialPlayerList) {
@@ -184,6 +173,14 @@ public class Game {
             i++;
         }
         return winner;
+    }
+
+    public ArrayList<Integer> getPointList(){
+        ArrayList<Integer> pointList = new ArrayList<>();
+        for(Player item: initialPlayerList){
+            pointList.add((playerScore.get(item)));
+        }
+        return pointList;
     }
 }
 

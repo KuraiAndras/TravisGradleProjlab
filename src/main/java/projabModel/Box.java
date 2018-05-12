@@ -73,9 +73,7 @@ public class Box extends GameElement implements IMovable {
         //System.out.println("\tBox getCanMove()");
         return canMove;
     }
-
-    //TODO: Repair Javadoc
-
+    
     /**
      * This method moves the box to the given direction.
      * If the box can't move to the direction, the box stays
