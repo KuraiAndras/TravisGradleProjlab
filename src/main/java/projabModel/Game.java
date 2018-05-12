@@ -1,5 +1,7 @@
 package projabModel;
 
+import projlabController.MainController;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -29,6 +31,7 @@ public class Game {
 
     private void onGameEnd() {
         //TODO: Implement this
+        MainController.getInstance().endGame();
     }
 
     void onPlayerDead(Player player) {

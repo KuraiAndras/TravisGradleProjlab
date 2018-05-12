@@ -26,6 +26,10 @@ public class MainController {
         gameWindow.load();
     }
 
+    public void endGame(){
+        gameWindow.setEndFlag();
+    }
+
     String getCurrentMap() {
         return mainMenu.getCurrentMap();
     }
