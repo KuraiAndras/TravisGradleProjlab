@@ -17,19 +17,6 @@ class WareHouse {
         return map;
     }
 
-    //TODO: Delete logging
-    //Here for debugging reasons
-    void logMap() {
-        for (ArrayList<Field> item1 :
-                map) {
-            for (Field item2 :
-                    item1) {
-                System.out.print(item2.toString() + '\t');
-            }
-            System.out.println();
-        }
-    }
-
     //Todo: Throw exception when box and target number differ
     //Todo: Throw exception when map is not surrounded with walls
     WareHouse generateMap(String mapLocation) {
@@ -194,10 +181,7 @@ class WareHouse {
                     Field current = map.get(row).get(column);
                     //If there is no element we just skip it
                     //If the gameElement is already locked we skip it
-                    if (!current.hasElement() || !current.canElementMove()) {
-                    }
-                    //If there is an unlocked gameElement we check if we need to lock it
-                    else {
+                    if (current.hasElement() && current.canElementMove()) {
                         //Storing neighbours of current Field
                         HashMap<Direction, Field> neighbours = current.getNeighbours();
                         /*
@@ -208,9 +192,9 @@ class WareHouse {
                         */
                         //Checking cases involving the upper neighbour
                         if (neighbours.get(Direction.UP) != null) {
-                            Field up = (Field) neighbours.get(Direction.UP);
-                            Field left = (Field) neighbours.get(Direction.LEFT);
-                            Field right = (Field) neighbours.get(Direction.RIGHT);
+                            Field up = neighbours.get(Direction.UP);
+                            Field left = neighbours.get(Direction.LEFT);
+                            Field right = neighbours.get(Direction.RIGHT);
                             if (up.hasElement()) {
                                 //UP + LEFT
                                 if (left.hasElement()) {
@@ -234,9 +218,9 @@ class WareHouse {
                         }
                         //Checking cases involving the bottom neighbour
                         if (neighbours.get(Direction.DOWN) != null) {
-                            Field down = (Field) neighbours.get(Direction.DOWN);
-                            Field left = (Field) neighbours.get(Direction.LEFT);
-                            Field right = (Field) neighbours.get(Direction.RIGHT);
+                            Field down = neighbours.get(Direction.DOWN);
+                            Field left = neighbours.get(Direction.LEFT);
+                            Field right = neighbours.get(Direction.RIGHT);
                             if (down.hasElement()) {
                                 //DOWN + LEFT
                                 if (left.hasElement()) {
@@ -259,6 +243,9 @@ class WareHouse {
                             }
                         }
                     }
+                    //If there is an unlocked gameElement we check if we need to lock it
+
+
                 }
                 //TODO: Delete logging
                 //System.out.println();

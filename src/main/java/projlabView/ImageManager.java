@@ -319,7 +319,6 @@ public class ImageManager {
     }
 
 
-    
     public static Image getTarget() {
         if (target == null) {
             try {
