@@ -39,8 +39,8 @@ public class MainController {
 
     void switchToMain(){
         mainMenu.setVisible(true);
-        gameWindow = new GameWindow();
         gameWindow.setVisible(false);
+        gameWindow = new GameWindow();
         endFlag = false;
     }
 }
