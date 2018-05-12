@@ -7,7 +7,8 @@ import java.io.IOException;
 
 public class ImageManager {
 
-    private static Image box;
+
+    private static Image boxOnField;
     private static Image boxOnFieldWithHoney;
     private static Image boxOnFieldWithOil;
     private static Image boxOnSwitch;
@@ -43,15 +44,15 @@ public class ImageManager {
 
     private static Image wall;
 
-    public static Image getBox() {
-        if (box == null) {
+    public static Image getBoxOnField() {
+        if (boxOnField == null) {
             try {
-                box = ImageIO.read(new FileInputStream("graphics/Box.png"));
+                boxOnField = ImageIO.read(new FileInputStream("graphics/BoxOnField.png"));
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
         }
-        return box;
+        return boxOnField;
     }
 
     public static Image getBoxOnFieldWithHoney() {
@@ -288,7 +289,7 @@ public class ImageManager {
     public static Image getSwitchImage() {
         if (switchImage == null) {
             try {
-                switchImage = ImageIO.read(new FileInputStream("graphics/SwitchImage.png"));
+                switchImage = ImageIO.read(new FileInputStream("graphics/Switch.png"));
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
@@ -299,7 +300,7 @@ public class ImageManager {
     public static Image getSwitchImageWithHoney() {
         if (switchImageWithHoney == null) {
             try {
-                switchImageWithHoney = ImageIO.read(new FileInputStream("graphics/SwitchImagewithHoney.png"));
+                switchImageWithHoney = ImageIO.read(new FileInputStream("graphics/SwitchWithHoney.png"));
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
@@ -310,15 +311,14 @@ public class ImageManager {
     public static Image getSwitchImageWithOil() {
         if (switchImageWithOil == null) {
             try {
-                switchImageWithOil = ImageIO.read(new FileInputStream("graphics/SwitchImagewithOil.png"));
+                switchImageWithOil = ImageIO.read(new FileInputStream("graphics/SwitchWithOil.png"));
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
         }
         return switchImageWithOil;
     }
-
-
+  
     public static Image getTarget() {
         if (target == null) {
             try {
@@ -330,7 +330,7 @@ public class ImageManager {
         return target;
     }
 
-    public static Image gettargetWithHoney() {
+    public static Image getTargetWithHoney() {
         if (targetWithHoney == null) {
             try {
                 targetWithHoney = ImageIO.read(new FileInputStream("graphics/TargetWithHoney.png"));
@@ -341,7 +341,7 @@ public class ImageManager {
         return targetWithHoney;
     }
 
-    public static Image gettargetWithOil() {
+    public static Image getTargetWithOil() {
         if (targetWithOil == null) {
             try {
                 targetWithOil = ImageIO.read(new FileInputStream("graphics/TargetWithOil.png"));
@@ -355,7 +355,7 @@ public class ImageManager {
     public static Image getWall() {
         if (wall == null) {
             try {
-                wall = ImageIO.read(new FileInputStream("graphics/Wall.png"));
+                wall = ImageIO.read(new FileInputStream("graphics/WallOnField.png"));
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
