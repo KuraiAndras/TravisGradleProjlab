@@ -60,6 +60,7 @@ public class GameWindow extends JFrame {
         this.pack();
         gamePanel.add(new JLabel("Game Over!", (int) CENTER_ALIGNMENT));
         gamePanel.add(new JLabel(("Winner: Player " + Game.getInstance().getWinner()), (int) CENTER_ALIGNMENT));
+        //TODO: Make end button look better
         JButton endButton = new JButton("End");
         endButton.addActionListener(new EndButtonListener());
         gamePanel.add(endButton);
