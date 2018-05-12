@@ -355,7 +355,7 @@ public class ImageManager {
     public static Image getWall() {
         if (wall == null) {
             try {
-                wall = ImageIO.read(new FileInputStream("graphics/Wall.png"));
+                wall = ImageIO.read(new FileInputStream("graphics/WallOnField.png"));
             } catch (IOException exception) {
                 exception.printStackTrace();
             }

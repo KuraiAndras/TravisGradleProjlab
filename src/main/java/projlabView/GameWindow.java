@@ -65,7 +65,7 @@ public class GameWindow extends JFrame {
                     case "BoxOnTargetWithHoney":
                         panel.add(new JLabel(new ImageIcon(ImageManager.getBoxOnTargetWithHoney())));
                         break;
-                    case "Wall":
+                    case "WallOnField":
                         panel.add(new JLabel(new ImageIcon(ImageManager.getWall())));
                         break;
                     case "Field":
