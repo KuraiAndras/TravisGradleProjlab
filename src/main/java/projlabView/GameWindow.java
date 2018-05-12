@@ -87,91 +87,91 @@ public class GameWindow extends JFrame {
             for (Field item : row) {
                 switch (item.toString()) {
                     case "BoxOnField":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getBoxOnField())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getBoxOnField())));
                         break;
                     case "BoxOnFieldWithOil":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getBoxOnFieldWithOil())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getBoxOnFieldWithOil())));
                         break;
                     case "BoxOnFieldWithHoney":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getBoxOnFieldWithHoney())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getBoxOnFieldWithHoney())));
                         break;
                     case "BoxOnSwitch":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getBoxOnSwitch())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getBoxOnSwitch())));
                         break;
                     case "BoxOnSwitchWithOil":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getBoxOnSwitchWithOil())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getBoxOnSwitchWithOil())));
                         break;
                     case "BoxOnSwitchWithHoney":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getBoxOnSwitchWithHoney())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getBoxOnSwitchWithHoney())));
                         break;
                     case "BoxOnTarget":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getBoxOnTarget())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getBoxOnTarget())));
                         break;
                     case "BoxOnTargetWithOil":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getBoxOnTargetWithOil())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getBoxOnTargetWithOil())));
                         break;
                     case "BoxOnTargetWithHoney":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getBoxOnTargetWithHoney())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getBoxOnTargetWithHoney())));
                         break;
                     case "WallOnField":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getWall())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getWall())));
                         break;
                     case "Field":
                         gamePanel.add(new JLabel(new ImageIcon(ImageManager.getField())));
                         break;
                     case "FieldWithOil":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getFieldWithOil())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getFieldWithOil())));
                         break;
                     case "FieldWithHoney":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getFieldWithHoney())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getFieldWithHoney())));
                         break;
                     case "PlayerOnField":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getPlayerOnField())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getPlayerOnField())));
                         break;
                     case "PlayerOnFieldWithOil":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getPlayerOnFieldWithOil())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getPlayerOnFieldWithOil())));
                         break;
                     case "PlayerOnFieldWithHoney":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getPlayerOnFieldWithHoney())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getPlayerOnFieldWithHoney())));
                         break;
                     case "PlayerOnSwitch":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getPlayerOnSwitch())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getPlayerOnSwitch())));
                         break;
                     case "PlayerOnSwitchWithOil":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getPlayerOnSwitchWithOil())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getPlayerOnSwitchWithOil())));
                         break;
                     case "PlayerOnSwitchWithHoney":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getPlayerOnSwitchWithHoney())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getPlayerOnSwitchWithHoney())));
                         break;
                     case "PlayerOnTarget":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getPlayerOnTarget())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getPlayerOnTarget())));
                         break;
                     case "PlayerOnTargetWithOil":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getPlayerOnTargetWithOil())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getPlayerOnTargetWithOil())));
                         break;
                     case "PlayerOnTargetWithHoney":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getPlayerOnTargetWithHoney())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getPlayerOnTargetWithHoney())));
                         break;
                     case "Target":
                         gamePanel.add(new JLabel(new ImageIcon(ImageManager.getTarget())));
                         break;
                     case "TargetWithOil":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getTargetWithOil())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getTargetWithOil())));
                         break;
                     case "TargetWithHoney":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getTargetWithHoney())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getTargetWithHoney())));
                         break;
                     case "Switch":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getSwitchImage())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getSwitchImage())));
                         break;
                     case "SwitchWithOil":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getSwitchImageWithOil())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getSwitchImageWithOil())));
                         break;
                     case "SwitchWithHoney":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getSwitchImageWithHoney())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getSwitchImageWithHoney())));
                         break;
                     case "Hole":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getHole())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getHole())));
                         break;
 
                 }
