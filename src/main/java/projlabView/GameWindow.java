@@ -2,38 +2,86 @@ package projlabView;
 
 import projabModel.Field;
 import projabModel.Game;
+import projlabController.EndMouseListener;
 import projlabController.PlayerInputListener;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 public class GameWindow extends JFrame {
 
-    JPanel panel = new JPanel();
-
+    private JPanel gamePanel = new JPanel();
+    private JLabel player1Point = new JLabel();
+    private JLabel player2Point = new JLabel();
+    private JLabel stepsLeft = new JLabel();
+    private JLabel movableBoxesLeft = new JLabel();
+    private KeyListener pIL = new PlayerInputListener();
 
     public GameWindow() {
         this.setVisible(false);
-        this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
-
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
+
     public void load() {
-        drawElements();
+        JPanel infoPanel = new JPanel();
+        JPanel endPanel = new JPanel();
+        gamePanel = new JPanel();
+
         this.setResizable(false);
-        this.add(panel);
+        this.add(gamePanel, BorderLayout.CENTER);
+        this.add(infoPanel, BorderLayout.NORTH);
+        this.add(endPanel, BorderLayout.SOUTH);
+
+        infoPanel.setLayout(new GridLayout(1, 4));
+        infoPanel.add(player1Point);
+        infoPanel.add(player2Point);
+        infoPanel.add(stepsLeft);
+        infoPanel.add(movableBoxesLeft);
+
+        //TODO: This should be a button
+        endPanel.addMouseListener(new EndMouseListener());
+        endPanel.add(new JLabel("End"));
+        endPanel.setBackground(Color.CYAN);
+
+        drawElements();
         this.pack();
-        this.addKeyListener(new PlayerInputListener());
+        this.addKeyListener(pIL);
+    }
+
+    public void endView() {
+        this.removeKeyListener(pIL);
+        gamePanel.removeAll();
+
+        player1Point.setText(Integer.toString(Game.getInstance().getPlayer1Point()) + '\t');
+        player2Point.setText(Integer.toString(Game.getInstance().getPlayer2Point()) + '\t');
+        stepsLeft.setText(Integer.toString(Game.getInstance().getStepsLeft()) + '\t');
+        movableBoxesLeft.setText(Integer.toString(Game.getInstance().getMovableBoxes()));
+
+        this.setPreferredSize(new Dimension(250, 200));
+
+        this.pack();
+        gamePanel.add(new JLabel("Game Over!", SwingConstants.CENTER));
+        gamePanel.add(new JLabel(("Winner: Player " + Game.getInstance().getWinner()), SwingConstants.CENTER));
+
+        gamePanel.updateUI();
     }
 
     //TODO: add more cases
     public void drawElements() {
-        panel.removeAll();
+        gamePanel.removeAll();
+
+        player1Point.setText(Integer.toString(Game.getInstance().getPlayer1Point()) + '\t');
+        player2Point.setText(Integer.toString(Game.getInstance().getPlayer2Point()) + '\t');
+        stepsLeft.setText(Integer.toString(Game.getInstance().getStepsLeft()) + '\t');
+        movableBoxesLeft.setText(Integer.toString(Game.getInstance().getMovableBoxes()));
+
 
         ArrayList<ArrayList<Field>> map = Game.getInstance().getMap();
-        this.setMaximumSize(new Dimension(map.size() * 20, map.get(0).size() * 20));
-        panel.setLayout(new GridLayout(map.size(), map.get(0).size()));
+        this.setMaximumSize(new Dimension(map.size() * 20, map.get(0).size() * 20 + 50));
+        gamePanel.setLayout(new GridLayout(map.size(), map.get(0).size()));
 
         for (ArrayList<Field> row : map) {
             for (Field item : row) {
@@ -69,7 +117,7 @@ public class GameWindow extends JFrame {
                         panel.add(new JLabel(new ImageIcon(ImageManager.getWall())));
                         break;
                     case "Field":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getField())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getField())));
                         break;
                     case "FieldWithOil":
                         panel.add(new JLabel(new ImageIcon(ImageManager.getFieldWithOil())));
@@ -105,7 +153,7 @@ public class GameWindow extends JFrame {
                         panel.add(new JLabel(new ImageIcon(ImageManager.getPlayerOnTargetWithHoney())));
                         break;
                     case "Target":
-                        panel.add(new JLabel(new ImageIcon(ImageManager.getTarget())));
+                        gamePanel.add(new JLabel(new ImageIcon(ImageManager.getTarget())));
                         break;
                     case "TargetWithOil":
                         panel.add(new JLabel(new ImageIcon(ImageManager.getTargetWithOil())));
@@ -130,7 +178,8 @@ public class GameWindow extends JFrame {
             }
         }
 
-        panel.updateUI();
+        gamePanel.updateUI();
+
     }
 
 

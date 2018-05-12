@@ -10,34 +10,31 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainMenu extends JFrame {
-    private JButton playButton;
     private JComboBox listOfMaps;
-    private JPanel jPanel;
 
     public String getCurrentMap() {
         return (String) listOfMaps.getSelectedItem();
     }
 
     public MainMenu() {
-        playButton = new JButton("Play");
+        JButton playButton = new JButton("Play");
         listOfMaps = new JComboBox<String>();
-        jPanel = new JPanel();
+        JPanel jPanel = new JPanel();
 
         jPanel.add(playButton);
         jPanel.add(listOfMaps);
 
         listOfMaps.setModel(new DefaultComboBoxModel(CreateMapList().toArray()));
 
-
         playButton.addActionListener(new PlayButtonListener());
-
 
         this.setMinimumSize(new Dimension(800, 600));
         this.add(jPanel, BorderLayout.CENTER);
         this.pack();
-        this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
+
 
     private ArrayList<String> CreateMapList() {
         String partialMapPath = "maps/playableMaps";

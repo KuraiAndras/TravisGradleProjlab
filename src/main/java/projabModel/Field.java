@@ -34,11 +34,11 @@ public class Field implements IStep {
         stickiness = referenceStickiness;
     }
 
-    public double getStickiness() {
+    double getStickiness() {
         return stickiness;
     }
 
-    public boolean setStickiness(double newStickiness) {
+    boolean setStickiness(double newStickiness) {
         if (this.stickiness != referenceStickiness) {
             return false;
         } else {
@@ -64,7 +64,7 @@ public class Field implements IStep {
      *
      * @return False if the GameElement can't move, else true.
      */
-    public boolean canElementMove() {
+    boolean canElementMove() {
         //System.out.println("\tField canElementMove()");
         return gameElement.getCanMove();
     }
@@ -75,7 +75,7 @@ public class Field implements IStep {
      *
      * @return Returns true if there is a GameElement, else returns false.
      */
-    public boolean hasElement() {
+    boolean hasElement() {
         //System.out.println("\tField hasElement()");
         return gameElement != null;
     }
@@ -84,7 +84,7 @@ public class Field implements IStep {
      * This method calls the lockRequest() method
      * on the stored GameElement.
      */
-    public void lockElement() {
+    void lockElement() {
         //System.out.println("\tField lockElement()");
         gameElement.lockRequest();
     }
@@ -96,7 +96,7 @@ public class Field implements IStep {
      * @param field     The neighbour field.
      * @param direction The direction to the field.
      */
-    public void setNeighbour(Field field, Direction direction) {
+    void setNeighbour(Field field, Direction direction) {
         //System.out.println("\tField setNeighbour()");
         neighbours.put(direction, field);
     }
@@ -106,7 +106,7 @@ public class Field implements IStep {
      *
      * @return neighbours The HashMap containing the neighbour fields and directions.
      */
-    public HashMap<Direction, Field> getNeighbours() {
+    HashMap<Direction, Field> getNeighbours() {
         //System.out.println("\tField getNeighbours()");
         return neighbours;
     }
