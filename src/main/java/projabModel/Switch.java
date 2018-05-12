@@ -70,10 +70,15 @@ public class Switch extends Field {
      */
     @Override
     public String toString() {
-        if (gameElement == null) {
-            return "Switch";
-        } else {
-            return gameElement.toString();
+        String name="";
+        if(hasElement()){
+            name=name.concat(gameElement.toString().concat("On"));
         }
+        name=name.concat("Switch");
+        if(getStickiness()<1)
+            name=name.concat("WithOil");
+        if(getStickiness()>1)
+            name=name.concat("WithHoney");
+        return name;
     }
 }
