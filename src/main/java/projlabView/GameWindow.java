@@ -1,9 +1,8 @@
 package projlabView;
 
-import projabModel.Direction;
 import projabModel.Field;
 import projabModel.Game;
-import projlabController.EndButtonListener;
+import projlabController.EndMouseListener;
 import projlabController.PlayerInputListener;
 
 import javax.swing.*;
@@ -12,7 +11,6 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 public class GameWindow extends JFrame {
-
 
     private JPanel gamePanel = new JPanel();
     private JLabel player1Point = new JLabel();
@@ -29,16 +27,24 @@ public class GameWindow extends JFrame {
 
     public void load() {
         JPanel infoPanel = new JPanel();
+        JPanel endPanel = new JPanel();
         gamePanel = new JPanel();
 
         this.setResizable(false);
         this.add(gamePanel, BorderLayout.CENTER);
         this.add(infoPanel, BorderLayout.NORTH);
+        this.add(endPanel, BorderLayout.SOUTH);
+
         infoPanel.setLayout(new GridLayout(1, 4));
         infoPanel.add(player1Point);
         infoPanel.add(player2Point);
         infoPanel.add(stepsLeft);
         infoPanel.add(movableBoxesLeft);
+
+        //TODO: This should be a button
+        endPanel.addMouseListener(new EndMouseListener());
+        endPanel.add(new JLabel("End"));
+        endPanel.setBackground(Color.CYAN);
 
         drawElements();
         this.pack();
@@ -59,9 +65,7 @@ public class GameWindow extends JFrame {
         this.pack();
         gamePanel.add(new JLabel("Game Over!", SwingConstants.CENTER));
         gamePanel.add(new JLabel(("Winner: Player " + Game.getInstance().getWinner()), SwingConstants.CENTER));
-        JButton endButton = new JButton("End");
-        endButton.addActionListener(new EndButtonListener());
-        gamePanel.add(endButton);
+
         gamePanel.updateUI();
     }
 
