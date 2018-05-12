@@ -2,6 +2,7 @@ package projlabController;
 
 import projabModel.Direction;
 import projabModel.Game;
+import projlabView.GameWindow;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -36,7 +37,10 @@ public class PlayerInputListener implements KeyListener {
             default:
                 break;
         }
-        MainController.getInstance().redrawPlayField();
+        if(!MainController.getInstance().endFlag)
+            MainController.getInstance().redrawPlayField();
+        else
+            MainController.getInstance().gameWindow.endView();
     }
 
     @Override

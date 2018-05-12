@@ -7,7 +7,8 @@ import projlabView.MainMenu;
 public class MainController {
     private Game game = Game.getInstance();
     private MainMenu mainMenu;
-    private GameWindow gameWindow;
+    GameWindow gameWindow;
+    boolean endFlag=false;
 
     private static MainController ourInstance = new MainController();
 
@@ -27,7 +28,7 @@ public class MainController {
     }
 
     public void endGame(){
-        gameWindow.setEndFlag();
+        endFlag=true;
     }
 
     String getCurrentMap() {

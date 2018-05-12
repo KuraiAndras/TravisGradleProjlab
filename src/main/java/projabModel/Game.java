@@ -30,7 +30,7 @@ public class Game {
     }
 
     private void onGameEnd() {
-        //TODO: Implement this
+
         MainController.getInstance().endGame();
     }
 

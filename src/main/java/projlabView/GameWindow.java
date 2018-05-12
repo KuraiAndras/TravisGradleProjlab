@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class GameWindow extends JFrame {
 
-    private boolean endFlag=false;
+
     private JPanel gamePanel = new JPanel();
     private JPanel infoPanel = new JPanel();
     private JLabel player1Point = new JLabel();
@@ -24,9 +24,7 @@ public class GameWindow extends JFrame {
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
     }
 
-    public void setEndFlag(){
-        endFlag=true;
-    }
+
     public void load() {
         this.setResizable(false);
         this.add(gamePanel, BorderLayout.CENTER);
@@ -50,11 +48,13 @@ public class GameWindow extends JFrame {
         player1Point.setText(Integer.toString(Game.getInstance().getPlayer1Point()) + '\t');
         player2Point.setText(Integer.toString(Game.getInstance().getPlayer2Point()) + '\t');
         stepsLeft.setText(Integer.toString(Game.getInstance().getStepsLeft()) + '\t');
-        movableBoxesLeft.setText(Integer.toString(Game.getInstance().getMovableBoxes()) + '\t');
+        movableBoxesLeft.setText(Integer.toString(Game.getInstance().getMovableBoxes()));
 
-        gamePanel.add(new JLabel("Game Over!"));
 
-        this.setMaximumSize(new Dimension(300,150));
+        this.setPreferredSize(new Dimension(250,150));
+
+        this.pack();
+        gamePanel.add(new JLabel("Game Over!", (int) CENTER_ALIGNMENT));
         gamePanel.updateUI();
     }
 
@@ -65,7 +65,7 @@ public class GameWindow extends JFrame {
         player1Point.setText(Integer.toString(Game.getInstance().getPlayer1Point()) + '\t');
         player2Point.setText(Integer.toString(Game.getInstance().getPlayer2Point()) + '\t');
         stepsLeft.setText(Integer.toString(Game.getInstance().getStepsLeft()) + '\t');
-        movableBoxesLeft.setText(Integer.toString(Game.getInstance().getMovableBoxes()) + '\t');
+        movableBoxesLeft.setText(Integer.toString(Game.getInstance().getMovableBoxes()));
 
 
         ArrayList<ArrayList<Field>> map = Game.getInstance().getMap();
@@ -95,8 +95,7 @@ public class GameWindow extends JFrame {
         }
 
         gamePanel.updateUI();
-        if(endFlag)
-            endView();
+
     }
 
 
