@@ -38,10 +38,15 @@ public class CyclicIterator<E, C extends Collection<E>> implements Iterator<E> {
     }
 
     void remove(E item, E current) {
-        mElements.remove(item);
-        mIterator = mElements.iterator();
-        while (this.next() != current){
+        if (item == current) {
+            mElements.remove(item);
+            mIterator = mElements.iterator();
+        } else {
+            mElements.remove(item);
+            mIterator = mElements.iterator();
+            while (this.next() != current) {
 
+            }
         }
     }
 }

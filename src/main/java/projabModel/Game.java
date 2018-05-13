@@ -37,14 +37,17 @@ public class Game {
 
     void onPlayerDead(Player player) {
 //        playerScore.remove(player);
-        playerList.remove(player);
-        cyclicIterator.remove(player, currentTurn);
-        if (playerScore.size() == 1) {
-            onGameEnd();
-        }
         if (player == currentTurn) {
+            playerList.remove(player);
+            cyclicIterator.remove(player, currentTurn);
             currentTurn = cyclicIterator.next();
             stepsLeft = totalSteps;
+        } else {
+            playerList.remove(player);
+            cyclicIterator.remove(player, currentTurn);
+        }
+        if (playerScore.size() == 1) {
+            onGameEnd();
         }
     }
 
@@ -83,8 +86,8 @@ public class Game {
     }
 
     public boolean movePlayer(Direction direction) {
-        boolean lastMove = currentTurn.move(direction);
         decreaseSteps();
+        boolean lastMove = currentTurn.move(direction);
         if (playerList.size() == 1) {
             onGameEnd();
         }
