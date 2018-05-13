@@ -177,7 +177,6 @@ public class Game {
         }
 
         i = 1;
-        winner = 0;
 
         ArrayList<Integer> pointList = getPointList();
         for (Player item : initialPlayerList) {

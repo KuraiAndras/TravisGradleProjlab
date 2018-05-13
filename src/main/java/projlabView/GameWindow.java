@@ -81,7 +81,6 @@ public class GameWindow extends JFrame {
         gamePanel.updateUI();
     }
 
-    //TODO: add more cases
     public void drawElements() {
         gamePanel.removeAll();
 

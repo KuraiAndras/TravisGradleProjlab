@@ -29,7 +29,7 @@ public class MainMenu extends JFrame {
 
         playButton.addActionListener(new PlayButtonListener());
 
-        this.setMinimumSize(new Dimension(800, 600));
+        this.setMinimumSize(new Dimension(800, 150));
         this.add(jPanel, BorderLayout.CENTER);
         jPanel.add(errorLabel, BorderLayout.SOUTH);
         this.pack();
