@@ -11,7 +11,8 @@ import java.util.regex.Pattern;
 
 public class MainMenu extends JFrame {
     private JComboBox<String> listOfMaps;
-
+    private JLabel errorLabel = new JLabel();
+    private JPanel jPanel = new JPanel();
     public String getCurrentMap() {
         return (String) listOfMaps.getSelectedItem();
     }
@@ -19,7 +20,7 @@ public class MainMenu extends JFrame {
     public MainMenu() {
         JButton playButton = new JButton("Play");
         listOfMaps = new JComboBox<>();
-        JPanel jPanel = new JPanel();
+
 
         jPanel.add(playButton);
         jPanel.add(listOfMaps);
@@ -30,6 +31,7 @@ public class MainMenu extends JFrame {
 
         this.setMinimumSize(new Dimension(800, 600));
         this.add(jPanel, BorderLayout.CENTER);
+        jPanel.add(errorLabel, BorderLayout.SOUTH);
         this.pack();
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setVisible(true);
@@ -53,5 +55,10 @@ public class MainMenu extends JFrame {
             }
         }
         return mapList;
+    }
+
+    public void updateErrorMessage(String message){
+        errorLabel.setText(message);
+        jPanel.updateUI();
     }
 }

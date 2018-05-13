@@ -5,7 +5,7 @@ import projlabView.MainMenu;
 
 public class MainController {
     private MainMenu mainMenu;
-    GameWindow gameWindow;
+    private GameWindow gameWindow;
     boolean endFlag = false;
 
     private static MainController ourInstance = new MainController();
@@ -42,5 +42,14 @@ public class MainController {
         gameWindow.setVisible(false);
         gameWindow = new GameWindow();
         endFlag = false;
+        mainMenu.updateErrorMessage("");
+    }
+
+    void errorHappened(String message){
+        mainMenu.updateErrorMessage(message);
+    }
+
+    void callEndView(){
+        gameWindow.endView();
     }
 }

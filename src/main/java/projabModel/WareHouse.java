@@ -18,8 +18,7 @@ public class WareHouse {
     }
 
     //Todo: Throw exception when map is not surrounded with walls
-    public WareHouse generateMap(String mapLocation) {
-        try {
+    public WareHouse generateMap(String mapLocation) throws Exception{
             ArrayList<ArrayList<String>> charMap = new ArrayList<>();
             Scanner file = new Scanner(new File(mapLocation));
             //Reading from file
@@ -163,13 +162,6 @@ public class WareHouse {
                     }
                 }
             }
-        } catch (FileNotFoundException e) {
-            System.err.println("The file could not be found!");
-            return null;
-        } catch (MapException e) {
-            System.err.println(e.getMessage());
-            return null;
-        }
         return this;
     }
 

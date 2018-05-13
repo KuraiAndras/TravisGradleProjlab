@@ -134,7 +134,7 @@ public class Game {
 
     //TODO: Delete logging
     //Should we make it private? Only tests need public visibility
-    public void loadGame(String file) {
+    public void loadGame(String file) throws Exception {
         playerScore = new HashMap<>();
         currentTurn = null;
         movableBox = 0;
@@ -143,10 +143,6 @@ public class Game {
         cyclicIterator = new CyclicIterator<>(playerList);
         map = new WareHouse();
         map = map.generateMap(file);
-        if (map == null) {
-            System.err.println("Map Generation Failed");
-            return;
-        }
         if (!playerList.isEmpty()) {
             cyclicIterator.next();
         }

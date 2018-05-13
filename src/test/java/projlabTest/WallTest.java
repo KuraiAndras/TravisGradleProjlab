@@ -15,7 +15,7 @@ public class WallTest {
 
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception{
         Field field = new Field();
         wall = new Wall(field);
         field.setGameElement(wall);

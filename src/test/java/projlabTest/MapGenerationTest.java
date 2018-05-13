@@ -1,26 +1,29 @@
 package projlabTest;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
+import projabModel.MapException;
 import projabModel.WareHouse;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 public class MapGenerationTest {
 
-    @Test
-    public void generationTestNoWall(){
+    @Test(expected = MapException.class)
+    public void generationTestNoWall() throws Exception {
         WareHouse wareHouse = new WareHouse();
-        assertNull(wareHouse.generateMap("maps/wallErrorTest3.txt"));
+        wareHouse.generateMap("maps/wallErrorTestNoWall.txt");
     }
 
-    @Test
-    public void generationTestOneWallMissing(){
+    @Test(expected = MapException.class)
+    public void generationTestOneWallMissing() throws Exception{
         WareHouse wareHouse = new WareHouse();
-        assertNull(wareHouse.generateMap("maps/wallErrorTest2.txt"));
+        assertNull(wareHouse.generateMap("maps/wallErrorTestOneMissing.txt"));
     }
 
-    @Test
-    public void generationTestWorking(){
+    @Test(notExpected )
+    public void generationTestWorking() throws Exception{
         WareHouse wareHouse = new WareHouse();
-        assertNotNull(wareHouse.generateMap("maps/wallErrorTest1.txt"));
+        assertNotNull(wareHouse.generateMap("maps/wallErrorTestWorks.txt"));
     }
 }
