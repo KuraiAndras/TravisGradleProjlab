@@ -38,6 +38,7 @@ public class Game {
     void onPlayerDead(Player player) {
 //        playerScore.remove(player);
         playerList.remove(player);
+        cyclicIterator.remove(player);
         if (playerScore.size() == 1) {
             onGameEnd();
         }
