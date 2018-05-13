@@ -41,7 +41,7 @@ public class Game {
             playerList.remove(player);
             cyclicIterator.remove(player, currentTurn);
             currentTurn = cyclicIterator.next();
-            stepsLeft = totalSteps;
+            stepsLeft = totalSteps + 1;
         } else {
             playerList.remove(player);
             cyclicIterator.remove(player, currentTurn);
@@ -86,8 +86,8 @@ public class Game {
     }
 
     public boolean movePlayer(Direction direction) {
-        decreaseSteps();
         boolean lastMove = currentTurn.move(direction);
+        decreaseSteps();
         if (playerList.size() == 1) {
             onGameEnd();
         }

@@ -31,7 +31,5 @@ public class TurnTest {
         assertTrue(game.movePlayer(Direction.UP));
         assertTrue(game.movePlayer(Direction.UP));
         assertFalse(game.movePlayer(Direction.UP));
-
-
     }
 }
