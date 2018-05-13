@@ -20,7 +20,6 @@ public class BoxTest {
         box = new Box(field);
         field.setGameElement(box);
         game.loadGame("maps/wallTest.txt");
-
     }
 
     @Test

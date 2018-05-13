@@ -13,11 +13,11 @@ import java.util.ArrayList;
 public class GameWindow extends JFrame {
 
     private JPanel gamePanel = new JPanel();
-    private JLabel player1Point = new JLabel();
-    private JLabel player2Point = new JLabel();
     private JLabel stepsLeft = new JLabel();
     private JLabel movableBoxesLeft = new JLabel();
     private KeyListener pIL = new PlayerInputListener();
+    private ArrayList<JLabel> playerPoints = new ArrayList<>();
+
 
     public GameWindow() {
         this.setVisible(false);
@@ -35,9 +35,15 @@ public class GameWindow extends JFrame {
         this.add(infoPanel, BorderLayout.NORTH);
         this.add(endPanel, BorderLayout.SOUTH);
 
-        infoPanel.setLayout(new GridLayout(1, 4));
-        infoPanel.add(player1Point);
-        infoPanel.add(player2Point);
+        infoPanel.setLayout(new GridLayout(1, Game.getInstance().getPointList().size() + 2));
+
+        for (Integer item : Game.getInstance().getPointList()) {
+            playerPoints.add(new JLabel(item.toString()));
+        }
+        for (JLabel item : playerPoints) {
+            infoPanel.add(item);
+        }
+
         infoPanel.add(stepsLeft);
         infoPanel.add(movableBoxesLeft);
 
@@ -51,12 +57,18 @@ public class GameWindow extends JFrame {
         this.addKeyListener(pIL);
     }
 
+    private void updatePointList() {
+        int i, j;
+        for (i = 0, j = 0; i < playerPoints.size(); i++, j++) {
+            playerPoints.get(i).setText(Game.getInstance().getPointList().get(j).toString() + '\t');
+        }
+    }
+
     public void endView() {
         this.removeKeyListener(pIL);
         gamePanel.removeAll();
+        updatePointList();
 
-        player1Point.setText(Integer.toString(Game.getInstance().getPlayer1Point()) + '\t');
-        player2Point.setText(Integer.toString(Game.getInstance().getPlayer2Point()) + '\t');
         stepsLeft.setText(Integer.toString(Game.getInstance().getStepsLeft()) + '\t');
         movableBoxesLeft.setText(Integer.toString(Game.getInstance().getMovableBoxes()));
 
@@ -73,8 +85,7 @@ public class GameWindow extends JFrame {
     public void drawElements() {
         gamePanel.removeAll();
 
-        player1Point.setText(Integer.toString(Game.getInstance().getPlayer1Point()) + '\t');
-        player2Point.setText(Integer.toString(Game.getInstance().getPlayer2Point()) + '\t');
+        updatePointList();
         stepsLeft.setText(Integer.toString(Game.getInstance().getStepsLeft()) + '\t');
         movableBoxesLeft.setText(Integer.toString(Game.getInstance().getMovableBoxes()));
 

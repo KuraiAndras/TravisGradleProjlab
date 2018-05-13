@@ -37,13 +37,17 @@ public class Game {
 
     void onPlayerDead(Player player) {
 //        playerScore.remove(player);
-        playerList.remove(player);
+        if (player == currentTurn) {
+            playerList.remove(player);
+            cyclicIterator.remove(player, currentTurn);
+            currentTurn = cyclicIterator.next();
+            stepsLeft = totalSteps + 1;
+        } else {
+            playerList.remove(player);
+            cyclicIterator.remove(player, currentTurn);
+        }
         if (playerScore.size() == 1) {
             onGameEnd();
-        }
-        if (player == currentTurn) {
-            currentTurn = cyclicIterator.next();
-            stepsLeft = totalSteps;
         }
     }
 
@@ -130,7 +134,7 @@ public class Game {
 
     //TODO: Delete logging
     //Should we make it private? Only tests need public visibility
-    public void loadGame(String file) {
+    public void loadGame(String file) throws Exception {
         playerScore = new HashMap<>();
         currentTurn = null;
         movableBox = 0;
@@ -139,10 +143,6 @@ public class Game {
         cyclicIterator = new CyclicIterator<>(playerList);
         map = new WareHouse();
         map = map.generateMap(file);
-        if (map == null) {
-            System.err.println("Map Generation Failed");
-            return;
-        }
         if (!playerList.isEmpty()) {
             cyclicIterator.next();
         }
@@ -154,14 +154,6 @@ public class Game {
         return map.getMap();
     }
 
-    public int getPlayer1Point() {
-        return playerList.size() > 1 ? playerScore.get(playerList.toArray()[0]) : 0;
-    }
-
-    public int getPlayer2Point() {
-        return playerList.size() > 1 ? playerScore.get(playerList.toArray()[1]) : 0;
-    }
-
     public int getStepsLeft() {
         return stepsLeft;
     }
@@ -171,12 +163,23 @@ public class Game {
     }
 
     public int getWinner() {
-        ArrayList<Integer> pointList = new ArrayList<>();
-        for (Player item : initialPlayerList) {
-            pointList.add(playerScore.get(item));
-        }
         int i = 1;
         int winner = 0;
+
+        if (playerList.size() == 1) {
+            for (Player item : initialPlayerList) {
+                if (playerList.contains(item)) {
+                    winner = i;
+                    return winner;
+                }
+                i++;
+            }
+        }
+
+        i = 1;
+        winner = 0;
+
+        ArrayList<Integer> pointList = getPointList();
         for (Player item : initialPlayerList) {
             if (playerScore.get(item).equals(Collections.max(pointList))) {
                 winner = i;
@@ -184,6 +187,14 @@ public class Game {
             i++;
         }
         return winner;
+    }
+
+    public ArrayList<Integer> getPointList() {
+        ArrayList<Integer> pointList = new ArrayList<>();
+        for (Player item : initialPlayerList) {
+            pointList.add((playerScore.get(item)));
+        }
+        return pointList;
     }
 }
 
