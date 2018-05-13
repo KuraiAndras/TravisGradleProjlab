@@ -21,7 +21,7 @@ public class MapGenerationTest {
         assertNull(wareHouse.generateMap("maps/wallErrorTestOneMissing.txt"));
     }
 
-    @Test(notExpected )
+    @Test
     public void generationTestWorking() throws Exception{
         WareHouse wareHouse = new WareHouse();
         assertNotNull(wareHouse.generateMap("maps/wallErrorTestWorks.txt"));
