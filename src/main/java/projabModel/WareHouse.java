@@ -5,10 +5,10 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 //TODO: Add Javadoc//TODO: Delete logging
-class WareHouse {
+public class WareHouse {
     private ArrayList<ArrayList<Field>> map;
 
-    WareHouse() {
+    public WareHouse() {
         map = new ArrayList<>();
     }
 
@@ -17,9 +17,8 @@ class WareHouse {
         return map;
     }
 
-    //Todo: Throw exception when box and target number differ
     //Todo: Throw exception when map is not surrounded with walls
-    WareHouse generateMap(String mapLocation) {
+    public WareHouse generateMap(String mapLocation) {
         try {
             ArrayList<ArrayList<String>> charMap = new ArrayList<>();
             Scanner file = new Scanner(new File(mapLocation));
@@ -43,6 +42,15 @@ class WareHouse {
                     throw new MapException("Map file has varying lines");
                 }
             }
+
+            for (int i = 0; i < charMap.size(); i++) {
+                for (int j = 0; j < charMap.get(0).size(); j++) {
+                    if (((i == 0 || i == charMap.size() - 1) && !charMap.get(i).get(j).equals("W")) || ((j == 0 || j == charMap.get(0).size() - 1) && !charMap.get(i).get(j).equals("W"))) {
+                        throw new MapException("Map is Not Surrounded with Walls");
+                    }
+                }
+            }
+
 
             //Helpers for setting switches and holes correctly
             ArrayList<WareHouseHelper> switchHelper = new ArrayList<>();

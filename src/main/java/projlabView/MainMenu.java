@@ -35,7 +35,6 @@ public class MainMenu extends JFrame {
         this.setVisible(true);
     }
 
-
     private Vector<String> CreateMapList() {
         String partialMapPath = "maps/playableMaps";
         File directory = new File(partialMapPath);
