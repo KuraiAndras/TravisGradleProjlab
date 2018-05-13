@@ -39,7 +39,7 @@ public class PlayerInputListener implements KeyListener {
         if (!MainController.getInstance().endFlag)
             MainController.getInstance().redrawPlayField();
         else
-            MainController.getInstance().gameWindow.endView();
+            MainController.getInstance().callEndView();
     }
 
     @Override

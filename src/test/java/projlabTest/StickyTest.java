@@ -12,7 +12,7 @@ public class StickyTest {
     private Game game = Game.getInstance();
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception{
         game.loadGame("maps/stickyTest");
     }
 
