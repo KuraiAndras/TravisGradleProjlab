@@ -2,8 +2,8 @@ package projlabTest;
 
 import org.junit.Before;
 import org.junit.Test;
-import projlab.Direction;
-import projlab.Game;
+import projabModel.Direction;
+import projabModel.Game;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -18,13 +18,13 @@ public class PlayTest {
     }
 
     @Test
-    public void pushSingleBox() {
+    public void pushSingleBox() throws Exception{
         game.loadGame("maps/unitTest/pushTest.txt");
         assertTrue(game.movePlayer(Direction.RIGHT));
     }
 
     @Test
-    public void pushMultipleBox() {
+    public void pushMultipleBox() throws Exception{
         game.loadGame("maps/unitTest/pushMultipleBox.txt");
         System.out.println("1 Box");
         assertTrue(game.movePlayer(Direction.RIGHT));
@@ -61,7 +61,7 @@ public class PlayTest {
     }
 
     @Test
-    public void playerPushPlayer() {
+    public void playerPushPlayer() throws Exception{
         game.loadGame("maps/unitTest/playerPushPlayer.txt");
         for (int i = 0; i < 5; i++){
             assertFalse(game.movePlayer(Direction.RIGHT));

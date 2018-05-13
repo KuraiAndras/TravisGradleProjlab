@@ -2,8 +2,8 @@ package projlabTest;
 
 import org.junit.Before;
 import org.junit.Test;
-import projlab.Direction;
-import projlab.Game;
+import projabModel.Direction;
+import projabModel.Game;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -31,7 +31,5 @@ public class TurnTest {
         assertTrue(game.movePlayer(Direction.UP));
         assertTrue(game.movePlayer(Direction.UP));
         assertFalse(game.movePlayer(Direction.UP));
-
-
     }
 }
