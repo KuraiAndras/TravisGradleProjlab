@@ -38,7 +38,7 @@ public class Game {
     void onPlayerDead(Player player) {
 //        playerScore.remove(player);
         playerList.remove(player);
-        cyclicIterator.remove(player);
+        cyclicIterator.remove(player, currentTurn);
         if (playerScore.size() == 1) {
             onGameEnd();
         }
@@ -164,9 +164,23 @@ public class Game {
     }
 
     public int getWinner() {
-        ArrayList<Integer> pointList = getPointList();
         int i = 1;
         int winner = 0;
+
+        if (playerList.size() == 1) {
+            for (Player item : initialPlayerList) {
+                if (playerList.contains(item)) {
+                    winner = i;
+                    return winner;
+                }
+                i++;
+            }
+        }
+
+        i = 1;
+        winner = 0;
+
+        ArrayList<Integer> pointList = getPointList();
         for (Player item : initialPlayerList) {
             if (playerScore.get(item).equals(Collections.max(pointList))) {
                 winner = i;
@@ -176,9 +190,9 @@ public class Game {
         return winner;
     }
 
-    public ArrayList<Integer> getPointList(){
+    public ArrayList<Integer> getPointList() {
         ArrayList<Integer> pointList = new ArrayList<>();
-        for(Player item: initialPlayerList){
+        for (Player item : initialPlayerList) {
             pointList.add((playerScore.get(item)));
         }
         return pointList;

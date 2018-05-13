@@ -35,12 +35,12 @@ public class GameWindow extends JFrame {
         this.add(infoPanel, BorderLayout.NORTH);
         this.add(endPanel, BorderLayout.SOUTH);
 
-        infoPanel.setLayout(new GridLayout(1, 4));
+        infoPanel.setLayout(new GridLayout(1, Game.getInstance().getPointList().size() + 2));
 
         for (Integer item : Game.getInstance().getPointList()) {
             playerPoints.add(new JLabel(item.toString()));
         }
-        for(JLabel item : playerPoints){
+        for (JLabel item : playerPoints) {
             infoPanel.add(item);
         }
 
@@ -59,7 +59,7 @@ public class GameWindow extends JFrame {
 
     private void updatePointList() {
         int i, j;
-        for (i = 0, j = 0; i < playerPoints.size(); i++, j++){
+        for (i = 0, j = 0; i < playerPoints.size(); i++, j++) {
             playerPoints.get(i).setText(Game.getInstance().getPointList().get(j).toString() + '\t');
         }
     }

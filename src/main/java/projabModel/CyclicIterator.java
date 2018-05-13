@@ -37,8 +37,11 @@ public class CyclicIterator<E, C extends Collection<E>> implements Iterator<E> {
         return mIterator.next();
     }
 
-    void remove(E item){
+    void remove(E item, E current) {
         mElements.remove(item);
         mIterator = mElements.iterator();
+        while (this.next() != current){
+
+        }
     }
 }
