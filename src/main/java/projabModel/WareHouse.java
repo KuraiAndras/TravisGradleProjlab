@@ -4,20 +4,50 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-//TODO: Add Javadoc//TODO: Delete logging
+//TODO: Delete logging
+
+/**
+ * <h1>WareHouse</h1>
+ * This class responsible to store the fields,
+ * do lockmanagement and generate the map.
+ * Players play the game in a wareHouse.
+ */
 public class WareHouse {
+    /**
+     * In the ArrayList we store those Fields ,
+     * that the current map contains.
+     */
     private ArrayList<ArrayList<Field>> map;
 
+    /**
+     * Default constructor ,
+     * that generate a empty map ,
+     * which currently contains no Field.
+     */
     public WareHouse() {
         map = new ArrayList<>();
     }
 
     //Why need the whole map?
+
+    /**
+     * @return the currently played whole map.
+     */
     ArrayList<ArrayList<Field>> getMap() {
         return map;
     }
 
     //Todo: Throw exception when map is not surrounded with walls
+
+    /**
+     *Generate a map from a file.
+     * Creating fields from string,
+     *Put a specified GameElemnt on a field if it is required,
+     * and set the fields' neighbours.
+     * @param mapLocation The mapLocation is a String file path from where we would like to generate the map.
+     * @return WareHouse Warehouse where the players will play.
+     * @throws Exception Exception if the whole map is not surrounded with wall.
+     */
     public WareHouse generateMap(String mapLocation) throws Exception{
             ArrayList<ArrayList<String>> charMap = new ArrayList<>();
             Scanner file = new Scanner(new File(mapLocation));
@@ -167,6 +197,19 @@ public class WareHouse {
 
     //Iterates trough all the fields in the map object to lock a box if needed
     //Should be called after every step that caused collision ( ?? maybe after every step ?? )
+
+    /**
+     * Iterates trough all the fields
+     * in the map object to lock a box if needed.
+     *If there is no element on the field we just skip it.
+     *If the gameElement is already locked we skip .
+     * Search for boxes that can no longer move
+     * to its neighbours' direction,
+     * because on that field there is a unmovable object too.
+     * And if the method finds an unmovable object,lock it and
+     * decrease the moavbleboxes' number.
+     * Called after every step.
+     */
     void lockManagement() {
         //We need to go trough all the fields for the number of movable boxes
         //to handle every possible lock that needs to occur after a lock

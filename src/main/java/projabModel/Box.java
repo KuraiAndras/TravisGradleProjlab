@@ -140,7 +140,5 @@ public class Box extends GameElement implements IMovable {
      * easier to use for logging purposes.
      */
     @Override
-    public String toString() {
-        return "Box";
-    }
+    public String toString() {return "Box"; }
 }
