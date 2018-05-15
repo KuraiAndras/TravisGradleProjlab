@@ -117,9 +117,7 @@ public class GameWindow extends JFrame {
 
         gamePanel.updateUI();
     }
-
-    //TODO: add more cases
-
+  
     /**
      * This method is responsible to draw out the map
      * and the state of the game in the right size and

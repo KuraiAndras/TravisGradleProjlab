@@ -62,9 +62,7 @@ public class CyclicIterator<E, C extends Collection<E>> implements Iterator<E> {
         } else {
             mElements.remove(item);
             mIterator = mElements.iterator();
-            while (this.next() != current) {
-
-            }
+            this.next();
         }
     }
 }

@@ -3,28 +3,28 @@ package projabModel;
 /**
  * Helper class for warehouse to store id-s and coordinates
  */
-public class WareHouseHelper {
+class WareHouseHelper {
     private int i;
     private int j;
     private int id;
 
-    public int getI() {
+    int getI() {
         return i;
     }
 
-    public void setI(int i) {
+    void setI(int i) {
         this.i = i;
     }
 
-    public int getJ() {
+    int getJ() {
         return j;
     }
 
-    public void setJ(int j) {
+    void setJ(int j) {
         this.j = j;
     }
 
-    public void setId(int id) {
+    void setId(int id) {
         this.id = id;
     }
 
@@ -34,7 +34,7 @@ public class WareHouseHelper {
      * @param wareHouseHelper Target to equal
      * @return Returns match
      */
-    public boolean equals(WareHouseHelper wareHouseHelper) {
+    boolean equals(WareHouseHelper wareHouseHelper) {
         return this.id == wareHouseHelper.id;
     }
 }
