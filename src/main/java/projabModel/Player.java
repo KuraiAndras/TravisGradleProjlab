@@ -73,11 +73,22 @@ public class Player extends GameElement implements IPlayable, IMovable {
         }
     }
 
+    /**
+     *This method override the Imovable interface move method
+     * and tries to move the player to do given direction.
+     * @param direction The directionwe would like to the player move that direction.
+     * @return The movement was successfull or failed.
+     */
     @Override
     public boolean move(Direction direction) {
         return move(direction, (power + weight) * owner.getStickiness());
     }
 
+    /**
+     * This method tries to set the player owner field stickiness.
+     * @param stickiness A number we would like tok increase or decrease the owner field stickiness.
+     * @return The player successfully set his/her owner field stickiness or failed.
+     */
     @Override
     public boolean placeSticky(double stickiness) {
         return owner.setStickiness(stickiness);

@@ -10,21 +10,58 @@ import java.awt.*;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+/**
+ * <h1>GameWindow</h1>
+ * This class extends JFrame,
+ * has the components whereby GameWindow's GUI is build,
+ * buttons through the game,
+ * and draws out state of the game.
+ */
+
 public class GameWindow extends JFrame {
 
+    /**
+     * This is where the map is drew, and players
+     * can see the current state of the game.
+     */
     private JPanel gamePanel = new JPanel();
+    /**
+     * A label which shows how many steps left the currently
+     * playing player.
+     */
     private JLabel stepsLeft = new JLabel();
+    /**
+     * A label which shows how many movable boxes left
+     * on the currently played warehouse map.
+     */
     private JLabel movableBoxesLeft = new JLabel();
+    /**
+     * A KeyListener for moving the players' character.
+     */
     private KeyListener pIL = new PlayerInputListener();
+    /**
+     * An ArrayList of labels for showing each players' points.
+     */
     private ArrayList<JLabel> playerPoints = new ArrayList<>();
 
-
+    /**
+     * Default constructor which default hide the game window,
+     * and set his defeault close operation.
+     */
     public GameWindow() {
         this.setVisible(false);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
-
+    /**
+     * This method set the game window layout,
+     * creat new panels  and set those.
+     * Add the components in to the panels.
+     * Place the panels int game window's layout.
+     * And draw the map in the center layout.
+     * This method is responsible for update its components
+     * and if the game is over for closing its window.
+     */
     public void load() {
         JPanel infoPanel = new JPanel();
         JPanel endPanel = new JPanel();
@@ -80,7 +117,16 @@ public class GameWindow extends JFrame {
 
         gamePanel.updateUI();
     }
-
+  
+    /**
+     * This method is responsible to draw out the map
+     * and the state of the game in the right size and
+     * with right pictures of the warehouse's parts,
+     * sometimes with extra elements like oil and honey
+     * or box on a target and  player.
+     * After every step clears the gamePanel and redraw
+     * the updated warehouse map and updtate the GUI.
+     */
     public void drawElements() {
         gamePanel.removeAll();
 
