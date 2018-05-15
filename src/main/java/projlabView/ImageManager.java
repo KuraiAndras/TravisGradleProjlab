@@ -5,45 +5,143 @@ import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+/**
+ * <h1>ImageManager</h1>
+ * This class is responsible
+ * for opening the right image
+ * for the drawing out the map
+ * and the state of the game.
+ */
 public class ImageManager {
 
-
+    /**
+     * Image of boxOnField.
+     */
     private static Image boxOnField;
+    /**
+     * Image of boxOnFieldWithHoney.
+     */
     private static Image boxOnFieldWithHoney;
+    /**
+     * Image of boxOnFieldWithOil.
+     */
     private static Image boxOnFieldWithOil;
+    /**
+     * Image of boxOnSwitch.
+     */
     private static Image boxOnSwitch;
+    /**
+     * Image of boxOnSwitchWithHoney.
+     */
     private static Image boxOnSwitchWithHoney;
+    /**
+     * Image of boxOnSwitchWithOil.
+     */
     private static Image boxOnSwitchWithOil;
+    /**
+     * Image of boxOnTarget.
+     */
     private static Image boxOnTarget;
+    /**
+     * Image of boxOnTargetWithHoney.
+     */
     private static Image boxOnTargetWithHoney;
+    /**
+     * Image of boxOnTargetWithOil.
+     */
     private static Image boxOnTargetWithOil;
 
+    /**
+     * Image of field.
+     */
     private static Image field;
+    /**
+     * Image of fieldWithHoney.
+     */
     private static Image fieldWithHoney;
+    /**
+     * Image of fieldWithOil.
+     */
     private static Image fieldWithOil;
 
+    /**
+     * Image of hole.
+     */
     private static Image hole;
 
+    /**
+     * Image of playerOnField.
+     */
     private static Image playerOnField;
+    /**
+     * Image of playerOnFieldWithHoney.
+     */
     private static Image playerOnFieldWithHoney;
+    /**
+     * Image of playerOnFieldWithOil.
+     */
     private static Image playerOnFieldWithOil;
+    /**
+     * Image of playerOnSwitch.
+     */
     private static Image playerOnSwitch;
+    /**
+     * Image of playerOnSwitchWithHoney.
+     */
     private static Image playerOnSwitchWithHoney;
+    /**
+     * Image of playerOnSwitchWithOil.
+     */
     private static Image playerOnSwitchWithOil;
+    /**
+     * Image of playerOnTarget.
+     */
     private static Image playerOnTarget;
+    /**
+     * Image of playerOnTargetWithHoney.
+     */
     private static Image playerOnTargetWithHoney;
+    /**
+     * Image of playerOnTargetWithOil.
+     */
     private static Image playerOnTargetWithOil;
 
+    /**
+     * Image of switchImage.
+     */
     private static Image switchImage;
+    /**
+     * Image of switchImageWithHoney.
+     */
     private static Image switchImageWithHoney;
+    /**
+     * Image of switchImageWithOil.
+     */
     private static Image switchImageWithOil;
 
+    /**
+     * Image of target.
+     */
     private static Image target;
+    /**
+     * Image of targetWithHoney.
+     */
     private static Image targetWithHoney;
+    /**
+     * Image of targetWithOil.
+     */
     private static Image targetWithOil;
 
+    /**
+     * Image of wall.
+     */
     private static Image wall;
 
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with BoxOnField image.
+     */
     public static Image getBoxOnField() {
         if (boxOnField == null) {
             try {
@@ -55,6 +153,11 @@ public class ImageManager {
         return boxOnField;
     }
 
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with BoxOnFieldWithHoney image.
+     */
     public static Image getBoxOnFieldWithHoney() {
         if (boxOnFieldWithHoney == null) {
             try {
@@ -66,6 +169,11 @@ public class ImageManager {
         return boxOnFieldWithHoney;
     }
 
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with BoxOnFieldWithOil image.
+     */
     public static Image getBoxOnFieldWithOil() {
         if (boxOnFieldWithOil == null) {
             try {
@@ -76,7 +184,11 @@ public class ImageManager {
         }
         return boxOnFieldWithOil;
     }
-
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with BoxOnSwitch image.
+     */
     public static Image getBoxOnSwitch() {
         if (boxOnSwitch == null) {
             try {
@@ -87,7 +199,11 @@ public class ImageManager {
         }
         return boxOnSwitch;
     }
-
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with BoxOnSwitchWithHoney image.
+     */
     public static Image getBoxOnSwitchWithHoney() {
         if (boxOnSwitchWithHoney == null) {
             try {
@@ -98,7 +214,11 @@ public class ImageManager {
         }
         return boxOnSwitchWithHoney;
     }
-
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with BoxOnSwitchWithOil image.
+     */
     public static Image getBoxOnSwitchWithOil() {
         if (boxOnSwitchWithOil == null) {
             try {
@@ -109,7 +229,11 @@ public class ImageManager {
         }
         return boxOnSwitchWithOil;
     }
-
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with BoxOnTarget image.
+     */
     public static Image getBoxOnTarget() {
         if (boxOnTarget == null) {
             try {
@@ -120,7 +244,11 @@ public class ImageManager {
         }
         return boxOnTarget;
     }
-
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with BoxOnTargetWithHone image.
+     */
     public static Image getBoxOnTargetWithHoney() {
         if (boxOnTargetWithHoney == null) {
             try {
@@ -131,7 +259,11 @@ public class ImageManager {
         }
         return boxOnTargetWithHoney;
     }
-
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with BoxOnTargetWithOil image.
+     */
     public static Image getBoxOnTargetWithOil() {
         if (boxOnTargetWithOil == null) {
             try {
@@ -142,7 +274,11 @@ public class ImageManager {
         }
         return boxOnTargetWithOil;
     }
-
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with Field image.
+     */
     public static Image getField() {
         if (field == null) {
             try {
@@ -153,7 +289,11 @@ public class ImageManager {
         }
         return field;
     }
-
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with FieldWithHoney image.
+     */
     public static Image getFieldWithHoney() {
         if (fieldWithHoney == null) {
             try {
@@ -164,7 +304,11 @@ public class ImageManager {
         }
         return fieldWithHoney;
     }
-
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with FieldWithOi image.
+     */
     public static Image getFieldWithOil() {
         if (fieldWithOil == null) {
             try {
@@ -175,7 +319,11 @@ public class ImageManager {
         }
         return fieldWithOil;
     }
-
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with Hole image.
+     */
     public static Image getHole() {
         if (hole == null) {
             try {
@@ -186,7 +334,11 @@ public class ImageManager {
         }
         return hole;
     }
-
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with PlayerOnField image.
+     */
     public static Image getPlayerOnField() {
         if (playerOnField == null) {
             try {
@@ -197,7 +349,11 @@ public class ImageManager {
         }
         return playerOnField;
     }
-
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with PlayerOnFieldWithHoney image.
+     */
     public static Image getPlayerOnFieldWithHoney() {
         if (playerOnFieldWithHoney == null) {
             try {
@@ -208,7 +364,11 @@ public class ImageManager {
         }
         return playerOnFieldWithHoney;
     }
-
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with PlayerOnFieldWithOil image.
+     */
     public static Image getPlayerOnFieldWithOil() {
         if (playerOnFieldWithOil == null) {
             try {
@@ -219,7 +379,11 @@ public class ImageManager {
         }
         return playerOnFieldWithOil;
     }
-
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with PlayerOnSwitch image.
+     */
     public static Image getPlayerOnSwitch() {
         if (playerOnSwitch == null) {
             try {
@@ -230,7 +394,11 @@ public class ImageManager {
         }
         return playerOnSwitch;
     }
-
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with PlayerOnSwitchWithHoney image.
+     */
     public static Image getPlayerOnSwitchWithHoney() {
         if (playerOnSwitchWithHoney == null) {
             try {
@@ -241,7 +409,11 @@ public class ImageManager {
         }
         return playerOnSwitchWithHoney;
     }
-
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with PlayerOnSwitchWithOil image.
+     */
     public static Image getPlayerOnSwitchWithOil() {
         if (playerOnSwitchWithOil == null) {
             try {
@@ -252,7 +424,11 @@ public class ImageManager {
         }
         return playerOnSwitchWithOil;
     }
-
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with PlayerOnTarget image.
+     */
     public static Image getPlayerOnTarget() {
         if (playerOnTarget == null) {
             try {
@@ -263,7 +439,11 @@ public class ImageManager {
         }
         return playerOnTarget;
     }
-
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with PlayerOnTargetWithHoney image.
+     */
     public static Image getPlayerOnTargetWithHoney() {
         if (playerOnTargetWithHoney == null) {
             try {
@@ -274,7 +454,11 @@ public class ImageManager {
         }
         return playerOnTargetWithHoney;
     }
-
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with PlayerOnTargetWithOil image.
+     */
     public static Image getPlayerOnTargetWithOil() {
         if (playerOnTargetWithOil == null) {
             try {
@@ -285,7 +469,11 @@ public class ImageManager {
         }
         return playerOnTargetWithOil;
     }
-
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with SwitchImage image.
+     */
     public static Image getSwitchImage() {
         if (switchImage == null) {
             try {
@@ -296,7 +484,11 @@ public class ImageManager {
         }
         return switchImage;
     }
-
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with SwitchImageWithHoney image.
+     */
     public static Image getSwitchImageWithHoney() {
         if (switchImageWithHoney == null) {
             try {
@@ -307,7 +499,11 @@ public class ImageManager {
         }
         return switchImageWithHoney;
     }
-
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with SwitchImageWithOil image.
+     */
     public static Image getSwitchImageWithOil() {
         if (switchImageWithOil == null) {
             try {
@@ -318,7 +514,11 @@ public class ImageManager {
         }
         return switchImageWithOil;
     }
-  
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with Target image.
+     */
     public static Image getTarget() {
         if (target == null) {
             try {
@@ -329,7 +529,11 @@ public class ImageManager {
         }
         return target;
     }
-
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with TargetWithHoney image.
+     */
     public static Image getTargetWithHoney() {
         if (targetWithHoney == null) {
             try {
@@ -340,7 +544,11 @@ public class ImageManager {
         }
         return targetWithHoney;
     }
-
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with TargetWithOil image.
+     */
     public static Image getTargetWithOil() {
         if (targetWithOil == null) {
             try {
@@ -351,7 +559,11 @@ public class ImageManager {
         }
         return targetWithOil;
     }
-
+    /**
+     * Read the Image from given location.
+     * And handle the IOException if its start up.
+     * @return Return with Wall image.
+     */
     public static Image getWall() {
         if (wall == null) {
             try {

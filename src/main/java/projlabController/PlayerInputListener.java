@@ -6,12 +6,29 @@ import projabModel.Game;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * <h1>PlayInputListener</h1>
+ * This class implements KeyListener,
+ * and do things if we press
+ * buttons through the game.
+ */
+
 public class PlayerInputListener implements KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {
 
     }
 
+    /**
+     *This method moves the current player characther if
+     * he pressed the right key.
+     * W:move up.
+     * A:move left.
+     * S:move down.
+     * D:move right.
+     * And ovveride KeyLIstener interface keyPressed method.
+     * @param e Key pressed.
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
