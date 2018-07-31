@@ -41,4 +41,13 @@ class WareHouseHelper {
         if(!(obj instanceof WareHouseHelper)) return false;
         return this.id == ((WareHouseHelper) obj).id;
     }
+
+    @Override
+    public int hashCode() {
+        int result = 42;
+        result = 13 * result + i;
+        result = 13 * result + j;
+        result = 13 * result + id;
+        return  result;
+    }
 }
