@@ -31,10 +31,9 @@ class WareHouseHelper {
     /**
      * Equals by ID
      *
-     * @param wareHouseHelper Target to equal
+     * @param obj Target to equal
      * @return Returns match
      */
-
     @Override
     public boolean equals(Object obj) {
         if(obj == null) return false;
