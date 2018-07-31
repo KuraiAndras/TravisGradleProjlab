@@ -34,9 +34,6 @@ class WareHouseHelper {
      * @param wareHouseHelper Target to equal
      * @return Returns match
      */
-    boolean equals(WareHouseHelper wareHouseHelper) {
-        return this.id == wareHouseHelper.id;
-    }
 
     @Override
     public boolean equals(Object obj) {
